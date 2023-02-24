@@ -1,3 +1,7 @@
+<?php include_once 'includes/connect-db.php';
+include 'includes/date.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +11,7 @@
     <title>Aufgabe 1</title>
 </head>
 <body>
-    <form action="index.html", method="get">
+    <form action="functions/get-method.php", method="get">
         <!-- ein einzeiliges Textfeld mit der Beschriftung „Name“ -->
         <label for="name">Name</label><br>
         <input type="text" id="name" name="name"><br>
@@ -68,17 +72,16 @@
         <label for="BI20d">BI20d</label><br>
         <input type="radio" id="other" name="class" value="other">
         <label for="other">Other: </label>
-        <textarea name="other", rows="1" ></textarea>
+        <textarea name="other", rows="1" ></textarea><br>
       
         <!-- Ein Button mit der Beschriftung „Ausgabe“, der ein alert-Window mit den im Teil 2 definierten Angaben ausgibt. -->
-        <button type="button" onclick="ausgabe()">Ausgabe</button>
+        <button type="button" onclick="ausgabe()">Ausgabe</button><br>
 
-        <!-- Uhrzeit und Datum-->
-        <?php
-          $datum = date("d.m.Y");
-          $uhrzeit = date("H:i");
-          echo '<p>Datum<\p>' $datum," - ",$uhrzeit," Uhr";
+       <?php 
+          $date = Datum();
+          echo '<p>' . $date . '</p>';
         ?>
+
     </form>
 </body>
 </html>

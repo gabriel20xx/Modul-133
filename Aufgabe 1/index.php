@@ -8,10 +8,12 @@ include 'includes/date.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
     <title>Aufgabe 1</title>
 </head>
 <body>
-    <form action="functions/get-method.php", method="get">
+  <div>
+    <form action="includes/get-method.php", method="get">
         <!-- ein einzeiliges Textfeld mit der Beschriftung „Name“ -->
         <label for="name">Name</label><br>
         <input type="text" id="name" name="name"><br>
@@ -75,13 +77,13 @@ include 'includes/date.php';
         <textarea name="other", rows="1" ></textarea><br>
       
         <!-- Ein Button mit der Beschriftung „Ausgabe“, der ein alert-Window mit den im Teil 2 definierten Angaben ausgibt. -->
-        <button type="button" onclick="ausgabe()">Ausgabe</button><br>
-
-       <?php 
+        <button type="submit" onclick="ausgabe()">Ausgabe</button><br>
+        <?php 
           $date = Datum();
           echo '<p>' . $date . '</p>';
         ?>
-
     </form>
+
+</div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 
-function ausgabe(){
+function ausgabe() {
     $name = $_GET['name'];
     $personalnummer = $_GET['personalnummer'];
     $mailadresse = $_GET['mailadresse'];
@@ -16,6 +16,7 @@ function ausgabe(){
 }
 
 if (isset($_GET['submit']) ) {
-    ausgabe();
+    $output = ausgabe();
+    return $output;
 }
 

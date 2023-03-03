@@ -1,10 +1,6 @@
-<h2>Underline Fill</h2>
-  <nav class="fill">
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Downloads</a></li>
-      <li><a href="#">More</a></li>
-      <li><a href="#">Nice staff</a></li>
-    </ul>
-  </nav>
+<div class="topnav">
+  <a class="active" href="../index.php">Startseite</a>
+  <a href="../profile.php">Forum</a>
+  <a href="../login.php">Login</a>
+  <a href="../register.php">SignIn</a>
+</div>

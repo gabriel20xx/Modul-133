@@ -14,6 +14,7 @@ include_once 'everywhere/header.php'
     ?>
     
     <!-- Insert Login Code here-->
+    <h1>Dies ist der Loginbereich</h1>
 
     <?php
     include_once 'everywhere/footer.php'

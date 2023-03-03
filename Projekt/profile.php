@@ -14,6 +14,7 @@ include_once 'everywhere/header.php'
     ?>
     
     <!-- Insert Profile Code here-->
+    <h1>Dies ist der Profilbereich</h1>
 
     <?php
     include_once 'everywhere/footer.php'

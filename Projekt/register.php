@@ -14,6 +14,7 @@ include_once 'everywhere/header.php'
     ?>
     
     <!-- Insert Register Code here-->
+    <h1>Dies ist der Registrierungsbereich</h1>
 
     <?php
     include_once 'everywhere/footer.php'

@@ -1,5 +1,6 @@
-<?php include_once 'includes/connect-db.php';
+<?php 
 include 'includes/date.php';
+include_once 'includes/connect-db.php';
 ?>
 
 <!DOCTYPE html>
@@ -9,11 +10,12 @@ include 'includes/date.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css" type="text/css">
-    <title>Aufgabe 1</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Beschte Website</title>
 </head>
 <body>
   <div>
-    <form action="includes/get-method.php", method="get">
+    <form action="includes/get-method.php" method="post" class="form">
         <!-- ein einzeiliges Textfeld mit der Beschriftung „Name“ -->
         <label for="name">Name</label><br>
         <input type="text" id="name" name="name"><br>
@@ -77,13 +79,32 @@ include 'includes/date.php';
         <textarea name="other", rows="1" ></textarea><br>
       
         <!-- Ein Button mit der Beschriftung „Ausgabe“, der ein alert-Window mit den im Teil 2 definierten Angaben ausgibt. -->
-        <button type="submit" onclick="ausgabe()">Ausgabe</button><br>
+        <button type="submit" name="submit" class="btn btn-primary">Ausgabe</button><br>
         <?php 
           $date = Datum();
           echo '<p>' . $date . '</p>';
         ?>
     </form>
+    <button type="button" class="btn btn-primary" onclick="alarm()">Alert</button><br>
+
+    <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Name
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Cornel</a></li>
+    <li><a class="dropdown-item" href="#">Gabriel</a></li>
+    <li><a class="dropdown-item" href="#">Till</a></li>
+  </ul>
+</div>
+
+<div element class="justAButton">
+<button type="button" class="btn btn-warning">Warn</button>
+</div>
 
 </div>
+</div>
+<script src="js/alert.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>

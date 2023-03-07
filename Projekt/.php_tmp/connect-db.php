@@ -12,4 +12,4 @@ session_start();
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-echo "Database connected successfully";
+echo ("Database connected successfully");

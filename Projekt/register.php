@@ -6,24 +6,24 @@ include_once 'everywhere/header.php';
 <body class="text-center login-page">
     <!-- Insert Register Code here-->
     <main class="form-signin w-100 m-auto">
-    <form action="/register.php" method="post">
+    <form action="includes/register.php" method="post">
         <img class="mb-4" src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="logo" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal">Please register</h1>
 
         <div class="form-floating">
-        <input type="text" class="form-control form-first" id="username" placeholder="Username">
+        <input type="text" name="username" class="form-control form-first" id="username" placeholder="Username">
         <label for="username">Username</label>
         </div>
         <div class="form-floating">
-        <input type="email" class="form-control form-middle" id="email" placeholder="name@example.com">
+        <input type="email" name="email" class="form-control form-middle" id="email" placeholder="name@example.com">
         <label for="email">Email address</label>
         </div>
         <div class="form-floating">
-        <input type="password" class="form-control form-middle" id="password" placeholder="Password">
+        <input type="password" name="password" class="form-control form-middle" id="password" placeholder="Password">
         <label for="password">Password</label>
         </div>
         <div class="form-floating">
-        <input type="password" class="form-control form-last" id="password_rep" placeholder="Repeat Password">
+        <input type="password" name="password_rep" class="form-control form-last" id="password_rep" placeholder="Repeat Password">
         <label for="password_rep">Repeat Password</label>
         </div>
 
@@ -32,7 +32,7 @@ include_once 'everywhere/header.php';
             <input type="checkbox" value="remember-me"> Remember me
         </label>
         </div>
-        <button class="w-100 mb-3 btn btn-lg btn-primary" type="submit">Register</button>
+        <button class="w-100 mb-3 btn btn-lg btn-primary" name="submit" type="submit">Register</button>
         <a href="login.php">
         <div class="w-100 btn btn-lg btn-secondary">Go to login</div>
         </a>

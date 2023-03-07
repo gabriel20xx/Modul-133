@@ -15,17 +15,6 @@ function createUser($conn, $username, $email, $password) {
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../register.php?error=none");
-
-    $sql = "SELECT * FROM users WHERE username='$username'";
-    $result = mysqli_query($conn, $sql);
-
-    if (mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            $userid = $row['id'];
-            $sql = "INSERT INTO profileimage (userid, status) VALUES ('$userid', 1)";
-            mysqli_query($conn, $sql);
-        }
-    }
     exit();
 }
 
@@ -135,8 +124,9 @@ function emptyInputLogin($username, $password) {
 function createBlog($conn, $title, $description) {
     # Add Date and Time
     # Add User
-    $createdAt = time();
-    $createdBy = $_SESSION["username"];
+    $createdAt = date('Y-m-d H:i:s');
+    #$createdBy = $_SESSION["username"];
+    $createdBy = 1;
 
     $sql = "INSERT INTO blogs (title, description, createdAt, createdBy) VALUES (?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
@@ -149,7 +139,55 @@ function createBlog($conn, $title, $description) {
     mysqli_stmt_bind_param($stmt, "ssss", $title, $description, $createdAt, $createdBy);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    header("location: ../new_blog.php?error=none");
 
+
+    # Create Blog page
+
+    $sql2 = "SELECT * FROM blogs WHERE title = '$title'";
+    $result = mysqli_query($conn, $sql2);
+    $resultCheck = mysqli_num_rows($result);
+
+    if ($resultCheck > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $id = $row['id'];
+        copy('../blogtemplate.php', '../blogs/'.$id.'.php');
+        header("location: ../forum.php?error=none");
+        exit();
+    }
+    
     exit();
+}
+
+function deleteBlog($conn, $id) {
+    $sql = "SELECT * FROM blogs WHERE id = '$id'";
+    $result = mysqli_query($conn, $sql);
+    $resultCheck = mysqli_num_rows($result);
+    
+    if ($resultCheck > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $createdBy = $row['createdBy'];
+
+            if (!isset($_SESSION["id"]) == $createdBy) {
+                header("location: ../blogs/$id.php?error=notauthorized");
+                exit();
+            }
+
+            $sql = "DELETE FROM blogs WHERE id = ?";
+            $stmt = mysqli_stmt_init($conn);
+            if (!mysqli_stmt_prepare($stmt, $sql)) {
+                header("location: ../blogs/$id.php?error=stmtfailed");
+                exit();
+            }
+            mysqli_stmt_bind_param($stmt, "i", $id);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+        
+        
+            // Delete the blog
+            unlink("../blogs/$id.php");
+            header("Location: ../forum.php");
+            exit;
+
+        }
+    }
 }

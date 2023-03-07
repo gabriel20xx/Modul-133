@@ -6,5 +6,11 @@ if (isset($_POST["submit"])) {
     require_once 'connect-db.php';
     require_once 'functions.php';
 
+
+
     createBlog($conn, $title, $description);
+
+} else {
+    header("location: ../new_blog.php");
+    exit();
 }

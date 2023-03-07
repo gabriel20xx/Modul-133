@@ -1,30 +1,41 @@
-h1 {
-    color: red;
-    background-color: red;
-    size: 100px;
-    text-align: center;
+/* Root */
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
 }
 
-.topnav {
-    background-color: #333;
-    overflow: hidden;
-  }
-  
-  .topnav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-  }
-  
-  .topnav a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  
-  .topnav a.active {
-    background-color: #04AA6D;
-    color: white;
-  }
+/* Für Login */
+.login-page {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: white;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input.form-first {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input.form-middle {
+  margin-bottom: -1px;
+  border-radius: 0;
+}
+
+.form-signin input.form-last {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}

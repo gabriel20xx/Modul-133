@@ -17,7 +17,20 @@ include_once 'everywhere/header.php'
     ?>
 
     <!-- Insert Blogpage Code here -->
-    <div>
+    <div class='container'>
+        <div class="errors">
+        <?php
+        if (isset($_GET["error"])) {
+            if ($_GET["error"] == "emptyinput") {
+                echo 
+                '<div class="alert alert-danger" role="alert">
+                Fill in all fields!
+                </div>';
+            }
+        }
+        ?>
+        </div>
+
         <form action="includes/create-blog.php" method="post">
             <div class="mb-3">
             <label for="title" class="form-label">Title</label>
@@ -25,9 +38,9 @@ include_once 'everywhere/header.php'
             </div>
             <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" name="description" id="description" rows="10" placeholder="Insert description here"></textarea>
+                <textarea class="form-control" name="description" id="description" rows="10" placeholder="Insert good description here"></textarea>
             </div>
-            <button class="btn btn-lg mb-3 btn-primary" name="submit" type="submit">Create Blog</button>
+            <button class="w-100 btn btn-lg mb-3 btn-success" name="submit" type="submit">Create Post</button>
         </form>
     </div>
 

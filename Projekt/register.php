@@ -10,35 +10,8 @@ include_once 'everywhere/header.php';
         <img class="mb-4" src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="logo" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal">Please register</h1>
 
-        <div class="form-floating">
-        <input type="text" name="username" class="form-control form-first" id="username" placeholder="Username">
-        <label for="username">Username</label>
-        </div>
-        <div class="form-floating">
-        <input type="email" name="email" class="form-control form-middle" id="email" placeholder="name@example.com">
-        <label for="email">Email address</label>
-        </div>
-        <div class="form-floating">
-        <input type="password" name="password" class="form-control form-middle" id="password" placeholder="Password">
-        <label for="password">Password</label>
-        </div>
-        <div class="form-floating">
-        <input type="password" name="password_rep" class="form-control form-last" id="password_rep" placeholder="Repeat Password">
-        <label for="password_rep">Repeat Password</label>
-        </div>
-
-        <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" value="remember-me"> Remember me
-        </label>
-        </div>
-        <button class="w-100 mb-3 btn btn-lg btn-primary" name="submit" type="submit">Register</button>
-        <a href="login.php">
-        <div class="w-100 btn btn-lg btn-secondary">Go to login</div>
-        </a>
-        <p class="mt-5 mb-3 text-muted">&copy; Gabriel, Cornel, Till 2023</p>
-    </form>
-    <?php
+        <div class='errors'>
+        <?php
         if (isset($_GET["error"])) {
             if ($_GET["error"] == "emptyinput") {
                 echo 
@@ -84,9 +57,34 @@ include_once 'everywhere/header.php';
             }
         }
     ?>
+    </div>
+
+        <div class="form-floating">
+        <input type="text" name="username" class="form-control form-first" id="username" placeholder="Username">
+        <label for="username">Username</label>
+        </div>
+        <div class="form-floating">
+        <input type="email" name="email" class="form-control form-middle" id="email" placeholder="name@example.com">
+        <label for="email">Email address</label>
+        </div>
+        <div class="form-floating">
+        <input type="password" name="password" class="form-control form-middle" id="password" placeholder="Password">
+        <label for="password">Password</label>
+        </div>
+        <div class="form-floating mb-3">
+        <input type="password" name="password_rep" class="form-control form-last" id="password_rep" placeholder="Repeat Password">
+        <label for="password_rep">Repeat Password</label>
+        </div>
+        <button class="w-100 mb-3 btn btn-lg btn-primary" name="submit" type="submit">Register</button>
+        <a href="login.php">
+        <div class="w-100 btn btn-lg btn-secondary">Go to login</div>
+        </a>
+        <p class="mt-5 mb-3 text-muted">&copy; Gabriel, Cornel, Till 2023</p>
+    </form>
+    
     </main>
 
     <?php
-    include_once 'everywhere/footer.php';
+/*     include_once 'everywhere/footer.php'; */
     ?>
 </body>

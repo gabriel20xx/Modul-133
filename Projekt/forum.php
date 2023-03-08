@@ -7,9 +7,25 @@ include_once 'everywhere/header.php'
     <?php
     include_once 'everywhere/navbar.php'
     ?>
-
-    <!-- Insert Homepage Code here-->
-    <h1>Dies ist die Forumpage</h1>
+    <div class='container'>
+    <div class='errors'>
+        <?php
+        if (isset($_GET["error"])) {
+            if ($_GET["error"] == "postcreated") {
+                echo 
+                '<div class="alert alert-success" role="alert">
+                Post successfully created!
+                </div>';
+            }
+            else if ($_GET["error"] == "postdeleted") {
+                echo 
+                '<div class="alert alert-danger" role="alert">
+                Post deleted!
+                </div>';
+            }
+        }
+        ?>
+    </div>
 
     <!-- Carroussel -->
     <div id="carouselExampleIndicators" class="carousel slide">
@@ -38,14 +54,15 @@ include_once 'everywhere/header.php'
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-
+    <div class='text-center mt-5'>
     <?php
     if (isset($_SESSION["username"])) {
     echo '<div>
-    <a class="btn btn-primary" href="new_blog.php" role="button">Create new Blogpost</a>
+    <a class="btn btn-lg btn-success" href="new_blog.php" role="button">Create new post</a>
     </div>';
     }
     ?>
+    </div>
     <!-- Grid overview -->
 
     <div class="row mb-3 p-5 text-center">
@@ -121,8 +138,10 @@ include_once 'everywhere/header.php'
         </li>
     </ul>
     </div>
-    
-
     <?php
     include_once 'everywhere/footer.php'
     ?>
+</div>
+    
+
+

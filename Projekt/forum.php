@@ -49,60 +49,59 @@ include_once 'everywhere/header.php'
     <!-- Grid overview -->
 
     <div class="row mb-3 p-5 text-center">
-        <?php 
-        $sql = "SELECT COUNT(*) as count FROM blogs";
-        $result = mysqli_query($conn, $sql);
+    <?php 
+    $sql = "SELECT COUNT(*) as count FROM blogs";
+    $result = mysqli_query($conn, $sql);
 
-        if (mysqli_num_rows($result) > 0) {
-            // Output data of each row
-            while($row = mysqli_fetch_assoc($result)) {
-                $count = $row["count"];
-            }
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $count = $row["count"];
         
         for ($i = 0; $i < $count; $i++) {
-            $sql = "SELECT * FROM blogs ORDER BY id DESC LIMIT " . $i . ", 1";;
+            $sql = "SELECT * FROM blogs ORDER BY id DESC LIMIT $i, 1";
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);
 
             if ($resultCheck > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $title = $row['title'];
-                    $link = $row['id'];
-                    $description = $row['description'];
-                    $date1 = $row['createdAt'];
-                    $date2 = date('Y-m-d H:i:s');
-                    $diff = abs(strtotime($date2) - strtotime($date1));
+                $row = mysqli_fetch_assoc($result);
+                $title = $row['title'];
+                $link = $row['id'];
+                $description = $row['description'];
+                $date1 = $row['createdAt'];
+                $date2 = date('Y-m-d H:i:s');
+                $diff = abs(strtotime($date2) - strtotime($date1));
 
-                    $years = floor($diff / (365*60*60*24));
-                    $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-                    $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
-                    $hours = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24) / (60*60));
-                    $minutes = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60)/ 60);
-                    $seconds = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60 - $minutes*60));
+                $years = floor($diff / (365*60*60*24));
+                $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+                $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+                $hours = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24) / (60*60));
+                $minutes = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60)/ 60);
+                $seconds = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60 - $minutes*60));
+
+                $createdBy = $row['createdBy'];
+                $createdByUser = "SELECT * FROM users WHERE id = '$createdBy'";
+                $result2 = mysqli_query($conn, $createdByUser);
+                $resultCheck2 = mysqli_num_rows($result2);
+
+                if ($resultCheck2 > 0) {
+                    $row2 = mysqli_fetch_assoc($result2);
+                    $username = $row2['username'];
                     
-
-                    $createdBy = $row['createdBy'];
-                    #$sql2 = "SELECT username FROM users WHERE id = $createdBy";
-                    #$author = mysqli_query($conn, $sql2);
-
-                    echo 
-                    "<div class='col-md-4 g-4 mg-4 p-0 card'>
-                    <div class='card-header'>
-                    $createdBy
-                    </div>
-                    <div class='card-body'>
-                    <h5 class='card-title'>$title</h5>
-                    <p class='card-text'>$description</p>
-                    <a href='blogs/$link.php' class='btn btn-primary'>Go to article</a>
-                    </div>
-                    <div class='card-footer text-muted'>
-                    $years years, $months months, $days days, $hours hours, $minutes minutes, $seconds seconds ago
-                    </div>
+                    echo "<div class='col-md-4 g-4 mg-4 p-0 card'>
+                        <div class='card-header'>$username</div>
+                        <div class='card-body'>
+                            <h5 class='card-title'>$title</h5>
+                            <p class='card-text'>$description</p>
+                            <a href='blogs/$link.php' class='btn btn-primary'>Go to article</a>
+                        </div>
+                        <div class='card-footer text-muted'>$years years, $months months, $days days, $hours hours, $minutes minutes, $seconds seconds ago</div>
                     </div>";
                 }
-            }}
+            }
         }
-        ?>
+    }
+    ?>
+
     </div>
 
     <div>

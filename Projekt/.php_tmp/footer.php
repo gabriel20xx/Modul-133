@@ -18,7 +18,7 @@ button.addEventListener('click', function() {
 </script>
 <script>
 // Gets current document name for example: /index.php 
-document.getElementById("footerr").innerHTML = window.location.pathname;
+// document.getElementById("footerr").innerHTML = window.location.pathname;
 
 
 </script>

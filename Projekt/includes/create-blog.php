@@ -6,7 +6,14 @@ if (isset($_POST["submit"])) {
     require_once 'connect-db.php';
     require_once 'functions.php';
 
+    if (emptyInputCreateBlog($title, $description) !== false) {
+        header("location: ../new_blog.php?error=emptyinput");
+        exit();
+    };
 
+    if (checkUserLogin() !== false) {
+        exit();
+    };
 
     createBlog($conn, $title, $description);
 

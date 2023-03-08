@@ -15,6 +15,17 @@ function createUser($conn, $username, $email, $password) {
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../register.php?error=none");
+
+    $sql = "SELECT * FROM users WHERE username = '$username'";
+    $result = mysqli_query($conn, $sql);
+    $resultCheck = mysqli_num_rows($result);
+
+    if ($resultCheck > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $id = $row['id'];
+            copy('../profiletemplate.php', '../profiles/'.$id.'.php');
+        }
+    }
     exit();
 }
 
@@ -125,8 +136,8 @@ function createBlog($conn, $title, $description) {
     # Add Date and Time
     # Add User
     $createdAt = date('Y-m-d H:i:s');
-    #$createdBy = $_SESSION["username"];
-    $createdBy = 1;
+    $createdBy = $_SESSION["id"];
+    # $createdBy = 1;
 
     $sql = "INSERT INTO blogs (title, description, createdAt, createdBy) VALUES (?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
@@ -191,3 +202,24 @@ function deleteBlog($conn, $id) {
         }
     }
 }
+
+function emptyInputCreateBlog($title, $description) {
+    if (empty($title) || empty($description)) {
+        $result = true;
+    }
+    else { 
+        $result = false;
+    }
+    return $result;
+}
+
+function checkUserLogin() {
+    if (!isset($_SESSION["username"])) {
+        $result = true;
+    }
+    else {
+        $result = false;
+    }
+    return $result;
+}
+

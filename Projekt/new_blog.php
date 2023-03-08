@@ -1,14 +1,22 @@
 <?php 
-#include_once 'includes/connect-db.php';
+include_once 'includes/connect-db.php';
 include_once 'everywhere/header.php'
 ?>
+
+<!-- Redirect User to Login page if there is no valid session -->
+<?php 
+    if (!isset($_SESSION["username"])){
+        header("location: ../login.php?error=notloggedin");
+        exit();
+    }
+?>    
 
 <body>
     <?php
     include_once 'everywhere/navbar.php'
     ?>
 
-    <!-- Insert Blogpage Code here-->
+    <!-- Insert Blogpage Code here -->
     <div>
         <form action="includes/create-blog.php" method="post">
             <div class="mb-3">

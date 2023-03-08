@@ -15,21 +15,22 @@
             <a class="nav-link" href="../forum.php">Forum</a>
           </li>
           <?php if(isset($_SESSION["username"])) {
-            echo '
-            <li class="nav-item">
-            <a class="nav-link btn btn-secondary" href="../profile.php">Profile</a>
+
+            echo "
+            <li class='nav-item'>
+            <a class='nav-link btn btn-secondary' href='../profiles/".$_SESSION["id"].".php'>Profile</a>
             </li>
-            <li class="nav-item">
-            <a class="nav-link btn btn-primary" href="../includes/logout.php">Logout</a>
-            </li>';
+            <li class='nav-item'>
+            <a class='nav-link btn btn-primary' href='../includes/logout.php'>Logout</a>
+            </li>";
           } else {
-            echo '
-            <li class="nav-item">
-            <a class="nav-link btn btn-primary" href="../login.php">Login</a>
+            echo "
+            <li class='nav-item'>
+            <a class='nav-link btn btn-primary' href='../login.php'>Login</a>
             </li>
-            <li class="nav-item">
-            <a class="nav-link btn btn-secondary" href="../register.php">Register</a>
-            </li>';
+            <li class='nav-item'>
+            <a class='nav-link btn btn-secondary' href='../register.php'>Register</a>
+            </li>";
           }
           ?>
 

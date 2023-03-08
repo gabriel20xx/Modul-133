@@ -5,6 +5,7 @@ include_once '../everywhere/header.php';
 
 <?php
 $filename = basename(__FILE__, '.php');
+$newTitle = str_replace('_', ' ', $filename);
 ?>
 
 <body>
@@ -12,10 +13,10 @@ $filename = basename(__FILE__, '.php');
     include_once '../everywhere/navbar.php';
     ?>
 
-    <!-- Insert Blog Code here-->
+    <!-- Insert Homepage Code here-->
     <div class="mb-3 p-5 text-center">
         <?php
-            $sql = "SELECT * FROM blogs WHERE id = '$filename'";
+            $sql = "SELECT * FROM blogs WHERE id = '$newTitle'";
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);
 
@@ -39,19 +40,16 @@ $filename = basename(__FILE__, '.php');
     if ($resultCheck > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             $id = $row['id'];
-            $user_id = $row['user_id'];
-            if (isset($_SESSION['id']) == $user_id) {
             echo 
-                "<form action='../includes/edit-blog.php' method='post'>
-                <input type='hidden' name='id' value='$id'>
-                <button type='submit' class='btn btn-secondary' name='submit'>Edit</button>
-                </form>
-        
-                <form action='../includes/delete-blog.php' method='post'>
-                <input type='hidden' name='id' value='$id'>
-                <button type='submit' class='btn btn-danger' name='submit'>Delete</button>
-                </form>";
-            }
+            "<form action='../includes/edit-blog.php' method='post'>
+            <input type='hidden' name='id' value='$id'>
+            <button type='submit' class='btn btn-secondary' name='submit'>Edit</button>
+            </form>
+    
+            <form action='../includes/delete-blog.php' method='post'>
+            <input type='hidden' name='id' value='$id'>
+            <button type='submit' class='btn btn-danger' name='submit'>Delete</button>
+            </form>";
         }
     }
 ?>

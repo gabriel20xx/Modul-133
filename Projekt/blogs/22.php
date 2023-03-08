@@ -8,8 +8,6 @@ $filename = basename(__FILE__, '.php');
 $newTitle = str_replace('_', ' ', $filename);
 ?>
 
-
-
 <body>
     <?php
     include_once '../everywhere/navbar.php';
@@ -42,18 +40,24 @@ $newTitle = str_replace('_', ' ', $filename);
     if ($resultCheck > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             $id = $row['id'];
-            echo "<form action='../includes/edit-blog.php' method='post'>
-            <input type='hidden' name='id' value='$id'>
-            <button type='submit' name='submit' value='edit'>Edit</button>
-        </form>
-    
-        <form action='../includes/delete-blog.php' method='post'>
-            <input type='hidden' name='id' value='$id'>
-        <button type='submit' name='submit' value='delete'>Delete</button>
-        </form>";
+            $user_id = $row['createdBy'];
+            if (isset($_SESSION['id']) == $user_id) {
+            echo 
+                "<form action='../includes/edit-blog.php' method='post'>
+                <input type='hidden' name='id' value='$id'>
+                <button type='submit' class='btn btn-secondary' name='submit'>Edit</button>
+                </form>
+        
+                <form action='../includes/delete-blog.php' method='post'>
+                <input type='hidden' name='id' value='$id'>
+                <button type='submit' class='btn btn-danger' name='submit'>Delete</button>
+                </form>";
+            }
         }
     }
 ?>
+
+    
 
     <?php
     include_once '../everywhere/footer.php'

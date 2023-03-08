@@ -5,6 +5,10 @@
   text-decoration: none;
 }
 
+.nav-button-login, .nav-button-register {
+  width: 10rem;
+}
+
 /* Für Login */
 .login-page {
   display: flex;

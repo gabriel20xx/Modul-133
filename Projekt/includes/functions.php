@@ -162,7 +162,7 @@ function createBlog($conn, $title, $description) {
         $row = mysqli_fetch_assoc($result);
         $id = $row['id'];
         copy('../blogtemplate.php', '../blogs/'.$id.'.php');
-        header("location: ../forum.php?error=none");
+        header("location: ../forum.php?error=createdsuccessfully");
         exit();
     }
     
@@ -196,7 +196,7 @@ function deleteBlog($conn, $id) {
         
             // Delete the blog
             unlink("../blogs/$id.php");
-            header("Location: ../forum.php");
+            header("Location: ../forum.php?error=postdeleted");
             exit;
 
         }

@@ -49,7 +49,7 @@ function loginUser($conn, $username, $password) {
         session_start();
         $_SESSION["id"] = $usernameExists["id"];
         $_SESSION["username"] = $usernameExists["username"];
-        header("location: ../index.php");
+        header("location: ../index.php?error=loggedin");
         exit();
     }
 }
@@ -162,7 +162,7 @@ function createBlog($conn, $title, $description) {
         $row = mysqli_fetch_assoc($result);
         $id = $row['id'];
         copy('../blogtemplate.php', '../blogs/'.$id.'.php');
-        header("location: ../forum.php?error=none");
+        header("location: ../forum.php?error=postcreated");
         exit();
     }
     
@@ -196,7 +196,7 @@ function deleteBlog($conn, $id) {
         
             // Delete the blog
             unlink("../blogs/$id.php");
-            header("Location: ../forum.php");
+            header("Location: ../forum.php?error=postdeleted");
             exit;
 
         }

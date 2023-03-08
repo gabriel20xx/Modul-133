@@ -3,13 +3,32 @@ include_once 'includes/connect-db.php';
 include_once 'everywhere/header.php';
 ?>
 
-<body class="text-center login-page">
-
+<body>
+<div class="text-center login-page">
     <!-- Insert Login Code here-->
     <main class="form-signin w-100 m-auto">
     <form action="includes/login.php" method="post">
         <img class="mb-4" src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="logo" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+        <div class="errors">
+        <?php
+        if (isset($_GET["error"])) {
+            if ($_GET["error"] == "emptyinput") {
+                echo 
+                '<div class="alert alert-danger" role="alert">
+                Fill in all fields!
+                </div>';
+            }
+            else if ($_GET["error"] == "wronglogin") {
+                echo 
+                '<div class="alert alert-danger" role="alert">
+                Incorrect Login information!
+                </div>';
+            }
+        }
+        ?>
+        </div>
 
         <div class="form-floating">
         <input type="text" name="username" class="form-control form-first" id="username" placeholder="name@example.com">
@@ -31,28 +50,13 @@ include_once 'everywhere/header.php';
         </a>
         <p class="mt-5 mb-3 text-muted">&copy; Gabriel, Cornel, Till 2023</p>
     </form>
-    <div class="errors">
-    <?php
-    if (isset($_GET["error"])) {
-        if ($_GET["error"] == "emptyinput") {
-            echo 
-            '<div class="alert alert-danger" role="alert">
-            Fill in all fields!
-            </div>';
-        }
-        else if ($_GET["error"] == "wronglogin") {
-            echo 
-            '<div class="alert alert-danger" role="alert">
-            Incorrect Login information!
-            </div>';
-        }
-    }
-    ?>
-    </div>
+
+    
 </main>
+</div>
 
 
     <?php
-    include_once 'everywhere/footer.php';
+/*     include_once 'everywhere/footer.php'; */
     ?>
 </body>

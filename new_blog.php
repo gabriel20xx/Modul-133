@@ -35,6 +35,7 @@ include_once 'everywhere/header.php'
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Dropdown button
         </button>
+        <!-- Change this to a dropdown choose button -->
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" name="Politics">Politics</a>
             <a class="dropdown-item" name="Politics">Sport</a>

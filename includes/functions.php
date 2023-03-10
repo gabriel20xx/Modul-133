@@ -154,8 +154,8 @@ function createBlog($conn, $title, $description) {
 
     # Create Blog page
 
-    $sql2 = "SELECT * FROM blogs WHERE title = '$title'";
-    $result = mysqli_query($conn, $sql2);
+    $sql = "SELECT * FROM blogs WHERE title = '$title' AND createdAt = '$createdAt";
+    $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
 
     if ($resultCheck > 0) {

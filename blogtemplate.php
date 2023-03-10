@@ -15,13 +15,13 @@ $filename = basename(__FILE__, '.php');
     <!-- Insert Blog Code here-->
     <div class="mb-3 p-5 text-center container">
         <?php
-            $sql = "SELECT * FROM blogs WHERE id = '$filename'";
+            $sql = "SELECT * FROM blogs WHERE uuid = '$filename'";
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);
 
             if ($resultCheck > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
-                    $id = $row['id'];
+                    $uuid = $row['uuid'];
                     $title = $row['title'];
                     $description = $row['description'];
                     echo "<h1>$title</h1>";
@@ -30,7 +30,7 @@ $filename = basename(__FILE__, '.php');
             }
         ?>
         <?php
-            $sql = "SELECT * FROM blogs WHERE id = '$filename'";
+            $sql = "SELECT * FROM blogs WHERE uuid = '$filename'";
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);
 
@@ -41,12 +41,12 @@ $filename = basename(__FILE__, '.php');
                     if (isset($_SESSION['uuid']) == $user_uuid) {
                     echo 
                         "<form action='../includes/edit-blog.php' method='post'>
-                        <input type='hidden' name='id' value='$uuid'>
+                        <input type='hidden' name='uuid' value='$uuid'>
                         <button type='submit' class='w-100 btn btn-secondary' name='submit'>Edit</button>
                         </form>
                 
                         <form action='../includes/delete-blog.php' method='post'>
-                        <input type='hidden' name='id' value='$uuid'>
+                        <input type='hidden' name='uuid' value='$uuid'>
                         <button type='submit' class='mt-2 w-100 btn btn-danger' name='submit'>Delete</button>
                         </form>";
                     }

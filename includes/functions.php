@@ -14,7 +14,6 @@ function createUser($conn, $uuid, $username, $email, $password) {
     mysqli_stmt_bind_param($stmt, "ssss", $uuid, $username, $email, $hashedPassword);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    header("location: ../register.php?error=none");
 
     $sql = "SELECT * FROM users WHERE uuid = '$uuid'";
     $result = mysqli_query($conn, $sql);
@@ -24,8 +23,11 @@ function createUser($conn, $uuid, $username, $email, $password) {
         while ($row = mysqli_fetch_assoc($result)) {
             $uuid = $row['uuid'];
             copy('../profiletemplate.php', '../profiles/'.$uuid.'.php');
+            header("location: ../register.php?error=none");
+            exit();
         }
     }
+    
     exit();
 }
 

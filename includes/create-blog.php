@@ -15,7 +15,9 @@ if (isset($_POST["submit"])) {
         exit();
     };
 
-    createBlog($conn, $title, $description);
+    $uuid = uuid_create(UUID_TYPE_RANDOM);
+
+    createBlog($conn, $uuid, $title, $description);
 
 } else {
     header("location: ../new_blog.php");

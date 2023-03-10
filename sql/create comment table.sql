@@ -1,5 +1,6 @@
 CREATE TABLE users (
     id int NOT NULL AUTO_INCREMENT,
+    uuid NOT NULL char(36),
     username varchar(20),
     email varchar(50),
     password varchar(200),
@@ -8,6 +9,7 @@ CREATE TABLE users (
 
 CREATE TABLE blogs (
     id int NOT NULL AUTO_INCREMENT,
+    uuid NOT NULL char(36),
     title varchar(50),
     description varchar(2000),
     createdAt datetime,
@@ -19,6 +21,7 @@ CREATE TABLE blogs (
 
 CREATE TABLE comments ( 
     id int NOT NULL AUTO_INCREMENT,
+    uuid NOT NULL char(36),
     blog_id int,
     description varchar(2000),
     createdAt datetime,

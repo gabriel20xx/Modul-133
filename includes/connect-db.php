@@ -13,3 +13,8 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 // echo ("Database connected successfully");
+
+// Check if UUID Extension is loaded
+if (!extension_loaded('uuid')) {
+    die('The uuid extension is not loaded.');
+}

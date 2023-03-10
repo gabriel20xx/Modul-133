@@ -2,7 +2,7 @@
 
 # Create User
 function createUser($conn, $uuid, $username, $email, $password) {
-    $sql = "INSERT INTO users (uuid, username, email, password) VALUES (?, ?, ?, ?);";
+    $sql = "INSERT INTO users (uuid, username, email, password) VALUES (?, ?, ?, ?)";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../register.php?error=stmtfailed");
@@ -15,19 +15,29 @@ function createUser($conn, $uuid, $username, $email, $password) {
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
-    $sql = "SELECT * FROM users WHERE uuid = '$uuid'";
-    $result = mysqli_query($conn, $sql);
+    $sql = "SELECT * FROM users WHERE uuid = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../register.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $uuid);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
     $resultCheck = mysqli_num_rows($result);
 
     if ($resultCheck > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             $uuid = $row['uuid'];
             copy('../profiletemplate.php', '../profiles/'.$uuid.'.php');
+            mysqli_stmt_close($stmt);
             header("location: ../register.php?error=none");
             exit();
         }
     }
-    
+
+    mysqli_stmt_close($stmt);
     exit();
 }
 
@@ -135,20 +145,16 @@ function emptyInputLogin($username, $password) {
 
 # Hier kommen alle Funktionen (Überprüfung der Daten und Daten(-bank)verarbeitung)
 function createBlog($conn, $uuid, $title, $description) {
-    # Add Date and Time
-    # Add User
     $createdAt = date('Y-m-d H:i:s');
     $createdBy = $_SESSION["uuid"];
-    # $createdBy = 1;
 
-    $sql = "INSERT INTO blogs (uuid, title, description, createdAt, user_uuid) VALUES (?, ?, ?, ?, ?);";
+    $sql = "INSERT INTO blogs (uuid, title, description, createdAt, user_uuid) VALUES (?, ?, ?, ?, ?)";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../new_blog.php?error=stmtfailed");
         exit();
     }
 
-    
     mysqli_stmt_bind_param($stmt, "sssss", $uuid, $title, $description, $createdAt, $createdBy);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
@@ -156,18 +162,28 @@ function createBlog($conn, $uuid, $title, $description) {
 
     # Create Blog page
 
-    $sql = "SELECT * FROM blogs WHERE uuid = '$uuid'";
-    $result = mysqli_query($conn, $sql);
+    $sql = "SELECT * FROM blogs WHERE uuid = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../forum.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $uuid);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
     $resultCheck = mysqli_num_rows($result);
 
     if ($resultCheck > 0) {
         $row = mysqli_fetch_assoc($result);
         $uuid = $row['uuid'];
         copy('../blogtemplate.php', '../blogs/'.$uuid.'.php');
+        mysqli_stmt_close($stmt);
         header("location: ../forum.php?error=postcreated");
         exit();
     }
-    
+
+    mysqli_stmt_close($stmt);
     exit();
 }
 

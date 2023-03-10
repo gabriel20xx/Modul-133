@@ -13,7 +13,7 @@ include_once '../everywhere/header.php';
 // For this example, we'll just use hardcoded values
 $filename = basename(__FILE__, '.php');
 
-$sql = "SELECT * FROM users WHERE id = '$filename'";
+$sql = "SELECT * FROM users WHERE uuid = '$filename'";
 $result = mysqli_query($conn, $sql);
 $resultCheck = mysqli_num_rows($result);
 
@@ -45,7 +45,7 @@ if ($resultCheck > 0) {
           <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>" disabled>
         </div>
         <?php
-        if(isset($_SESSION['id']) == $filename) {
+        if(isset($_SESSION['uuid']) == $filename) {
           echo "
           <div class='form-group'>
           <label for='password'>Password</label>

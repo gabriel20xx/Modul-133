@@ -3,13 +3,13 @@
 
 if (isset($_POST["submit"])) {
 
-    $id = $_POST["id"];
+    $uuid = $_POST["uuid"];
 
     require_once 'connect-db.php';
     require_once 'functions.php';
 
 
-    editBlog($conn, $id);
+    editBlog($conn, $uuid);
 
 
     header("Location: ../forum.php");

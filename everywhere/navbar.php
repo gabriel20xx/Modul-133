@@ -19,7 +19,7 @@
         </li>
       </ul>
       <ul class="navbar-nav">
-      <?php if(isset($_SESSION["username"])) {
+      <?php if(isset($_SESSION["uuid"])) {
         echo "
           <li class='nav-item w-300 me-2'>
             <a class='nav-link btn btn-outline-primary nav-button-login' href='../includes/logout.php'>Logout</a>

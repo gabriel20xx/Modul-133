@@ -5,7 +5,7 @@ include_once 'everywhere/header.php'
 
 <!-- Redirect User to Login page if there is no valid session -->
 <?php 
-    if (!isset($_SESSION["username"])){
+    if (!isset($_SESSION["uuid"])){
         header("location: ../login.php?error=notloggedin");
         exit();
     }

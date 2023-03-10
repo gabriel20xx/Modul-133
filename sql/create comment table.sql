@@ -13,20 +13,20 @@ CREATE TABLE blogs (
     title varchar(50),
     description varchar(2000),
     createdAt datetime,
-    user_id int,
+    user_uuid int,
     PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES users(id) 
+    FOREIGN KEY (user_uuid) REFERENCES users(uuid) 
 )
 
 
 CREATE TABLE comments ( 
     id int NOT NULL AUTO_INCREMENT,
     uuid NOT NULL char(36),
-    blog_id int,
     description varchar(2000),
     createdAt datetime,
-    user_id int,
+    blog_uuid int,
+    user_uuid int,
     PRIMARY KEY (id),
-    FOREIGN KEY (blog_id) REFERENCES blogs(id),
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (blog_uuid) REFERENCES blogs(uuid),
+    FOREIGN KEY (user_uuid) REFERENCES users(uuid)
 );

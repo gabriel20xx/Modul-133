@@ -1,8 +1,8 @@
 <?php
 
 # Create User
-function createUser($conn, $username, $email, $password) {
-    $sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?);";
+function createUser($conn, $uuid, $username, $email, $password) {
+    $sql = "INSERT INTO users (uuid, username, email, password) VALUES (?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../register.php?error=stmtfailed");
@@ -11,19 +11,19 @@ function createUser($conn, $username, $email, $password) {
 
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt, "sss", $username, $email, $hashedPassword);
+    mysqli_stmt_bind_param($stmt, "ssss", $uuid, $username, $email, $hashedPassword);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../register.php?error=none");
 
-    $sql = "SELECT * FROM users WHERE username = '$username'";
+    $sql = "SELECT * FROM users WHERE uuid = '$uuid'";
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
 
     if ($resultCheck > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-            $id = $row['id'];
-            copy('../profiletemplate.php', '../profiles/'.$id.'.php');
+            $uuid = $row['uuid'];
+            copy('../profiletemplate.php', '../profiles/'.$uuid.'.php');
         }
     }
     exit();
@@ -47,7 +47,7 @@ function loginUser($conn, $username, $password) {
     }
     else if ($checkPassword === true) {
         session_start();
-        $_SESSION["id"] = $usernameExists["id"];
+        $_SESSION["uuid"] = $usernameExists["uuid"];
         $_SESSION["username"] = $usernameExists["username"];
         header("location: ../index.php?error=loggedin");
         exit();
@@ -132,14 +132,14 @@ function emptyInputLogin($username, $password) {
 
 
 # Hier kommen alle Funktionen (Überprüfung der Daten und Daten(-bank)verarbeitung)
-function createBlog($conn, $title, $description) {
+function createBlog($conn, $uuid, $title, $description) {
     # Add Date and Time
     # Add User
     $createdAt = date('Y-m-d H:i:s');
-    $createdBy = $_SESSION["id"];
+    $createdBy = $_SESSION["uuid"];
     # $createdBy = 1;
 
-    $sql = "INSERT INTO blogs (title, description, createdAt, user_id) VALUES (?, ?, ?, ?);";
+    $sql = "INSERT INTO blogs (uuid, title, description, createdAt, user_id) VALUES (?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../new_blog.php?error=stmtfailed");
@@ -147,21 +147,21 @@ function createBlog($conn, $title, $description) {
     }
 
     
-    mysqli_stmt_bind_param($stmt, "ssss", $title, $description, $createdAt, $createdBy);
+    mysqli_stmt_bind_param($stmt, "sssss", $uuid, $title, $description, $createdAt, $createdBy);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
 
     # Create Blog page
 
-    $sql = "SELECT * FROM blogs WHERE title = '$title' AND createdAt = '$createdAt";
+    $sql = "SELECT * FROM blogs WHERE uuid = '$uuid'";
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
 
     if ($resultCheck > 0) {
         $row = mysqli_fetch_assoc($result);
-        $id = $row['id'];
-        copy('../blogtemplate.php', '../blogs/'.$id.'.php');
+        $uuid = $row['uuid'];
+        copy('../blogtemplate.php', '../blogs/'.$uuid.'.php');
         header("location: ../forum.php?error=postcreated");
         exit();
     }
@@ -169,8 +169,8 @@ function createBlog($conn, $title, $description) {
     exit();
 }
 
-function deleteBlog($conn, $id) {
-    $sql = "SELECT * FROM blogs WHERE id = '$id'";
+function deleteBlog($conn, $uuid) {
+    $sql = "SELECT * FROM blogs WHERE uuid = '$uuid'";
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
     
@@ -178,24 +178,24 @@ function deleteBlog($conn, $id) {
         while ($row = mysqli_fetch_assoc($result)) {
             $createdBy = $row['createdBy'];
 
-            if (!isset($_SESSION["id"]) == $createdBy) {
-                header("location: ../blogs/$id.php?error=notauthorized");
+            if (!isset($_SESSION["uuid"]) == $createdBy) {
+                header("location: ../blogs/$uuid.php?error=notauthorized");
                 exit();
             }
 
-            $sql = "DELETE FROM blogs WHERE id = ?";
+            $sql = "DELETE FROM blogs WHERE uuid = ?";
             $stmt = mysqli_stmt_init($conn);
             if (!mysqli_stmt_prepare($stmt, $sql)) {
-                header("location: ../blogs/$id.php?error=stmtfailed");
+                header("location: ../blogs/$uuid.php?error=stmtfailed");
                 exit();
             }
-            mysqli_stmt_bind_param($stmt, "i", $id);
+            mysqli_stmt_bind_param($stmt, "s", $uuid);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
         
         
             // Delete the blog
-            unlink("../blogs/$id.php");
+            unlink("../blogs/$uuid.php");
             header("Location: ../forum.php?error=postdeleted");
             exit;
 
@@ -214,7 +214,7 @@ function emptyInputCreateBlog($title, $description) {
 }
 
 function checkUserLogin() {
-    if (!isset($_SESSION["username"])) {
+    if (!isset($_SESSION["uuid"])) {
         $result = true;
     }
     else {

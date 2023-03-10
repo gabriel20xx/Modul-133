@@ -56,7 +56,7 @@ include_once 'everywhere/header.php'
     </div>
     <div class='text-center mt-5'>
     <?php
-    if (isset($_SESSION["username"])) {
+    if (isset($_SESSION["uuid"])) {
     echo '<div>
     <a class="btn btn-lg btn-success" href="new_blog.php" role="button">Create new post</a>
     </div>';
@@ -75,14 +75,14 @@ include_once 'everywhere/header.php'
         $count = $row["count"];
         
         for ($i = 0; $i < $count; $i++) {
-            $sql = "SELECT * FROM blogs ORDER BY id DESC LIMIT $i, 1";
+            $sql = "SELECT * FROM blogs ORDER BY createdAt DESC LIMIT $i, 1";
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);
 
             if ($resultCheck > 0) {
                 $row = mysqli_fetch_assoc($result);
                 $title = $row['title'];
-                $link = $row['id'];
+                $link = $row['uuid'];
                 $description = $row['description'];
                 $date1 = $row['createdAt'];
                 $date2 = date('Y-m-d H:i:s');
@@ -95,8 +95,8 @@ include_once 'everywhere/header.php'
                 $minutes = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60)/ 60);
                 $seconds = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60 - $minutes*60));
 
-                $createdBy = $row['user_id'];
-                $createdByUser = "SELECT * FROM users WHERE id = '$createdBy'";
+                $createdBy = $row['user_uuid'];
+                $createdByUser = "SELECT * FROM users WHERE uuid = '$createdBy'";
                 $result2 = mysqli_query($conn, $createdByUser);
                 $resultCheck2 = mysqli_num_rows($result2);
 

@@ -36,17 +36,17 @@ $filename = basename(__FILE__, '.php');
 
             if ($resultCheck > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
-                    $id = $row['id'];
-                    $user_id = $row['user_id'];
-                    if (isset($_SESSION['id']) == $user_id) {
+                    $uuid = $row['uuid'];
+                    $user_uuid = $row['user_uuid'];
+                    if (isset($_SESSION['uuid']) == $user_uuid) {
                     echo 
                         "<form action='../includes/edit-blog.php' method='post'>
-                        <input type='hidden' name='id' value='$id'>
+                        <input type='hidden' name='id' value='$uuid'>
                         <button type='submit' class='w-100 btn btn-secondary' name='submit'>Edit</button>
                         </form>
                 
                         <form action='../includes/delete-blog.php' method='post'>
-                        <input type='hidden' name='id' value='$id'>
+                        <input type='hidden' name='id' value='$uuid'>
                         <button type='submit' class='mt-2 w-100 btn btn-danger' name='submit'>Delete</button>
                         </form>";
                     }
@@ -56,7 +56,7 @@ $filename = basename(__FILE__, '.php');
     </div>
 
     <?php
-        $sql = "SELECT COUNT(*) AS count FROM comments WHERE blog_id ='$filename'";
+        $sql = "SELECT COUNT(*) AS count FROM comments WHERE blog_uuid ='$filename'";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0) {
@@ -64,7 +64,7 @@ $filename = basename(__FILE__, '.php');
             $count = $row[""];
 
             for ($i = 0; $i < $count; $i++) {
-                $sql = "SELECT * FROM comments WHERE blog_id ='$filename' ORDER BY id DESC LIMIT $i, 1";
+                $sql = "SELECT * FROM comments WHERE blog_uuid ='$filename' ORDER BY createdAt DESC LIMIT $i, 1";
                 $result = mysqli_query($conn, $sql);
                 $resultCheck = mysqli_num_rows($result);
 
@@ -73,8 +73,8 @@ $filename = basename(__FILE__, '.php');
                     $description = $row['description'];
                     $createdAt = $row['createdAt'];
 
-                    $createdBy = $row['user_id'];
-                    $createdByUser = "SELECT * FROM users WHERE id = '$createdBy'";
+                    $createdBy = $row['user_uuid'];
+                    $createdByUser = "SELECT * FROM users WHERE uuid = '$createdBy'";
                     $result2 = mysqli_query($conn, $createdByUser);
                     $resultCheck2 = mysqli_num_rows($result2);
     

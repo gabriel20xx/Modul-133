@@ -25,7 +25,7 @@
             <a class='nav-link btn btn-outline-primary nav-button-login' href='../includes/logout.php'>Logout</a>
           </li>
           <li class='nav-item w-300'>
-            <a class='nav-link btn btn-primary nav-button-register' href='../profiles/".$_SESSION["id"].".php'>Profile</a>
+            <a class='nav-link btn btn-primary nav-button-register' href='../profiles/".$_SESSION["uuid"].".php'>Profile</a>
           </li>";
        } else {
         echo "

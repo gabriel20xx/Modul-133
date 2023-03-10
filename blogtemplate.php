@@ -56,6 +56,55 @@ $filename = basename(__FILE__, '.php');
     </div>
 
     <?php
+        $sql = "SELECT COUNT(*) AS count FROM comments WHERE blog_id ='$filename'";
+        $result = mysqli_query($conn, $sql);
+
+        if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $count = $row[""];
+
+            for ($i = 0; $i < $count; $i++) {
+                $sql = "SELECT * FROM comments WHERE blog_id ='$filename' ORDER BY id DESC LIMIT $i, 1";
+                $result = mysqli_query($conn, $sql);
+                $resultCheck = mysqli_num_rows($result);
+
+                if ($resultCheck > 0) {
+                    $row = mysqli_fetch_assoc($result);
+                    $description = $row['description'];
+                    $createdAt = $row['createdAt'];
+
+                    $createdBy = $row['user_id'];
+                    $createdByUser = "SELECT * FROM users WHERE id = '$createdBy'";
+                    $result2 = mysqli_query($conn, $createdByUser);
+                    $resultCheck2 = mysqli_num_rows($result2);
+    
+                    if ($resultCheck2 > 0) {
+                        $row2 = mysqli_fetch_assoc($result2);
+                        $username = $row2['username'];
+
+                        echo "
+                            <div class='container'>
+                                <p>$description</p>
+                                <p>$createdAt</p>
+                                <p>$username</p>
+                            </div>
+                        
+                        ";
+                    }
+                }
+            }
+        }
+    ?>
+
+
+    <div class="container">
+        <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+        <label for="floatingTextarea2">Comments</label>
+        </div>
+    </div>
+
+    <?php
     include_once '../everywhere/footer.php'
     ?>
 </body>

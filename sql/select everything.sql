@@ -1,0 +1,2 @@
+USE m133;
+SELECT * FROM users;

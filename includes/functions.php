@@ -139,7 +139,7 @@ function createBlog($conn, $title, $description) {
     $createdBy = $_SESSION["id"];
     # $createdBy = 1;
 
-    $sql = "INSERT INTO blogs (title, description, createdAt, createdBy) VALUES (?, ?, ?, ?);";
+    $sql = "INSERT INTO blogs (title, description, createdAt, user_id) VALUES (?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../new_blog.php?error=stmtfailed");

@@ -95,7 +95,7 @@ include_once 'everywhere/header.php'
                 $minutes = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60)/ 60);
                 $seconds = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60 - $minutes*60));
 
-                $createdBy = $row['createdBy'];
+                $createdBy = $row['user_id'];
                 $createdByUser = "SELECT * FROM users WHERE id = '$createdBy'";
                 $result2 = mysqli_query($conn, $createdByUser);
                 $resultCheck2 = mysqli_num_rows($result2);

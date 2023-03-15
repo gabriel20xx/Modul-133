@@ -241,3 +241,31 @@ function checkUserLogin() {
     return $result;
 }
 
+function createComment($conn, $uuid, $description, $blog_uuid) {
+    $createdAt = date('Y-m-d H:i:s');
+    $user_uuid = $_SESSION["uuid"];
+
+    $sql = "INSERT INTO comments (uuid, description, createdAt, blog_uuid, user_uuid) VALUES (?, ?, ?, ?, ?)";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../blogs/$blog_uuid.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "sssss", $uuid, $description, $createdAt, $blog_uuid, $user_uuid);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    header("location: ../blogs/$blog_uuid.php?error=commentcreated");
+    exit();
+}
+
+function emptyInputCreateComment($description) {
+    if (empty($description)) {
+        $result = true;
+    }
+    else { 
+        $result = false;
+    }
+    return $result;
+}

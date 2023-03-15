@@ -12,6 +12,31 @@ $filename = basename(__FILE__, '.php');
     include_once '../everywhere/navbar.php';
     ?>
 
+    <div class='errors'>
+    <?php
+        if (isset($_GET["error"])) {
+            if ($_GET["error"] == "stmtfailed") {
+                echo 
+                '<div class="alert alert-danger" role="alert">
+                Something went wrong!
+                </div>';
+            }
+            else if ($_GET["error"] == "emptyinput") {
+                echo 
+                '<div class="alert alert-danger" role="alert">
+                Please fill in the field!
+                </div>';
+            }
+            else if ($_GET["error"] == "commentcreated") {
+                echo 
+                '<div class="alert alert-success" role="alert">
+                Comment created!
+                </div>';
+            }
+        }
+    ?>
+    </div>
+
     <!-- Insert Blog Code here-->
     <div class="mb-3 p-5 text-center container">
         <?php
@@ -72,7 +97,6 @@ $filename = basename(__FILE__, '.php');
                     $row = mysqli_fetch_assoc($result);
                     $description = $row['description'];
                     $createdAt = $row['createdAt'];
-
                     $createdBy = $row['user_uuid'];
                     $createdByUser = "SELECT * FROM users WHERE uuid = '$createdBy'";
                     $result2 = mysqli_query($conn, $createdByUser);
@@ -96,12 +120,15 @@ $filename = basename(__FILE__, '.php');
         }
     ?>
 
-
     <div class="container">
-        <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-        <label for="floatingTextarea2">Comments</label>
-        </div>
+        <form action="../includes/create-comment" method="post">
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" name="description" id="description" style="height: 100px"></textarea>
+                <label for="description">Comments</label>
+            </div>
+            <input type='hidden' name='blog_uuid' value='<?php $filename ?>'>
+            <button class="w-100 btn btn-lg mb-3 btn-success" name="submit" type="submit">Add Comment</button>
+        </form>
     </div>
 
     <?php

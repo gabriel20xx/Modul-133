@@ -121,35 +121,57 @@ include_once 'everywhere/header.php'
 
     </div>
 
+    <?php
+        if (isset($_GET["page"])) {
+            $currentPage = $_GET["page"];
+
+            if (!$currentPage == 1) {
+                $previousPage = $currentPage-1;
+            } else {
+                $previousPage = "None";
+            }
+
+            if ($count > 12*$currentPage) {
+                $nextPage = $currentPage+1;
+            } else {
+                $nextPage = "None";
+            }
+        }
+    ?>
 
     <div>
         <ul class="pagination justify-content-center">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">«</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="forum.php?page=1">1</a></li>
 
             <?php 
-                if ($count > 12) {
-                    echo "<li class='page-item'><a class='page-link' href='forum.php?page=2'>2</a></li>";
+            if ($count > 12 && $currentPage != 1) {
+                echo "
+                <li class='page-item'>
+                <a class='page-link' href='forum.php?page=$previousPage' aria-label='Previous'>
+                    <span aria-hidden='true'>«</span>
+                </li>
+                
+                </a><li class='page-item'><a class='page-link' href='forum.php?page=$previousPage'>$previousPage</a></li>
+                ";
+            }
 
+            echo "
+            </a><li class='page-item'><a class='page-link' href='forum.php?page=$currentPage'>$currentPage</a>
+            ";
 
+            if ($count > 2*12 && ($count % $currentPage) > 12) {
+                echo "
+                <li class='page-item'><a class='page-link' href='forum.php?page=$nextPage'>$nextPage</a></li>
 
-
-                    if ($count > 2*12) {
-                        echo "<li class='page-item'><a class='page-link' href='forum.php?page=3'>3</a></li>";
-
-                    }
-                }
+                <li class='page-item'>
+                <a class='page-link' href='forum.php?page=$nextPage' aria-label='Next'>
+                    <span aria-hidden='true'>»</span>
+                </a>
+                </li>
+                ";
+            }
             ?>
 
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">»</span>
-              </a>
-        </li>
+
     </ul>
     </div>
     <?php

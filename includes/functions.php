@@ -194,9 +194,9 @@ function deleteBlog($conn, $uuid) {
     
     if ($resultCheck > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-            $createdBy = $row['createdBy'];
+            $user_uuid = $row['user_uuid'];
 
-            if (!isset($_SESSION["uuid"]) == $createdBy) {
+            if (!isset($_SESSION["uuid"]) == $user_uuid) {
                 header("location: ../blogs/$uuid.php?error=notauthorized");
                 exit();
             }

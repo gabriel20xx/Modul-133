@@ -1,31 +1,17 @@
 <?php 
 include_once 'includes/connect-db.php';
-include_once 'everywhere/header.php'
+include_once 'everywhere/header.php';
 ?>
 
 <?php
-    if (isset($_GET["page"])) {
+if (isset($_GET["page"])) {
         $currentPage = $_GET["page"];
-
-        if (!$currentPage == 1) {
-            $previousPage = $currentPage-1;
-        } else {
-            $previousPage = "None";
-        }
-
-        if ($count > 12*$currentPage) {
-            $nextPage = $currentPage+1;
-        } else {
-            $nextPage = "None";
-        }
-    } else {
-        header("Location: forum.php?page=1");
-    }
+}
 ?>
 
 <body>
     <?php
-    include_once 'everywhere/navbar.php'
+    include_once 'everywhere/navbar.php';
     ?>
     <div class='container'>
     <div class='errors'>
@@ -137,6 +123,7 @@ include_once 'everywhere/header.php'
                     </div>
                     <div class='card-footer text-muted'>$years years, $months months, $days days, $hours hours, $minutes minutes, $seconds seconds ago</div>
                 </div>";
+                }
             }
         }
     }
@@ -144,7 +131,19 @@ include_once 'everywhere/header.php'
 
     </div>
 
+    <?php
+        if (!$currentPage == 1) {
+            $previousPage = $currentPage-1;
+        } else {
+            $previousPage = "None";
+        }
 
+        if ($count > 12*$currentPage) {
+            $nextPage = $currentPage+1;
+        } else {
+            $nextPage = "None";
+        }
+    ?>
 
     <div>
         <ul class="pagination justify-content-center">
@@ -182,7 +181,7 @@ include_once 'everywhere/header.php'
     </ul>
     </div>
     <?php
-    include_once 'everywhere/footer.php'
+    include_once 'everywhere/footer.php';
     ?>
 </div>
     

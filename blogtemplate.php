@@ -121,7 +121,7 @@ $filename = basename(__FILE__, '.php');
     ?>
 
     <div class="container">
-        <form action="../includes/create-comment" method="post">
+        <form action="../includes/create-comment.php" method="post">
             <div class="form-floating">
                 <textarea class="form-control" placeholder="Leave a comment here" name="description" id="description" style="height: 100px"></textarea>
                 <label for="description">Comments</label>

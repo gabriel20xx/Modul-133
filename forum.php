@@ -121,6 +121,7 @@ include_once 'everywhere/header.php'
 
     </div>
 
+
     <div>
         <ul class="pagination justify-content-center">
             <li class="page-item">
@@ -128,9 +129,22 @@ include_once 'everywhere/header.php'
                 <span aria-hidden="true">«</span>
               </a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="forum.php?page=1">1</a></li>
+
+            <?php 
+                if ($count > 12) {
+                    echo "<li class='page-item'><a class='page-link' href='forum.php?page=2'>2</a></li>";
+
+
+
+
+                    if ($count > 2*12) {
+                        echo "<li class='page-item'><a class='page-link' href='forum.php?page=3'>3</a></li>";
+
+                    }
+                }
+            ?>
+
             <li class="page-item">
               <a class="page-link" href="#" aria-label="Next">
                 <span aria-hidden="true">»</span>

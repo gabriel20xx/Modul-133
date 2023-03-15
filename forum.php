@@ -136,6 +136,8 @@ include_once 'everywhere/header.php'
             } else {
                 $nextPage = "None";
             }
+        } else {
+            header("Location: forum.php?page=1");
         }
     ?>
 

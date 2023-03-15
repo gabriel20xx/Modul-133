@@ -94,22 +94,17 @@ include_once 'everywhere/header.php'
         $row = mysqli_fetch_assoc($result);
         $count = $row["count"];
 
-        if ($count > 12 ) {
-            $sql = "";
-            for ($i = 0; $i < 12; $i++) {
-                $sql .= "SELECT * FROM blogs ORDER BY createdAt DESC LIMIT " . ($currentPage*12 + $i) . ", 1 UNION ";
-            }
-            $sql = rtrim($sql, " UNION ");
-
-        } else {
-            $sql = "SELECT * FROM blogs ORDER BY createdAt DESC LIMIT 0, $count";
+        if ($count > 12) {
+            $count = 12;
         }
 
-        $result = mysqli_query($conn, $sql);
-        $resultCheck = mysqli_num_rows($result);
+        for ($i = 0; $i < $count; $i++) {
+            $sql = "SELECT * FROM blogs ORDER BY createdAt DESC LIMIT 1 OFFSET " . ($currentPage * 12 + $i);
+            $result = mysqli_query($conn, $sql);
+            $resultCheck = mysqli_num_rows($result);
 
-        if ($resultCheck > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
+            if ($resultCheck > 0) {
+                $row = mysqli_fetch_assoc($result);
                 $title = $row['title'];
                 $link = $row['uuid'];
                 $description = $row['description'];
@@ -119,7 +114,7 @@ include_once 'everywhere/header.php'
 
                 $years = floor($diff / (365*60*60*24));
                 $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-                $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+                $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24) / (60*60*24));
                 $hours = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24) / (60*60));
                 $minutes = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60)/ 60);
                 $seconds = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60 - $minutes*60));

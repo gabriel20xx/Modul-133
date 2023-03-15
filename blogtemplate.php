@@ -86,7 +86,7 @@ $filename = basename(__FILE__, '.php');
 
         if (mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
-            $count = $row[""];
+            $count = $row["count"];
 
             for ($i = 0; $i < $count; $i++) {
                 $sql = "SELECT * FROM comments WHERE blog_uuid ='$filename' ORDER BY createdAt DESC LIMIT $i, 1";
@@ -126,7 +126,7 @@ $filename = basename(__FILE__, '.php');
                 <textarea class="form-control" placeholder="Leave a comment here" name="description" id="description" style="height: 100px"></textarea>
                 <label for="description">Comments</label>
             </div>
-            <input type='hidden' name='blog_uuid' value='<?php $filename ?>'>
+            <input type='hidden' name='blog_uuid' value='<?php echo $filename ?>'>
             <button class="w-100 btn btn-lg mb-3 btn-success" name="submit" type="submit">Add Comment</button>
         </form>
     </div>

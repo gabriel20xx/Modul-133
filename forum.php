@@ -3,6 +3,26 @@ include_once 'includes/connect-db.php';
 include_once 'everywhere/header.php'
 ?>
 
+<?php
+    if (isset($_GET["page"])) {
+        $currentPage = $_GET["page"];
+
+        if (!$currentPage == 1) {
+            $previousPage = $currentPage-1;
+        } else {
+            $previousPage = "None";
+        }
+
+        if ($count > 12*$currentPage) {
+            $nextPage = $currentPage+1;
+        } else {
+            $nextPage = "None";
+        }
+    } else {
+        header("Location: forum.php?page=1");
+    }
+?>
+
 <body>
     <?php
     include_once 'everywhere/navbar.php'
@@ -73,9 +93,18 @@ include_once 'everywhere/header.php'
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
         $count = $row["count"];
-        
-        for ($i = 0; $i < $count; $i++) {
+
+        if ($count > 12 ) {
+            $count = 12;
+            for ($i = 0; $i < $count; $i++) {
+                $sql = "SELECT * FROM blogs ORDER BY createdAt DESC LIMIT $i OFFSET $currentPage*12";
+            }
+        } else {
+            for ($i = 0; $i < $count; $i++) {
             $sql = "SELECT * FROM blogs ORDER BY createdAt DESC LIMIT $i, 1";
+        }
+        
+
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);
 
@@ -121,25 +150,7 @@ include_once 'everywhere/header.php'
 
     </div>
 
-    <?php
-        if (isset($_GET["page"])) {
-            $currentPage = $_GET["page"];
 
-            if (!$currentPage == 1) {
-                $previousPage = $currentPage-1;
-            } else {
-                $previousPage = "None";
-            }
-
-            if ($count > 12*$currentPage) {
-                $nextPage = $currentPage+1;
-            } else {
-                $nextPage = "None";
-            }
-        } else {
-            header("Location: forum.php?page=1");
-        }
-    ?>
 
     <div>
         <ul class="pagination justify-content-center">

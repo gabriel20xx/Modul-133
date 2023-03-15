@@ -95,6 +95,7 @@ $filename = basename(__FILE__, '.php');
 
                 if ($resultCheck > 0) {
                     $row = mysqli_fetch_assoc($result);
+                    $comment_uuid = $row['uuid'];
                     $description = $row['description'];
                     $createdAt = $row['createdAt'];
                     $user_uuid = $row['user_uuid'];
@@ -118,12 +119,12 @@ $filename = basename(__FILE__, '.php');
                         if (isset($_SESSION['uuid']) == $user_uuid) {
                             echo 
                                 "<form action='../includes/edit-comment.php' method='post'>
-                                <input type='hidden' name='uuid' value='$uuid'>
+                                <input type='hidden' name='uuid' value='$comment_uuid'>
                                 <button type='submit' class='w-100 btn btn-secondary' name='submit'>Edit</button>
                                 </form>
                         
                                 <form action='../includes/delete-comment.php' method='post'>
-                                <input type='hidden' name='uuid' value='$uuid'>
+                                <input type='hidden' name='uuid' value='$comment_uuid'>
                                 <button type='submit' class='mt-2 w-100 btn btn-danger' name='submit'>Delete</button>
                                 </form>";
                             }

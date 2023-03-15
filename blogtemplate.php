@@ -97,8 +97,8 @@ $filename = basename(__FILE__, '.php');
                     $row = mysqli_fetch_assoc($result);
                     $description = $row['description'];
                     $createdAt = $row['createdAt'];
-                    $createdBy = $row['user_uuid'];
-                    $createdByUser = "SELECT * FROM users WHERE uuid = '$createdBy'";
+                    $user_uuid = $row['user_uuid'];
+                    $createdByUser = "SELECT * FROM users WHERE uuid = '$user_uuid'";
                     $result2 = mysqli_query($conn, $createdByUser);
                     $resultCheck2 = mysqli_num_rows($result2);
     
@@ -112,8 +112,22 @@ $filename = basename(__FILE__, '.php');
                                 <p>$createdAt</p>
                                 <p>$username</p>
                             </div>
-                        
+            
                         ";
+
+                        if (isset($_SESSION['uuid']) == $user_uuid) {
+                            echo 
+                                "<form action='../includes/edit-comment.php' method='post'>
+                                <input type='hidden' name='uuid' value='$uuid'>
+                                <button type='submit' class='w-100 btn btn-secondary' name='submit'>Edit</button>
+                                </form>
+                        
+                                <form action='../includes/delete-bcomment.php' method='post'>
+                                <input type='hidden' name='uuid' value='$uuid'>
+                                <button type='submit' class='mt-2 w-100 btn btn-danger' name='submit'>Delete</button>
+                                </form>";
+                            }
+
                     }
                 }
             }

@@ -101,7 +101,8 @@ include_once 'everywhere/header.php'
             }
         } else {
             for ($i = 0; $i < $count; $i++) {
-            $sql = "SELECT * FROM blogs ORDER BY createdAt DESC LIMIT $i, 1";
+                $sql = "SELECT * FROM blogs ORDER BY createdAt DESC LIMIT $i, 1";
+            }
         }
         
 

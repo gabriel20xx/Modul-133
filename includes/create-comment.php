@@ -6,7 +6,7 @@ if (isset($_POST["submit"])) {
     require_once 'connect-db.php';
     require_once 'functions.php';
 
-    if (emptyInputCreateComment($$description) !== false) {
+    if (emptyInputCreateComment($description) !== false) {
         header("location: ../blogs/$blog_uuid.php?error=emptyinput");
         exit();
     };

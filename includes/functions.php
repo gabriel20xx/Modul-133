@@ -270,8 +270,8 @@ function emptyInputCreateComment($description) {
     return $result;
 }
 
-function deleteComment($conn, $uuid) {
-    $sql = "SELECT * FROM comments WHERE uuid = '$uuid'";
+function deleteComment($conn, $blog_uuid, $comment_uuid) {
+    $sql = "SELECT * FROM comments WHERE uuid = '$comment_uuid'";
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
     
@@ -280,21 +280,21 @@ function deleteComment($conn, $uuid) {
             $user_uuid = $row['user_uuid'];
 
             if (!isset($_SESSION["uuid"]) == $user_uuid) {
-                header("location: ../blogs/$uuid.php?error=notauthorized");
+                header("location: ../blogs/$blog_uuid.php?error=notauthorized");
                 exit();
             }
 
             $sql = "DELETE FROM comments WHERE uuid = ?";
             $stmt = mysqli_stmt_init($conn);
             if (!mysqli_stmt_prepare($stmt, $sql)) {
-                header("location: ../blogs/$uuid.php?error=stmtfailed");
+                header("location: ../blogs/$blog_uuid.php?error=stmtfailed");
                 exit();
             }
             mysqli_stmt_bind_param($stmt, "s", $uuid);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
         
-            header("Location: ../blogs/$uuid.php?error=commentdeleted");
+            header("Location: ../blogs/$blog_uuid.php?error=commentdeleted");
             exit;
         }
     }

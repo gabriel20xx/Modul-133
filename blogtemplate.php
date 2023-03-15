@@ -122,7 +122,7 @@ $filename = basename(__FILE__, '.php');
                                 <button type='submit' class='w-100 btn btn-secondary' name='submit'>Edit</button>
                                 </form>
                         
-                                <form action='../includes/delete-bcomment.php' method='post'>
+                                <form action='../includes/delete-comment.php' method='post'>
                                 <input type='hidden' name='uuid' value='$uuid'>
                                 <button type='submit' class='mt-2 w-100 btn btn-danger' name='submit'>Delete</button>
                                 </form>";

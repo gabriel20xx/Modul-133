@@ -95,43 +95,43 @@ include_once 'everywhere/header.php'
         $count = $row["count"];
 
         if ($count > 12 ) {
-            $count = 12;
-            for ($i = 0; $i < $count; $i++) {
-                $sql = "SELECT * FROM blogs ORDER BY createdAt DESC LIMIT $i OFFSET $currentPage*12";
+            $sql = "";
+            for ($i = 0; $i < 12; $i++) {
+                $sql .= "SELECT * FROM blogs ORDER BY createdAt DESC LIMIT " . ($currentPage*12 + $i) . ", 1 UNION ";
             }
+            $sql = rtrim($sql, " UNION ");
+
         } else {
-            for ($i = 0; $i < $count; $i++) {
-                $sql = "SELECT * FROM blogs ORDER BY createdAt DESC LIMIT $i, 1";
-            }
+            $sql = "SELECT * FROM blogs ORDER BY createdAt DESC LIMIT 0, $count";
         }
-    
+
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
 
         if ($resultCheck > 0) {
-            $row = mysqli_fetch_assoc($result);
-            $title = $row['title'];
-            $link = $row['uuid'];
-            $description = $row['description'];
-            $date1 = $row['createdAt'];
-            $date2 = date('Y-m-d H:i:s');
-            $diff = abs(strtotime($date2) - strtotime($date1));
+            while ($row = mysqli_fetch_assoc($result)) {
+                $title = $row['title'];
+                $link = $row['uuid'];
+                $description = $row['description'];
+                $date1 = $row['createdAt'];
+                $date2 = date('Y-m-d H:i:s');
+                $diff = abs(strtotime($date2) - strtotime($date1));
 
-            $years = floor($diff / (365*60*60*24));
-            $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-            $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
-            $hours = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24) / (60*60));
-            $minutes = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60)/ 60);
-            $seconds = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60 - $minutes*60));
+                $years = floor($diff / (365*60*60*24));
+                $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+                $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+                $hours = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24) / (60*60));
+                $minutes = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60)/ 60);
+                $seconds = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60 - $minutes*60));
 
-            $createdBy = $row['user_uuid'];
-            $createdByUser = "SELECT * FROM users WHERE uuid = '$createdBy'";
-            $result2 = mysqli_query($conn, $createdByUser);
-            $resultCheck2 = mysqli_num_rows($result2);
+                $createdBy = $row['user_uuid'];
+                $createdByUser = "SELECT * FROM users WHERE uuid = '$createdBy'";
+                $result2 = mysqli_query($conn, $createdByUser);
+                $resultCheck2 = mysqli_num_rows($result2);
 
-            if ($resultCheck2 > 0) {
-                $row2 = mysqli_fetch_assoc($result2);
-                $username = $row2['username'];
+                if ($resultCheck2 > 0) {
+                    $row2 = mysqli_fetch_assoc($result2);
+                    $username = $row2['username'];
                 
                 echo "<div class='col-md-4 g-4 mg-4 p-0 card'>
                     <div class='card-header'>$username</div>

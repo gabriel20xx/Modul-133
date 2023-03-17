@@ -71,7 +71,6 @@ function loginUser($conn, $username, $password) {
         exit();
     }
 }
-#Test
 
 # Registration Functions
 function emptyInputSignup($username, $email, $password, $password_rep) {

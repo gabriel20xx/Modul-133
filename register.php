@@ -3,10 +3,11 @@ include_once 'includes/connect-db.php';
 include_once 'everywhere/header.php';
 ?>
 
-<body class="text-center login-page">
+<body>
     <?php
         include_once 'everywhere/navbar.php'
     ?>
+    <div class="text-center login-page">
     <!-- Insert Register Code here-->
     <main class="form-signin w-100 m-auto">
     <form action="includes/register.php" method="post">
@@ -86,6 +87,7 @@ include_once 'everywhere/header.php';
     </form>
     
     </main>
+    </div>
 
     <?php
 /*     include_once 'everywhere/footer.php'; */

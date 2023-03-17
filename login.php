@@ -14,7 +14,7 @@ include_once 'everywhere/header.php';
     <!-- Insert Login Code here-->
     <main class="form-signin w-100 m-auto">
     <form action="includes/login.php" method="post">
-        <img class="mb-4" src="pictures/LogoGCT.png" alt="LogoGTC">
+        <img class="mb-4" src="/pictures/LogoGCT.jpg" alt="LogoGTC">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
         <div class="errors">

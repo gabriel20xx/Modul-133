@@ -2,16 +2,19 @@
 
 # Create User
 function createUser($conn, $uuid, $username, $email, $password) {
-    $sql = "INSERT INTO users (uuid, username, email, password) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO users (uuid, username, email, password, salt) VALUES (?, ?, ?, ?, ?)";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../register.php?error=stmtfailed");
         exit();
     }
 
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $salt = bin2hex(random_bytes(8)); // generate a unique salt value for each user
+    $pepper = 'thegctboys'; // define a unique pepper value for our application
+    
+    $hashedPassword = password_hash($salt . $password . $pepper, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt, "ssss", $uuid, $username, $email, $hashedPassword);
+    mysqli_stmt_bind_param($stmt, "sssss", $uuid, $username, $email, $hashedPassword, $salt);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
@@ -43,15 +46,18 @@ function createUser($conn, $uuid, $username, $email, $password) {
 
 # Login User
 function loginUser($conn, $username, $password) {
-    $usernameExists = usernameExists($conn, $username, $username);
+    $user = usernameExists($conn, $username, $username);
 
-    if ($usernameExists === false) {
+    if (!$user) {
         header("location: ../login.php?error=wronglogin");
         exit();
     }
 
-    $passwordHashed = $usernameExists["password"];
-    $checkPassword = password_verify($password, $passwordHashed);
+    $salt = $user["salt"]; // get the salt value of the user
+    $pepper = 'thegctboys'; // define the unique pepper value for our application
+
+    $hashedPassword = $user["password"];
+    $checkPassword = password_verify($salt . $password . $pepper, $hashedPassword); // verify the hashed password with the salt and pepper
 
     if ($checkPassword === false) {
         header("location: ../login.php?error=wronglogin");
@@ -59,8 +65,8 @@ function loginUser($conn, $username, $password) {
     }
     else if ($checkPassword === true) {
         session_start();
-        $_SESSION["uuid"] = $usernameExists["uuid"];
-        $_SESSION["username"] = $usernameExists["username"];
+        $_SESSION["uuid"] = $user["uuid"];
+        $_SESSION["username"] = $user["username"];
         header("location: ../index.php?error=loggedin");
         exit();
     }

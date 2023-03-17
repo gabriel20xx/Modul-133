@@ -4,11 +4,14 @@ include_once 'everywhere/header.php';
 ?>
 
 <body>
+    <?php
+        include_once 'everywhere/navbar.php'
+    ?>
 <div class="text-center login-page">
     <!-- Insert Login Code here-->
     <main class="form-signin w-100 m-auto">
     <form action="includes/login.php" method="post">
-        <img class="mb-4" src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="logo" width="72" height="57">
+        <img class="mb-4" src="/pictures/LogoGCT.png" alt="logo" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
         <div class="errors">

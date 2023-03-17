@@ -11,7 +11,7 @@ include_once 'everywhere/header.php';
     <!-- Insert Register Code here-->
     <main class="form-signin w-100 m-auto">
     <form action="includes/register.php" method="post">
-        <img class="mb-4" src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="logo" width="72" height="57">
+    <img class="mb-4" src="pictures/LogoGCT.png" alt="LogoGTC" width="200px">
         <h1 class="h3 mb-3 fw-normal">Please register</h1>
 
         <div class='errors'>

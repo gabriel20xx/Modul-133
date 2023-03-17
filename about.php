@@ -7,7 +7,8 @@ include_once 'everywhere/header.php'
     <?php
     include_once 'everywhere/navbar.php'
     ?>
-    <h1>tesst</h1>
+
+    
 
       
       <!-- Footer section -->

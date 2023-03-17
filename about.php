@@ -15,7 +15,7 @@ include_once 'everywhere/header.php'
     <div class="row">
       <div class="col-md-6">
         <h2>Our Mission</h2>
-        <p>We strive to be the best forum in our industry by delivering exceptional products and services to our customers.</p>
+        <p>We strive to be the best forum in our school by delivering exceptional blogs and comment to our customers.</p>
       </div>
       
       <div class="col-md-6">

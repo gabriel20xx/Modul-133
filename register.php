@@ -4,7 +4,7 @@ include_once 'everywhere/header.php';
 ?>
 
 <body class="text-center login-page">
-<?php
+    <?php
         include_once 'everywhere/navbar.php'
     ?>
     <!-- Insert Register Code here-->

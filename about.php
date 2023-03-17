@@ -30,10 +30,9 @@ include_once 'everywhere/header.php'
         <p>Meet the people behind our success:</p>
         
         <ul class="list-group">
-          <li class="list-group-item">John Doe - CEO</li>
-          <li class="list-group-item">Jane Doe - COO</li>
-          <li class="list-group-item">Mark Smith - CFO</li>
-          <li class="list-group-item">Lisa Brown - CMO</li>
+          <li class="list-group-item">Gabriel Franz - CEO</li>
+          <li class="list-group-item">Cornel Forster - COO</li>
+          <li class="list-group-item">Till Bischof - CFO</li>
         </ul>
       </div>
     </div>

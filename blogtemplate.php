@@ -137,16 +137,24 @@ $filename = basename(__FILE__, '.php');
         }
     ?>
 
-    <div class="container">
-        <form action="../includes/create-comment.php" method="post">
-            <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" name="description" id="description" style="height: 100px"></textarea>
-                <label for="description">Comments</label>
+    <?php
+    if (isset($_SESSION["uuid"])) {
+
+    echo "
+    <div class='container'>
+        <form action='../includes/create-comment.php' method='post'>
+            <div class='form-floating'>
+                <textarea class='form-control' placeholder='Leave a comment here' name='description' id='description' style='height: 100px'></textarea>
+                <label for='description'>Comments</label>
             </div>
             <input type='hidden' name='blog_uuid' value='<?php echo $filename ?>'>
-            <button class="w-100 btn btn-lg mb-3 btn-success" name="submit" type="submit">Add Comment</button>
+            <button class='w-100 btn btn-lg mb-3 btn-success' name='submit' type='submit'>Add Comment</button>
         </form>
     </div>
+    ";
+    }
+
+    ?>
 
     <?php
     include_once '../everywhere/footer.php'

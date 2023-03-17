@@ -20,7 +20,7 @@ include_once 'everywhere/header.php'
       
       <div class="col-md-6">
         <h2>Our Vision</h2>
-        <p>We aim to become a leader in our industry by constantly innovating and improving our products and services.</p>
+        <p>We aim to become a leader in our industry by constantly innovating and improving our website and services.</p>
       </div>
     </div>
     

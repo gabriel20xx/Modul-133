@@ -15,7 +15,9 @@ include_once 'everywhere/header.php'
     <div class="row">
       <div class="col-md-6">
         <h2>Our Mission</h2>
-        <p>We strive to be the best forum in our school by delivering exceptional blogs and comments to our users.</p>
+        <p>Our mission as a group of three individuals who have created a forum website is to provide a platform where people can connect and share their thoughts, ideas, and experiences.
+          We believe in fostering an environment of open communication and respectful dialogue. Our aim is to create a safe space where people from all walks of life can come together to learn, grow, and build meaningful connections.
+          We are committed to continuously improving our platform to better serve our community and fulfill our mission.</p>
       </div>
       
       <div class="col-md-6">

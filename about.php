@@ -10,7 +10,9 @@ include_once 'everywhere/header.php'
 
 <div class="container">
     <h1>About Us</h1>
-    <p>Our group is committed to providing high-quality website and services to our customers.</p>
+    <p>Welcome to our forum website! We are a team of three individuals who share a passion for creating an online community where people can connect and share their ideas.
+      Our goal is to provide a platform that is user-friendly, interactive, and inclusive. We believe in fostering a positive environment where everyone feels welcome to participate and engage in meaningful discussions.
+      Thank you for joining us on this journey!</p>
     
     <div class="row">
       <div class="col-md-6">

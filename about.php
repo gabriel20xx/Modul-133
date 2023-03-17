@@ -21,7 +21,8 @@ include_once 'everywhere/header.php'
       <div class="col-md-6">
         <h2>Our Vision</h2>
         <p>At our forum website, our vision is to create a community where people can engage in meaningful discussions and exchange ideas with each other.
-          We strive to build a platform that encourages respectful dialogue, fosters a sense of belonging, and promotes diversity and inclusion. Our goal is to provide a safe space where individuals can learn from each other and grow together. We believe that by creating such a space, we can help facilitate positive change in the world.</p>
+          We strive to build a platform that encourages respectful dialogue, fosters a sense of belonging. Our goal is to provide a space where individuals can learn from each other and grow together.
+          We believe that by creating such a space, we can help facilitate positive change in the world.</p>
       </div>
     </div>
     

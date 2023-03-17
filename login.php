@@ -7,6 +7,9 @@ include_once 'everywhere/header.php';
     <?php
         include_once 'everywhere/navbar.php'
     ?>
+    <?php
+        include_once 'everywhere/navbar.php'
+    ?>
 <div class="text-center login-page">
     <!-- Insert Login Code here-->
     <main class="form-signin w-100 m-auto">

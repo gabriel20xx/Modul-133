@@ -10,12 +10,12 @@ include_once 'everywhere/header.php'
 
 <div class="container">
     <h1>About Us</h1>
-    <p>Our company is committed to providing high-quality products and services to our customers.</p>
+    <p>Our group is committed to providing high-quality website and services to our customers.</p>
     
     <div class="row">
       <div class="col-md-6">
         <h2>Our Mission</h2>
-        <p>We strive to be the best forum in our school by delivering exceptional blogs and comment to our customers.</p>
+        <p>We strive to be the best forum in our school by delivering exceptional blogs and comments to our users.</p>
       </div>
       
       <div class="col-md-6">

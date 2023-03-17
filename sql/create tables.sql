@@ -4,7 +4,7 @@ CREATE TABLE users (
     username varchar(20),
     email varchar(50),
     password varchar(200),
-    salt int(),
+    salt varchar(50),
     PRIMARY KEY (uuid)
 );
 

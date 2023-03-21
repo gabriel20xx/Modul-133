@@ -1,4 +1,5 @@
 <?php 
+
 if (isset($_POST["submit"])) {
     $title = $_POST["title"];
     $description = $_POST["description"];
@@ -15,9 +16,7 @@ if (isset($_POST["submit"])) {
         exit();
     };
 
-    $uuid = uuid_create(UUID_TYPE_RANDOM);
-
-    createBlog($conn, $uuid, $title, $description);
+    createBlog($conn, $title, $description);
 
 } else {
     header("location: ../new_blog.php");

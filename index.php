@@ -62,7 +62,7 @@ include_once 'everywhere/header.php'
               $newcount = 12;
             }
 
-            for ($i = 0; $i = 3; $i++) {
+            for ($i = 0; $i < 3; $i++) {
               $sql = "SELECT * FROM blogs ORDER BY createdAt DESC LIMIT 1 OFFSET " . (($currentPage - 1) * 12 + $i);
               $result = mysqli_query($conn, $sql);
               $resultCheck = mysqli_num_rows($result);

@@ -160,7 +160,7 @@ if (isset($_GET["page"])) {
         $previousPage = "None";
     }
 
-    if ($count > 12*($currentPage+1)) {
+    if ($count > 12*($currentPage)) {
         $nextPage = $currentPage+1;
     } else {
         $nextPage = "None";
@@ -182,7 +182,7 @@ if (isset($_GET["page"])) {
 
         echo "<li class='page-item'><a class='page-link' href='forum.php?page=$currentPage'>$currentPage</a></li>";
 
-        if ($count > 12*($currentPage+1)) {
+        if ($count > 12*($currentPage)) {
             echo "<li class='page-item'><a class='page-link' href='forum.php?page=$nextPage'>$nextPage</a></li>
 
                   <li class='page-item'>

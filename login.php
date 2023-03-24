@@ -53,8 +53,6 @@ include_once 'everywhere/header.php';
         </a>
         <p class="mt-5 mb-3 text-muted"><?php include_once 'everywhere/footer.php';?></p>
     </form>
-
-    
 </main>
 </div>
 </body>

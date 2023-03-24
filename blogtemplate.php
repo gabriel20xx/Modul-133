@@ -147,7 +147,7 @@ $filename = basename(__FILE__, '.php');
                 <textarea class='form-control' placeholder='Leave a comment here' name='description' id='description' style='height: 100px'></textarea>
                 <label for='description'>Comments</label>
             </div>
-            <input type='hidden' name='blog_uuid' value='<?php echo $filename ?>'>
+            <input type='hidden' name='blog_uuid' value='$filename'>
             <button class='w-100 btn btn-lg mb-3 btn-success' name='submit' type='submit'>Add Comment</button>
         </form>
     </div>

@@ -35,7 +35,7 @@ include_once '../everywhere/header.php';
           <p><?php echo $email ?></p>
         </div>
         <hr>
-        <form>
+        <form method="post" action="">
           <div class="form-group">
             <label for="username">Username</label>
             <input type="text" class="form-control" id="username" name="username" value="<?php echo $username ?>" disabled>
@@ -44,23 +44,19 @@ include_once '../everywhere/header.php';
             <label for="email">Email address</label>
             <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>" disabled>
           </div>
-          <?php
-          if (isset($_SESSION['uuid']) && $_SESSION['uuid'] == $filename) {
-            echo "<form method='post' action=''>
-        <div class='form-group'>
-          <label for='password'>Password</label>
-          <input type='password' class='form-control' id='password' name='password' value='<?php echo $password ?>' disabled>
-        </div>
-        <div class='text-right'>
-          <button type='submit' class='btn btn-primary' name='edit' onclick=\"this.form.action='includes/edit-user.php';\">Edit</button>
-          <button type='submit' class='btn btn-success d-none' id='save-btn'>Save</button>
-          <button type='submit' class='btn btn-danger' name='delete' onclick=\"confirmDelete();\">Delete Account</button>
-        </div>
-      </form>";
-          }
-          ?>
-
+          <?php if (isset($_SESSION['uuid']) && $_SESSION['uuid'] == $filename) : ?>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" name="password" value="<?php echo $password ?>" disabled>
+            </div>
+            <div class="text-right">
+              <button type="submit" class="btn btn-primary" name="edit" onclick="this.form.action='includes/edit-user.php';">Edit</button>
+              <button type="submit" class="btn btn-success d-none" id="save-btn">Save</button>
+              <button type="submit" class="btn btn-danger" name="delete" onclick="confirmDelete(); this.form.action='includes/delete-user.php';">Delete Account</button>
+            </div>
+          <?php endif; ?>
         </form>
+
       </div>
     </div>
   </div>
@@ -104,21 +100,21 @@ include_once '../everywhere/header.php';
       if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
         // Here you would typically include any PHP code required to delete the user's account from a database or session
         // Create a new XMLHttpRequest object
-/*         var xhttp = new XMLHttpRequest();
+        /*         var xhttp = new XMLHttpRequest();
 
-        // Define the function to be executed when the response is received
-        xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-            // The response is ready and the status code is 200 (OK)
-            console.log(this.responseText); // Do something with the file's contents
-          }
-        };
+                // Define the function to be executed when the response is received
+                xhttp.onreadystatechange = function() {
+                  if (this.readyState == 4 && this.status == 200) {
+                    // The response is ready and the status code is 200 (OK)
+                    console.log(this.responseText); // Do something with the file's contents
+                  }
+                };
 
-        // Send the request to the server
-        xhttp.open("POST", "includes/delete-user.php", true); // Replace "path/to/file.txt" with the actual file path
-        xhttp.send(); */
-        this.form.action='includes/delete-user.php';
-        
+                // Send the request to the server
+                xhttp.open("POST", "includes/delete-user.php", true); // Replace "path/to/file.txt" with the actual file path
+                xhttp.send(); */
+        this.form.action = 'includes/delete-user.php';
+
         alert("Account deleted successfully.");
         window.location.href = "../index.php"; // Redirect to home page or login page
       }

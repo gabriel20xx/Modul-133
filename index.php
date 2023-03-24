@@ -13,8 +13,9 @@ include_once 'everywhere/header.php'
         if (isset($_GET["error"])) {
             if ($_GET["error"] == "loggedin") {
                 echo 
-                '<div class="alert alert-success" role="alert">
+                '<div class="alert alert-success alert-dismissible fade show" role="alert" id="alertBox">
                 You logged in successfully!
+                <button type="button" class="btn-close" aria-label="Close"></button>
                 </div>';
             }
         }
@@ -73,13 +74,7 @@ include_once 'everywhere/header.php'
           </div>
         </div>
     </div>
-      <!-- Header section -->
-      <div class="row mt-3">
-        <div class="col-12 text-center">
-          <h1>Welcome to The GCT Corner</h1>
-        </div>
-      </div>
-      
+
       <!-- Main content section -->
       <div class="row mt-3">
         <div class="col-md-6">

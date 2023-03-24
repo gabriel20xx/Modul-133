@@ -41,5 +41,14 @@ for (var i = 0; i < navLinks.length; i++) {
 }
 
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const myAlert = document.querySelector("#alertBox");
+    const btnClose = myAlert.querySelector(".btn-close");
+    btnClose.addEventListener("click", function() {
+        myAlert.classList.add("hide");
+    });
+});
+</script>
 </body>
 </html>

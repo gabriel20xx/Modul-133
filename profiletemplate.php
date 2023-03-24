@@ -113,10 +113,8 @@ include_once '../everywhere/header.php';
                 // Send the request to the server
                 xhttp.open("POST", "includes/delete-user.php", true); // Replace "path/to/file.txt" with the actual file path
                 xhttp.send(); */
-        this.form.action = 'includes/delete-user.php';
 
         alert("Account deleted successfully.");
-        window.location.href = "../index.php"; // Redirect to home page or login page
       }
     }
   </script>

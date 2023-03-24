@@ -110,6 +110,28 @@ if (isset($_GET["page"])) {
                 $result2 = mysqli_query($conn, $createdByUser);
                 $resultCheck2 = mysqli_num_rows($result2);
 
+                if ($years = 0){
+                    if ($months = 0){
+                        if ($days = 0){
+                            if ($hours = 0){
+                                if ($minutes = 0){
+                                    $timeago = $seconds.' seconds ago';
+                                } else {
+                                    $timeago = $minutes.' minutes ago';
+                                }
+                            } else {
+                                $timeago = $hours.' hours ago';
+                            }
+                        } else {
+                            $timeago = $days.' days ago';
+                        }
+                    } else {
+                        $timeago = $months.' months ago';
+                    }      
+                } else {
+                    $timeago = $years.' years ago';
+                }
+
                 if ($resultCheck2 > 0) {
                     $row2 = mysqli_fetch_assoc($result2);
                     $username = $row2['username'];
@@ -121,7 +143,7 @@ if (isset($_GET["page"])) {
                         <p class='card-text'>$description</p>
                         <a href='blogs/$link.php' class='btn btn-primary'>Go to article</a>
                     </div>
-                    <div class='card-footer text-muted'>$years years, $months months, $days days, $hours hours, $minutes minutes, $seconds seconds ago</div>
+                    <div class='card-footer text-muted'>$timeago ago</div>
                 </div>";
                 }
             }

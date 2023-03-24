@@ -154,54 +154,47 @@ if (isset($_GET["page"])) {
     </div>
 
     <?php
-        if (!$currentPage == 1) {
-            $previousPage = $currentPage-1;
-        } else {
-            $previousPage = "None";
-        }
+    if ($currentPage != 1) {
+        $previousPage = $currentPage-1;
+    } else {
+        $previousPage = "None";
+    }
 
-        if ($count > 12*$currentPage) {
-            $nextPage = $currentPage+1;
-        } else {
-            $nextPage = "None";
-        }
-    ?>
+    if ($count > 12*($currentPage+1)) {
+        $nextPage = $currentPage+1;
+    } else {
+        $nextPage = "None";
+    }
+?>
 
-    <div>
-        <ul class="pagination justify-content-center">
-
-            <?php 
-            if ($count > 12 && $currentPage != 1) {
-                echo "
-                <li class='page-item'>
-                <a class='page-link' href='forum.php?page=$previousPage' aria-label='Previous'>
-                    <span aria-hidden='true'>«</span>
+<div>
+    <ul class="pagination justify-content-center">
+        <?php 
+        if ($count > 12 && $currentPage != 1) {
+            echo "<li class='page-item'>
+                  <a class='page-link' href='forum.php?page=$previousPage' aria-label='Previous'>
+                      <span aria-hidden='true'>«</span>
+                  </a>
                 </li>
                 
-                </a><li class='page-item'><a class='page-link' href='forum.php?page=$previousPage'>$previousPage</a></li>
-                ";
-            }
+                <li class='page-item'><a class='page-link' href='forum.php?page=$previousPage'>$previousPage</a></li>";
+        }
 
-            echo "
-            </a><li class='page-item'><a class='page-link' href='forum.php?page=$currentPage'>$currentPage</a>
-            ";
+        echo "<li class='page-item'><a class='page-link' href='forum.php?page=$currentPage'>$currentPage</a></li>";
 
-            if ($count > 2*12 && ($count % $currentPage) > 12) {
-                echo "
-                <li class='page-item'><a class='page-link' href='forum.php?page=$nextPage'>$nextPage</a></li>
+        if ($count > 12*($currentPage+1)) {
+            echo "<li class='page-item'><a class='page-link' href='forum.php?page=$nextPage'>$nextPage</a></li>
 
-                <li class='page-item'>
-                <a class='page-link' href='forum.php?page=$nextPage' aria-label='Next'>
-                    <span aria-hidden='true'>»</span>
-                </a>
-                </li>
-                ";
-            }
-            ?>
-
-
+                  <li class='page-item'>
+                  <a class='page-link' href='forum.php?page=$nextPage' aria-label='Next'>
+                      <span aria-hidden='true'>»</span>
+                  </a>
+                </li>";
+        }
+        ?>
     </ul>
-    </div>
+</div>
+
     <?php
     include_once 'everywhere/footer.php';
     ?>

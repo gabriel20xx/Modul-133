@@ -51,7 +51,7 @@ include_once 'everywhere/header.php';
         <a href="register.php">
         <div class="w-100 btn btn-lg btn-secondary">Go to register</div>
         </a>
-        <p class="mt-5 mb-3 text-muted"><?php echo include_once 'everywhere/footer.php';?></p>
+        <p class="mt-5 mb-3 text-muted"><?php include_once 'everywhere/footer.php';?></p>
     </form>
 
     

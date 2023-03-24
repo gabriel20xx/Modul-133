@@ -1,10 +1,10 @@
-<footer id='footerr'>
+<footer>
     <!-- Insert Footer Code here -->
     <div class="row mt-3">
         <div class="col-12 text-center">
           <p>&copy; 2023 The GCT Corner. All rights reserved.</p>
         </div>
-      </div>
+    </div>
 </footer>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

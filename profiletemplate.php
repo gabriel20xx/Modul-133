@@ -117,7 +117,7 @@ if ($resultCheck > 0) {
       xhttp.send();
 
       alert("Account deleted successfully.");
-      window.location.href = "index.php"; // Redirect to home page or login page
+      window.location.href = "../index.php"; // Redirect to home page or login page
     }
   }
 </script>

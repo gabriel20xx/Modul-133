@@ -81,10 +81,10 @@ if (isset($_GET["page"])) {
         $count = $row["count"];
 
         if ($count > 12) {
-            $count = 12;
+            $newcount = 12;
         }
 
-        for ($i = 0; $i < $count; $i++) {
+        for ($i = 0; $i < $newcount; $i++) {
             $sql = "SELECT * FROM blogs ORDER BY createdAt DESC LIMIT 1 OFFSET " . (($currentPage-1) * 12 + $i);
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);
@@ -104,12 +104,7 @@ if (isset($_GET["page"])) {
                 $hours = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24) / (60*60));
                 $minutes = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60)/ 60);
                 $seconds = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60 - $minutes*60));
-            
-                $createdBy = $row['user_uuid'];
-                $createdByUser = "SELECT * FROM users WHERE uuid = '$createdBy'";
-                $result2 = mysqli_query($conn, $createdByUser);
-                $resultCheck2 = mysqli_num_rows($result2);
-            
+                
                 if ($years == 0){
                     if ($months == 0){
                         if ($days == 0){
@@ -131,6 +126,11 @@ if (isset($_GET["page"])) {
                 } else {
                     $timeago = $years.' years';
                 }
+
+                $createdBy = $row['user_uuid'];
+                $createdByUser = "SELECT * FROM users WHERE uuid = '$createdBy'";
+                $result2 = mysqli_query($conn, $createdByUser);
+                $resultCheck2 = mysqli_num_rows($result2);
 
                 if ($resultCheck2 > 0) {
                     $row2 = mysqli_fetch_assoc($result2);

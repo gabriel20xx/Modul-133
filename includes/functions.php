@@ -329,8 +329,60 @@ function deleteComment($conn, $blog_uuid, $comment_uuid) {
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
         
-            header("Location: ../blogs/$blog_uuid.php?error=commentdeleted");
-            exit;
+        header("Location: ../blogs/$blog_uuid.php?error=commentdeleted");
+            exit;    
+        }
+    }
+}
+
+function updateUser($conn, $uuid, $username, $email, $password) {
+    $sql = "UPDATE users (uuid, username, email, password, salt) VALUES (?, ?, ?, ?, ?)";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../register.php?error=stmtfailed");
+        exit();
+    }
+
+    $salt = bin2hex(random_bytes(8)); // generate a unique salt value for each user
+    $pepper = 'thegctboys'; // define a unique pepper value for our application
+    
+    $hashedPassword = password_hash($salt . $password . $pepper, PASSWORD_DEFAULT);
+
+    mysqli_stmt_bind_param($stmt, "sssss", $uuid, $username, $email, $hashedPassword, $salt);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    header("Location: ../profiles/$uuid.php?error=profileupdated");
+    exit;
+}
+
+function deleteUser($conn, $uuid) {
+    $sql = "SELECT * FROM users WHERE uuid = '$uuid'";
+    $result = mysqli_query($conn, $sql);
+    $resultCheck = mysqli_num_rows($result);
+    
+    if ($resultCheck > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $sql = "DELETE FROM users WHERE uuid = ?";
+            $stmt = mysqli_stmt_init($conn);
+            if (!mysqli_stmt_prepare($stmt, $sql)) {
+                header("location: ../profiles/$uuid.php?error=stmtfailed");
+                exit();
+            }
+            mysqli_stmt_bind_param($stmt, "s", $comment_uuid);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+
+            session_start();
+
+            // Unset all of the session variables
+            $_SESSION = array();
+        
+            // Destroy the session
+            session_destroy();
+        
+            header("Location: ../index.php?error=userdeleted");
+            exit;    
         }
     }
 }

@@ -104,6 +104,19 @@ function invalidEmail($email) {
     return $result;
 }
 
+function passwordRequirements($password) {
+    $hasNumber = preg_match('/\d/', $password);
+    $hasChar = preg_match('/[a-zA-Z]/', $password);
+    $hasSymbol = preg_match('/[^a-zA-Z\d]/', $password);
+
+    if (!strlen($password) >= 8 && $hasNumber && $hasChar && $hasSymbol) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+    return $result;
+}
+
 function passwordMatch($password, $password_rep) {
     if ($password !== $password_rep) {
         $result = true;

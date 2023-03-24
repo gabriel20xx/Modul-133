@@ -35,6 +35,12 @@ include_once 'everywhere/header.php';
                 Email not valid!
                 </div>';
             }
+            else if ($_GET["error"] == "passwordtooweak") {
+                echo 
+                '<div class="alert alert-danger" role="alert">
+                Passwords must contain at least 8 characters, 1 number and 1 symbol!
+                </div>';
+            }
             else if ($_GET["error"] == "passwordsdontmatch") {
                 echo 
                 '<div class="alert alert-danger" role="alert">

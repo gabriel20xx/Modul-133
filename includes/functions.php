@@ -109,7 +109,7 @@ function passwordRequirements($password) {
     $hasChar = preg_match('/[a-zA-Z]/', $password);
     $hasSymbol = preg_match('/[^a-zA-Z\d]/', $password);
 
-    if (!strlen($password) >= 8 && $hasNumber && $hasChar && $hasSymbol) {
+    if (strlen($password) < 8 || !$hasNumber || !$hasChar || !$hasSymbol) {
         $result = true;
     } else {
         $result = false;

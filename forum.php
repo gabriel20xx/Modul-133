@@ -131,21 +131,21 @@ if (isset($_GET["page"])) {
                 } else {
                     $timeago = $years.' years ago';
                 }
-            }
 
-            if ($resultCheck2 > 0) {
-                $row2 = mysqli_fetch_assoc($result2);
-                $username = $row2['username'];
-            
-            echo "<div class='col-md-4 g-4 mg-4 p-0 card'>
-                <div class='card-header'>$username</div>
-                <div class='card-body'>
-                    <h5 class='card-title'>$title</h5>
-                    <p class='card-text'>$description</p>
-                    <a href='blogs/$link.php' class='btn btn-primary'>Go to article</a>
-                </div>
-                <div class='card-footer text-muted'>$timeago ago</div>
-            </div>";
+                if ($resultCheck2 > 0) {
+                    $row2 = mysqli_fetch_assoc($result2);
+                    $username = $row2['username'];
+                
+                echo "<div class='col-md-4 g-4 mg-4 p-0 card'>
+                    <div class='card-header'>$username</div>
+                    <div class='card-body'>
+                        <h5 class='card-title'>$title</h5>
+                        <p class='card-text'>$description</p>
+                        <a href='blogs/$link.php' class='btn btn-primary'>Go to article</a>
+                    </div>
+                    <div class='card-footer text-muted'>$timeago ago</div>
+                </div>";
+                }
             }
         }
     }

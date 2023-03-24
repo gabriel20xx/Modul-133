@@ -9,7 +9,6 @@ if (isset($_POST['submit'])) {
     require_once 'connect-db.php';
     require_once 'functions.php';
 
-
     if (emptyInputSignup($username, $email, $password, $password_rep) !== false){
         header("location: ../register.php?error=emptyinput");
         exit();
@@ -31,9 +30,7 @@ if (isset($_POST['submit'])) {
         exit();
     }
 
-    $uuid = uuid_create(UUID_TYPE_RANDOM);
-
-    createUser($conn, $uuid, $username, $email, $password);
+    createUser($conn, $username, $email, $password);
 }
 else {
     header("location: ../register.php");

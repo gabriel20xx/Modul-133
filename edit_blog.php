@@ -9,7 +9,7 @@ include_once 'everywhere/header.php'
     ?>
 
     <!-- Insert Blogpage Code here-->
-    <div>
+    <div class="container">
         <form action="includes/edit-blog.php" method="post">
             <div class="mb-3">
             <label for="title" class="form-label">Title</label>

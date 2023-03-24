@@ -11,7 +11,7 @@ $filename = basename(__FILE__, '.php');
     <?php
     include_once '../everywhere/navbar.php';
     ?>
-
+    <div class='container'>
     <div class='errors'>
     <?php
         if (isset($_GET["error"])) {
@@ -38,7 +38,7 @@ $filename = basename(__FILE__, '.php');
     </div>
 
     <!-- Insert Blog Code here-->
-    <div class="mb-3 p-5 text-center container">
+    <div class="mb-3 p-5 text-center">
         <?php
             $sql = "SELECT * FROM blogs WHERE uuid = '$filename'";
             $result = mysqli_query($conn, $sql);
@@ -155,7 +155,7 @@ $filename = basename(__FILE__, '.php');
     }
 
     ?>
-
+    </div>
     <?php
     include_once '../everywhere/footer.php'
     ?>

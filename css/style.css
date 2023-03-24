@@ -9,6 +9,10 @@
   width: 10rem;
 }
 
+.hide {
+  display: none;
+}
+
 /* Für Login */
 .login-page {
   display: flex;

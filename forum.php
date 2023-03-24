@@ -115,21 +115,21 @@ if (isset($_GET["page"])) {
                         if ($days == 0){
                             if ($hours == 0){
                                 if ($minutes == 0){
-                                    $timeago = $seconds.' seconds ago';
+                                    $timeago = $seconds.' seconds';
                                 } else {
-                                    $timeago = $minutes.' minutes ago';
+                                    $timeago = $minutes.' minutes';
                                 }
                             } else {
-                                $timeago = $hours.' hours ago';
+                                $timeago = $hours.' hours';
                             }
                         } else {
-                            $timeago = $days.' days ago';
+                            $timeago = $days.' days';
                         }
                     } else {
-                        $timeago = $months.' months ago';
+                        $timeago = $months.' months';
                     }      
                 } else {
-                    $timeago = $years.' years ago';
+                    $timeago = $years.' years';
                 }
 
                 if ($resultCheck2 > 0) {

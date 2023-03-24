@@ -97,24 +97,24 @@ if (isset($_GET["page"])) {
                 $date1 = $row['createdAt'];
                 $date2 = date('Y-m-d H:i:s');
                 $diff = abs(strtotime($date2) - strtotime($date1));
-
+            
                 $years = floor($diff / (365*60*60*24));
                 $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
                 $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24) / (60*60*24));
                 $hours = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24) / (60*60));
                 $minutes = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60)/ 60);
                 $seconds = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60 - $minutes*60));
-
+            
                 $createdBy = $row['user_uuid'];
                 $createdByUser = "SELECT * FROM users WHERE uuid = '$createdBy'";
                 $result2 = mysqli_query($conn, $createdByUser);
                 $resultCheck2 = mysqli_num_rows($result2);
-
-                if ($years = 0){
-                    if ($months = 0){
-                        if ($days = 0){
-                            if ($hours = 0){
-                                if ($minutes = 0){
+            
+                if ($years == 0){
+                    if ($months == 0){
+                        if ($days == 0){
+                            if ($hours == 0){
+                                if ($minutes == 0){
                                     $timeago = $seconds.' seconds ago';
                                 } else {
                                     $timeago = $minutes.' minutes ago';
@@ -131,6 +131,7 @@ if (isset($_GET["page"])) {
                 } else {
                     $timeago = $years.' years ago';
                 }
+            }
 
                 if ($resultCheck2 > 0) {
                     $row2 = mysqli_fetch_assoc($result2);

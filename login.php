@@ -44,22 +44,17 @@ include_once 'everywhere/header.php';
 
         <div class="checkbox mb-3">
         <label>
-            <input type="checkbox" value="remember-me"> Remember me
+            <input name="remember-me" type="checkbox" value="1"> Remember me
         </label>
         </div>
         <button class="w-100 btn btn-lg mb-3 btn-primary" name="submit" type="submit">Sign in</button>
         <a href="register.php">
         <div class="w-100 btn btn-lg btn-secondary">Go to register</div>
         </a>
-        <p class="mt-5 mb-3 text-muted">&copy; Gabriel, Cornel, Till 2023</p>
+        <p class="mt-5 mb-3 text-muted"><?php echo include_once 'everywhere/footer.php';?></p>
     </form>
 
     
 </main>
 </div>
-
-
-    <?php
-/*     include_once 'everywhere/footer.php'; */
-    ?>
 </body>

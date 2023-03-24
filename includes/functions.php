@@ -46,7 +46,7 @@ function createUser($conn, $username, $email, $password) {
 }
 
 # Login User
-function loginUser($conn, $username, $password) {
+function loginUser($conn, $username, $password, $rememberMe) {
     $user = usernameExists($conn, $username, $username);
 
     if (!$user) {
@@ -65,6 +65,19 @@ function loginUser($conn, $username, $password) {
         exit();
     }
     else if ($checkPassword === true) {
+        if ($rememberMe === true) {
+            // Set the expiration time for the cookie (in seconds)
+            $expiration = time() + (86400 * 30); // 30 days from now
+
+            // Generate a random token to use as the cookie value
+            $token = bin2hex(random_bytes(32));
+
+            // Set the cookie
+            setcookie('login_token', $token, $expiration, '/');
+
+            // Store the token in a database or other storage mechanism
+            // so that it can be verified later
+        }
         session_start();
         $_SESSION["uuid"] = $user["uuid"];
         $_SESSION["username"] = $user["username"];

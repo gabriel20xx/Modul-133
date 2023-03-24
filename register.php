@@ -89,7 +89,7 @@ include_once 'everywhere/header.php';
         <a href="login.php">
         <div class="w-100 btn btn-lg btn-secondary">Go to login</div>
         </a>
-        <p class="mt-5 mb-3 text-muted">&copy; Gabriel, Cornel, Till 2023</p>
+        <p class="mt-5 mb-3 text-muted"><?php echo include_once 'everywhere/footer.php';?></p>
     </form>
     
     </main>

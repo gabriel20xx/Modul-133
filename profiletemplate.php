@@ -37,6 +37,10 @@ include_once '../everywhere/header.php';
         <hr>
         <form method="post" action="">
           <div class="form-group">
+            <label for="uuid">UUID</label>
+            <input type="text" class="form-control hidden" id="uuid" name="uuid" value="<?php echo $uuid ?>" disabled>
+          </div>
+          <div class="form-group">
             <label for="username">Username</label>
             <input type="text" class="form-control" id="username" name="username" value="<?php echo $username ?>" disabled>
           </div>
@@ -50,8 +54,8 @@ include_once '../everywhere/header.php';
               <input type="password" class="form-control" id="password" name="password" value="<?php echo $password ?>" disabled>
             </div>
             <div class="text-right">
-              <button type="submit" class="btn btn-primary" name="edit" onclick="this.form.action='includes/edit-user.php';">Edit</button>
-              <button type="submit" class="btn btn-success d-none" id="save-btn">Save</button>
+              <button type="submit" class="btn btn-primary" name="edit">Edit</button>
+              <button type="submit" class="btn btn-success d-none" id="save-btn" onclick="this.form.action='includes/edit-user.php';">Save</button>
               <button type="submit" class="btn btn-danger" name="delete" onclick="confirmDelete(); this.form.action='includes/delete-user.php';">Delete Account</button>
             </div>
           <?php endif; ?>

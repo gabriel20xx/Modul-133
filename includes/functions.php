@@ -336,24 +336,24 @@ function deleteComment($conn, $blog_uuid, $comment_uuid) {
 }
 
 function updateUser($conn, $uuid, $username, $email, $password) {
-    $sql = "UPDATE users (uuid, username, email, password, salt) VALUES (?, ?, ?, ?, ?)";
+    $sql = "UPDATE users SET username=?, email=?, password=?, salt=? WHERE uuid=?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../register.php?error=stmtfailed");
-        exit();
+      header("location: ../register.php?error=stmtfailed");
+      exit();
     }
-
+  
     $salt = bin2hex(random_bytes(8)); // generate a unique salt value for each user
     $pepper = 'thegctboys'; // define a unique pepper value for our application
     
     $hashedPassword = password_hash($salt . $password . $pepper, PASSWORD_DEFAULT);
-
-    mysqli_stmt_bind_param($stmt, "sssss", $uuid, $username, $email, $hashedPassword, $salt);
+  
+    mysqli_stmt_bind_param($stmt, "sssss", $username, $email, $hashedPassword, $salt, $uuid);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-
+  
     header("Location: ../profiles/$uuid.php?error=profileupdated");
-    exit;
+    exit();
 }
 
 function deleteUser($conn, $uuid) {

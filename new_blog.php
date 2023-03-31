@@ -37,7 +37,7 @@ if (!isset($_SESSION["uuid"])) {
 
 
         <form action="includes/create-blog.php" method="post">
-            <div>
+            <div class="mb-3">
                 <label for="category" class="form-label">Category</label>
                 <select class="form-select" name="category" id="category" aria-label="Default select example">
                     <option selected>Category</option>
@@ -48,9 +48,6 @@ if (!isset($_SESSION["uuid"])) {
                     <option value="5">TBZ</option>
                 </select>
             </div>
-
-
-
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" name="title" class="form-control" id="title" placeholder="Insert good title here">

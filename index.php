@@ -26,7 +26,7 @@ include_once 'everywhere/header.php'
     <div class="jumbotron mt-4">
       <h1 class="display-4">Welcome to The GCT Corner!</h1>
       <img src="pictures/communicate.png" class="img-fluid" alt="Responsive image">
-      <h class="display-4">Welcome to The GCT Corner!</h>
+      <h2 class="display-4">Our offer!</h2>
       <p class="lead">
         In our forum you will find different categories tailored to different interests. For example, you can find out about the latest developments in medicine or discuss the latest trends and games with other gaming enthusiasts. We also cover topics such as the environment, politics and society. If you have questions or problems, you can always ask for our help and support. Our moderators are always there for you and are happy to help.
       </p>
@@ -69,7 +69,40 @@ include_once 'everywhere/header.php'
       <div class="col-lg-8">
         <h2>Recent Topics</h2>
         <div class="list-group">
+          <?php
+          $sql = "SELECT COUNT(*) as count FROM blogs";
+          $result = mysqli_query($conn, $sql);
 
+          if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $count = $row["count"];
+            for ($i = 0; $i < $count; $i++) {
+              $sql = "SELECT * FROM blogs LIMIT 1 OFFSET " . $i;
+              $result = mysqli_query($conn, $sql);
+              $resultCheck = mysqli_num_rows($result);
+
+              if ($resultCheck > 0) {
+                $row = mysqli_fetch_assoc($result);
+                $title = $row['title'];
+                $description = $row['description'];
+                $createdAt = $row['createdAt'];
+
+                echo "
+      <a href='#' class='list-group-item list-group-item-action'>
+            <div class='d-flex w-100 justify-content-between'>
+              <h5 class='mb-1'>$title</h5>
+              <small>$createdAt</small>
+            </div>
+            <p class='mb-1'>$description</p>
+          </a>
+      
+      ";
+              }
+            }
+          }
+
+
+          ?>
           <a href="#" class="list-group-item list-group-item-action">
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1">Topic 1</h5>
@@ -146,16 +179,7 @@ include_once 'everywhere/header.php'
                   $timeago = $years . ' years';
                 }
 
-                $createdBy = $row['user_uuid'];
-                $createdByUser = "SELECT * FROM users WHERE uuid = '$createdBy'";
-                $result2 = mysqli_query($conn, $createdByUser);
-                $resultCheck2 = mysqli_num_rows($result2);
-
-                if ($resultCheck2 > 0) {
-                  $row2 = mysqli_fetch_assoc($result2);
-                  $username = $row2['username'];
-
-                  echo "<div class='col-md-4 g-4 mg-4 p-0 card'>
+                echo "<div class='col-md-4 g-4 mg-4 p-0 card'>
                     <div class='card-header'>$username</div>
                     <div class='card-body'>
                         <h5 class='card-title'>$title</h5>
@@ -164,7 +188,6 @@ include_once 'everywhere/header.php'
                     </div>
                     <div class='card-footer text-muted'>$timeago ago</div>
                 </div>";
-                }
               }
             }
           }

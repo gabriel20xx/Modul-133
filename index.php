@@ -34,6 +34,7 @@ include_once 'everywhere/header.php'
       <hr class="my-4">
       <p>Explore our forums, create your own topics, and engage in discussions with other members of our community.</p>
       <a class="btn btn-primary btn-lg" href="#" role="button">Get Started</a>
+      <img src="picutres/communicatie.png" class="img-fluid" alt="Responsive image">
     </div>
     <div class="row">
       <div class="col-lg-4">

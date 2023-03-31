@@ -340,6 +340,8 @@ function updateUser($conn, $uuid, $username, $email, $password) {
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
 
+    echo "<p>Test</p>";
+
 
     $sql = "UPDATE users SET username=?, email=?, password=?, salt=? WHERE uuid=?";
     $stmt = mysqli_stmt_init($conn);

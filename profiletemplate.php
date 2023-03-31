@@ -38,8 +38,8 @@ include_once '../everywhere/header.php';
         <hr>
         <form method="post">
           <div class="form-group">
-            <label for="uuid">UUID</label>
-            <input type="text" class="form-control hidden" id="uuid" name="uuid" value="<?php echo $uuid ?>" disabled>
+            <label for="uuid" class="d-none">UUID</label>
+            <input type="text" class="form-control d-none" id="uuid" name="uuid" value="<?php echo $uuid ?>" disabled>
           </div>
           <div class="form-group">
             <label for="username">Username</label>

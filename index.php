@@ -128,7 +128,7 @@ include_once 'everywhere/header.php'
       <a href='blogs/$uuid.php' class='list-group-item list-group-item-action'>
             <div class='d-flex w-100 justify-content-between'>
               <h5 class='mb-1'>$title</h5>
-              <small>$createdAt</small>
+              <small>$timeago ago</small>
             </div>
             <p class='mb-1'>$description</p>
           </a>

@@ -1,6 +1,6 @@
 <?php
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if (isset($_POST['submit'])) {
     $uuid = $_POST['uuid'];
     $username = $_POST['username'];
     $email = $_POST['email'];

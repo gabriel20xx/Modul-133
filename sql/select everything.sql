@@ -1,2 +1,2 @@
 USE m133;
-SELECT * FROM comments;
+SELECT * FROM users;

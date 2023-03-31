@@ -108,27 +108,6 @@ include_once 'everywhere/header.php'
 
 
           ?>
-          <a href="#" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">Topic 1</h5>
-              <small>3 days ago</small>
-            </div>
-            <p class="mb-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">Topic 2</h5>
-              <small>1 week ago</small>
-            </div>
-            <p class="mb-1">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">Topic 3</h5>
-              <small>2 weeks ago</small>
-            </div>
-            <p class="mb-1">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-          </a>
           <?php
           $sql = "SELECT COUNT(*) as count FROM blogs";
           $result = mysqli_query($conn, $sql);

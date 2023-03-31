@@ -32,6 +32,7 @@ if (isset($_GET["page"])) {
         }
         ?>
     </div>
+    <h1 class="display-4 text-center">Forum</h1>
     <div class='text-center mt-5'>
     <?php
     if (isset($_SESSION["uuid"])) {

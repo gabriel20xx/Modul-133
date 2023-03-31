@@ -1,5 +1,6 @@
 <?php
 
+echo "<p>$uuid dies ist die uuid</p>";
 if (isset($_POST['submit'])) {
     $uuid = $_POST['uuid'];
     $username = $_POST['username'];

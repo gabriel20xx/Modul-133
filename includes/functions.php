@@ -213,7 +213,7 @@ function createBlog($conn, $title, $description) {
         $uuid = $row['uuid'];
         copy('../blogtemplate.php', '../blogs/'.$uuid.'.php');
         mysqli_stmt_close($stmt);
-        header("location: ../forum.php?error=postcreated");
+        header("location: ../forum.php?page=1&error=postcreated");
         exit();
     }
 

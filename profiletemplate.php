@@ -36,7 +36,7 @@ include_once '../everywhere/header.php';
           <p><?php echo $email ?></p>
         </div>
         <hr>
-        <form method="post">
+        <form>
           <div class="form-group">
             <label for="uuid" class="d-none">UUID</label>
             <input type="text" class="form-control d-none" id="uuid" name="uuid" value="<?php echo $uuid ?>" disabled>
@@ -56,7 +56,7 @@ include_once '../everywhere/header.php';
             </div>
             <div class="text-right">
               <button type="button" class="btn btn-primary" name="edit" id="edit-btn">Edit</button>
-              <button type="button" class="btn btn-success d-none" id="save-btn" onclick="document.forms[0].method='post'.action='../includes/edit-user.php';">Save</button>
+              <button type="submit" class="btn btn-success d-none" id="save-btn" onclick="document.forms[0].method='post'.action='../includes/edit-user.php';">Save</button>
               <button type="submit" class="btn btn-danger" name="delete" id="delete-btn" onclick="confirmDelete(); document.forms[0].action='../includes/delete-user.php';">Delete Account</button>
             </div>
           <?php endif; ?>

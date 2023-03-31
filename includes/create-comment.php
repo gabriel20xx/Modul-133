@@ -1,4 +1,5 @@
 <?php 
+
 if (isset($_POST["submit"])) {
     $description = $_POST["description"];
     $blog_uuid = $_POST["blog_uuid"];
@@ -15,9 +16,7 @@ if (isset($_POST["submit"])) {
         exit();
     };
 
-    $uuid = uuid_create(UUID_TYPE_RANDOM);
-
-    createComment($conn, $uuid, $description, $blog_uuid);
+    createComment($conn, $description, $blog_uuid);
 
 } else {
     header("location: ../forum.php");

@@ -2,6 +2,7 @@
 
 # Create User
 function createUser($conn, $uuid, $username, $email, $password) {
+    $uuid = uuid_create(UUID_TYPE_RANDOM);
     $sql = "INSERT INTO users (uuid, username, email, password) VALUES (?, ?, ?, ?)";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -144,7 +145,8 @@ function emptyInputLogin($username, $password) {
 
 
 # Hier kommen alle Funktionen (Überprüfung der Daten und Daten(-bank)verarbeitung)
-function createBlog($conn, $uuid, $title, $description) {
+function createBlog($conn, $title, $description) {
+    $uuid = uuid_create(UUID_TYPE_RANDOM);
     $createdAt = date('Y-m-d H:i:s');
     $createdBy = $_SESSION["uuid"];
 
@@ -241,7 +243,8 @@ function checkUserLogin() {
     return $result;
 }
 
-function createComment($conn, $uuid, $description, $blog_uuid) {
+function createComment($conn, $description, $blog_uuid) {
+    $uuid = uuid_create(UUID_TYPE_RANDOM);
     $createdAt = date('Y-m-d H:i:s');
     $user_uuid = $_SESSION["uuid"];
 

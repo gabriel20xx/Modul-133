@@ -1,4 +1,4 @@
-function active() {
+/* function active() {
     $(document).ready(function() {
         $( ".topnav a" ).bind( "click", function(event) {
             event.preventDefault();
@@ -9,4 +9,4 @@ function active() {
             clickedItem.addClass( "active" );
         });
     });
-}
+} */

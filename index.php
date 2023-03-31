@@ -77,9 +77,7 @@ include_once 'everywhere/header.php'
             $row = mysqli_fetch_assoc($result);
             $count = $row["count"];
 
-            if ($count > 5) {
-              $newcount = 5;
-            }
+            $newcount = min($count, 5); // set newcount to the minimum of count and 5
 
             for ($i = 0; $i < $newcount; $i++) {
               $sql = "SELECT * FROM blogs ORDER BY createdAt DESC LIMIT 1 OFFSET " . (($currentPage - 1) * 12 + $i);
@@ -124,23 +122,15 @@ include_once 'everywhere/header.php'
                   $timeago = $years . ' years';
                 }
 
-                $createdBy = $row['user_uuid'];
-                $createdByUser = "SELECT * FROM users WHERE uuid = '$createdBy'";
-                $result2 = mysqli_query($conn, $createdByUser);
-                $resultCheck2 = mysqli_num_rows($result2);
 
-                if ($resultCheck2 > 0) {
-                  $row2 = mysqli_fetch_assoc($result2);
-                  $username = $row2['username'];
-
-                  echo "<a href='#' class='list-group-item list-group-item-action'>
+                echo "
+                  <a href='#' class='list-group-item list-group-item-action'>
                       <div class='d-flex w-100 justify-content-between'>
                         <h5 class='mb-1'>$title</h5>
                         <small>$timeago ago</small>
                       </div>
                       <p class='mb-1'>$description</p>
                     </a>";
-                }
               }
             }
           }

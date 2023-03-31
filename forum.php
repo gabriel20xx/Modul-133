@@ -1,11 +1,11 @@
-<?php 
+<?php
 include_once 'includes/connect-db.php';
 include_once 'everywhere/header.php';
 ?>
 
 <?php
 if (isset($_GET["page"])) {
-        $currentPage = $_GET["page"];
+    $currentPage = $_GET["page"];
 }
 ?>
 
@@ -14,102 +14,103 @@ if (isset($_GET["page"])) {
     include_once 'everywhere/navbar.php';
     ?>
     <div class='container'>
-    <div class='errors'>
-        <?php
-        if (isset($_GET["error"])) {
-            if ($_GET["error"] == "postcreated") {
-                echo 
-                '<div class="alert alert-success" role="alert">
+        <div class='errors'>
+            <?php
+            if (isset($_GET["error"])) {
+                if ($_GET["error"] == "postcreated") {
+                    echo
+                    '<div class="alert alert-success" role="alert">
                 Post successfully created!
                 </div>';
-            }
-            else if ($_GET["error"] == "postdeleted") {
-                echo 
-                '<div class="alert alert-danger" role="alert">
+                } else if ($_GET["error"] == "postdeleted") {
+                    echo
+                    '<div class="alert alert-danger" role="alert">
                 Post deleted!
                 </div>';
+                }
             }
+            ?>
+        </div>
+        <h1 class="display-4 text-center">Forum</h1>
+        <?php
+        if (isset($_SESSION["uuid"])) {
+            echo '    
+    <div class="text-center mt-5">
+    <div>
+    <a class="btn btn-lg btn-success" href="new_blog.php" role="button">Create new post</a>
+    </div>    
+    </div>';
         }
         ?>
-    </div>
-    <h1 class="display-4 text-center">Forum</h1>
-    <div class='text-center mt-5'>
-    <?php
-    if (isset($_SESSION["uuid"])) {
-    echo '<div>
-    <a class="btn btn-lg btn-success" href="new_blog.php" role="button">Create new post</a>
-    </div>';
-    }
-    ?>
-    </div>
-    <!-- Grid overview -->
 
-    <div class="row mb-3 p-5 text-center">
-    <?php 
-    $sql = "SELECT COUNT(*) as count FROM blogs";
-    $result = mysqli_query($conn, $sql);
+        <!-- Grid overview -->
 
-    if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $count = $row["count"];
-
-        if ($count > 12) {
-            $newcount = 12;
-        }
-
-        for ($i = 0; $i < $newcount; $i++) {
-            $sql = "SELECT * FROM blogs ORDER BY createdAt DESC LIMIT 1 OFFSET " . (($currentPage-1) * 12 + $i);
+        <div class="row mb-3 p-5 text-center">
+            <?php
+            $sql = "SELECT COUNT(*) as count FROM blogs";
             $result = mysqli_query($conn, $sql);
-            $resultCheck = mysqli_num_rows($result);
 
-            if ($resultCheck > 0) {
+            if (mysqli_num_rows($result) > 0) {
                 $row = mysqli_fetch_assoc($result);
-                $title = $row['title'];
-                $link = $row['uuid'];
-                $description = $row['description'];
-                $date1 = $row['createdAt'];
-                $date2 = date('Y-m-d H:i:s');
-                $diff = abs(strtotime($date2) - strtotime($date1));
-            
-                $years = floor($diff / (365*60*60*24));
-                $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-                $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24) / (60*60*24));
-                $hours = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24) / (60*60));
-                $minutes = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60)/ 60);
-                $seconds = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60 - $minutes*60));
-                
-                if ($years == 0){
-                    if ($months == 0){
-                        if ($days == 0){
-                            if ($hours == 0){
-                                if ($minutes == 0){
-                                    $timeago = $seconds.' seconds';
-                                } else {
-                                    $timeago = $minutes.' minutes';
-                                }
-                            } else {
-                                $timeago = $hours.' hours';
-                            }
-                        } else {
-                            $timeago = $days.' days';
-                        }
-                    } else {
-                        $timeago = $months.' months';
-                    }      
-                } else {
-                    $timeago = $years.' years';
+                $count = $row["count"];
+
+                if ($count > 12) {
+                    $newcount = 12;
                 }
 
-                $createdBy = $row['user_uuid'];
-                $createdByUser = "SELECT * FROM users WHERE uuid = '$createdBy'";
-                $result2 = mysqli_query($conn, $createdByUser);
-                $resultCheck2 = mysqli_num_rows($result2);
+                for ($i = 0; $i < $newcount; $i++) {
+                    $sql = "SELECT * FROM blogs ORDER BY createdAt DESC LIMIT 1 OFFSET " . (($currentPage - 1) * 12 + $i);
+                    $result = mysqli_query($conn, $sql);
+                    $resultCheck = mysqli_num_rows($result);
 
-                if ($resultCheck2 > 0) {
-                    $row2 = mysqli_fetch_assoc($result2);
-                    $username = $row2['username'];
-                
-                echo "<div class='col-md-4 g-4 mg-4 p-0 card'>
+                    if ($resultCheck > 0) {
+                        $row = mysqli_fetch_assoc($result);
+                        $title = $row['title'];
+                        $link = $row['uuid'];
+                        $description = $row['description'];
+                        $date1 = $row['createdAt'];
+                        $date2 = date('Y-m-d H:i:s');
+                        $diff = abs(strtotime($date2) - strtotime($date1));
+
+                        $years = floor($diff / (365 * 60 * 60 * 24));
+                        $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+                        $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
+                        $hours = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24 - $days * 60 * 60 * 24) / (60 * 60));
+                        $minutes = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24 - $days * 60 * 60 * 24 - $hours * 60 * 60) / 60);
+                        $seconds = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24 - $days * 60 * 60 * 24 - $hours * 60 * 60 - $minutes * 60));
+
+                        if ($years == 0) {
+                            if ($months == 0) {
+                                if ($days == 0) {
+                                    if ($hours == 0) {
+                                        if ($minutes == 0) {
+                                            $timeago = $seconds . ' seconds';
+                                        } else {
+                                            $timeago = $minutes . ' minutes';
+                                        }
+                                    } else {
+                                        $timeago = $hours . ' hours';
+                                    }
+                                } else {
+                                    $timeago = $days . ' days';
+                                }
+                            } else {
+                                $timeago = $months . ' months';
+                            }
+                        } else {
+                            $timeago = $years . ' years';
+                        }
+
+                        $createdBy = $row['user_uuid'];
+                        $createdByUser = "SELECT * FROM users WHERE uuid = '$createdBy'";
+                        $result2 = mysqli_query($conn, $createdByUser);
+                        $resultCheck2 = mysqli_num_rows($result2);
+
+                        if ($resultCheck2 > 0) {
+                            $row2 = mysqli_fetch_assoc($result2);
+                            $username = $row2['username'];
+
+                            echo "<div class='col-md-4 g-4 mg-4 p-0 card'>
                     <div class='card-header'>$username</div>
                     <div class='card-body'>
                         <h5 class='card-title'>$title</h5>
@@ -118,60 +119,57 @@ if (isset($_GET["page"])) {
                     </div>
                     <div class='card-footer text-muted'>$timeago ago</div>
                 </div>";
+                        }
+                    }
                 }
             }
+            ?>
+
+        </div>
+
+        <?php
+        if ($currentPage != 1) {
+            $previousPage = $currentPage - 1;
+        } else {
+            $previousPage = "None";
         }
-    }
-    ?>
 
-    </div>
+        if ($count > 12 * ($currentPage)) {
+            $nextPage = $currentPage + 1;
+        } else {
+            $nextPage = "None";
+        }
+        ?>
 
-    <?php
-    if ($currentPage != 1) {
-        $previousPage = $currentPage-1;
-    } else {
-        $previousPage = "None";
-    }
-
-    if ($count > 12*($currentPage)) {
-        $nextPage = $currentPage+1;
-    } else {
-        $nextPage = "None";
-    }
-?>
-
-<div>
-    <ul class="pagination justify-content-center">
-        <?php 
-        if ($count > 12 && $currentPage != 1) {
-            echo "<li class='page-item'>
+        <div>
+            <ul class="pagination justify-content-center">
+                <?php
+                if ($count > 12 && $currentPage != 1) {
+                    echo "<li class='page-item'>
                   <a class='page-link' href='forum.php?page=$previousPage' aria-label='Previous'>
                       <span aria-hidden='true'>«</span>
                   </a>
                 </li>
                 
                 <li class='page-item'><a class='page-link' href='forum.php?page=$previousPage'>$previousPage</a></li>";
-        }
+                }
 
-        echo "<li class='page-item'><a class='page-link' href='forum.php?page=$currentPage'>$currentPage</a></li>";
+                echo "<li class='page-item'><a class='page-link' href='forum.php?page=$currentPage'>$currentPage</a></li>";
 
-        if ($count > 12*($currentPage)) {
-            echo "<li class='page-item'><a class='page-link' href='forum.php?page=$nextPage'>$nextPage</a></li>
+                if ($count > 12 * ($currentPage)) {
+                    echo "<li class='page-item'><a class='page-link' href='forum.php?page=$nextPage'>$nextPage</a></li>
 
                   <li class='page-item'>
                   <a class='page-link' href='forum.php?page=$nextPage' aria-label='Next'>
                       <span aria-hidden='true'>»</span>
                   </a>
                 </li>";
-        }
+                }
+                ?>
+            </ul>
+        </div>
+
+        <?php
+        include_once 'everywhere/footer.php';
         ?>
-    </ul>
-</div>
-
-    <?php
-    include_once 'everywhere/footer.php';
-    ?>
-</div>
-    
-
-
+    </div>

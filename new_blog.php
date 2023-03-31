@@ -39,8 +39,10 @@ include_once 'everywhere/header.php'
         <select class="form-select" aria-label="Default select example">
             <option selected>Category</option>
             <option value="1">Politics</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <option value="2">Sports</option>
+            <option value="3">Music</option>
+            <option value="4">Art</option>
+            <option value="5">TBZ</option>
             </select>
         </div>
 

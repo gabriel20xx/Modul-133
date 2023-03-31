@@ -40,11 +40,29 @@ include_once 'everywhere/header.php'
       <div class="col-lg-4">
         <h2>Forum Categories</h2>
         <ul class="list-group">
-          <li class="list-group-item"><a href="#">General Discussion</a></li>
-          <li class="list-group-item"><a href="#">News and Announcements</a></li>
-          <li class="list-group-item"><a href="#">Technical Support</a></li>
-          <li class="list-group-item"><a href="#">Suggestions and Feedback</a></li>
-          <li class="list-group-item"><a href="#">Off-Topic Discussion</a></li>
+          <?php
+          $sql = "SELECT COUNT(*) as count FROM categories";
+          $result = mysqli_query($conn, $sql);
+
+          if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $count = $row["count"];
+
+            for ($i = 0; $i < $count; $i++) {
+              $sql = "SELECT * FROM categories LIMIT 1 OFFSET " . $i;
+              $result = mysqli_query($conn, $sql);
+              $resultCheck = mysqli_num_rows($result);
+
+              if ($resultCheck > 0) {
+                $row = mysqli_fetch_assoc($result);
+                $name = $row['name'];
+
+                echo "<li class='list-group-item'>$name</li>";
+              }
+            }
+          }
+          ?>
+
         </ul>
       </div>
       <div class="col-lg-8">

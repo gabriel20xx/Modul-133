@@ -32,6 +32,12 @@ CREATE TABLE comments (
 );
 
 CREATE TABLE categories (
-    uuid char(36) NOT NULL,
+    id char(36) NOT NULL,
     name varchar(30)
 )
+
+INSERT INTO categories (id, name) VALUES
+(1, 'home'),
+(2, 'drei'),
+(3, 'test'),
+(4, 'Cornel');

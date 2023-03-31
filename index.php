@@ -76,6 +76,11 @@ include_once 'everywhere/header.php'
           if (mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
             $count = $row["count"];
+
+            if ($count > 5) {
+              $count = 5;
+            }
+
             for ($i = 0; $i < $count; $i++) {
               $sql = "SELECT * FROM blogs LIMIT 1 OFFSET " . $i;
               $result = mysqli_query($conn, $sql);

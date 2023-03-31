@@ -77,8 +77,8 @@ include_once 'everywhere/header.php'
             $row = mysqli_fetch_assoc($result);
             $count = $row["count"];
 
-            if ($count > 12) {
-              $newcount = 12;
+            if ($count > 5) {
+              $newcount = 5;
             }
 
             for ($i = 0; $i < $newcount; $i++) {

@@ -36,7 +36,7 @@ include_once '../everywhere/header.php';
           <p><?php echo $email ?></p>
         </div>
         <hr>
-        <form method="post">
+        <form method="post" action="includes/edit-delete-user.php">
           <div class="form-group">
             <label for="uuid">UUID</label>
             <input type="text" class="form-control hidden" id="uuid" name="uuid" value="<?php echo $uuid ?>" disabled>
@@ -56,8 +56,8 @@ include_once '../everywhere/header.php';
             </div>
             <div class="text-right">
               <button type="submit" class="btn btn-primary" name="edit">Edit</button>
-              <button type="submit" class="btn btn-success d-none" id="save-btn" onclick="editUser()">Save</button>
-              <button type="submit" class="btn btn-danger" name="delete" onclick="confirmDelete(); this.form.action='includes/delete-user.php';">Delete Account</button>
+              <button type="submit" class="btn btn-success d-none" id="save-btn" onclick="document.forms[0].action='includes/edit-user.php';">Save</button>
+              <button type="submit" class="btn btn-danger" name="delete" onclick="confirmDelete(); document.forms[0].action='includes/delete-user.php';">Delete Account</button>
             </div>
           <?php endif; ?>
         </form>
@@ -123,36 +123,5 @@ include_once '../everywhere/header.php';
       }
     }
   </script>
-<script>
-  function editUser() {
-    const uuid = document.getElementsByName("uuid")[0].value;
-    const username = document.getElementsByName("username")[0].value;
-    const email = document.getElementsByName("email")[0].value;
-    const password = document.getElementsByName("password")[0].value;
-    const url = "includes/edit-user.php";
-
-    const formData = new FormData();
-    formData.append("uuid", uuid);
-    formData.append("username", username);
-    formData.append("email", email);
-    formData.append("password", password);
-
-    fetch(url, {
-      method: "POST",
-      body: formData
-    }).then(response => {
-      if (response.ok) {
-        console.log("Message sent successfully");
-        // Do something with the response here
-      } else {
-        console.error("Error sending message");
-        // Handle the error here
-      }
-    }).catch(error => {
-      console.error("Error sending message: " + error.message);
-      // Handle the error here
-    });
-  }
-</script>
 
 </body>

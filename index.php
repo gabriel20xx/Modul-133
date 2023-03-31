@@ -25,6 +25,7 @@ include_once 'everywhere/header.php'
     <!-- Insert Homepage Code here-->
     <div class="jumbotron mt-4">
       <h1 class="display-4">Welcome to The GCT Corner!</h1>
+      <img src="pictures/communicate.png" class="img-fluid" alt="Responsive image">
       <p class="lead">
         In our forum you will find different categories tailored to different interests. For example, you can find out about the latest developments in medicine or discuss the latest trends and games with other gaming enthusiasts. We also cover topics such as the environment, politics and society. If you have questions or problems, you can always ask for our help and support. Our moderators are always there for you and are happy to help.
       </p>
@@ -34,7 +35,6 @@ include_once 'everywhere/header.php'
       <hr class="my-4">
       <p>Explore our forums, create your own topics, and engage in discussions with other members of our community.</p>
       <a class="btn btn-primary btn-lg" href="#" role="button">Get Started</a>
-      <img src="pictures/communicate.png" class="img-fluid" alt="Responsive image">
     </div>
     <div class="row">
       <div class="col-lg-4">

@@ -32,5 +32,6 @@ CREATE TABLE comments (
 );
 
 CREATE TABLE categories (
+    uuid char(36) NOT NULL,
     name varchar(30)
 )

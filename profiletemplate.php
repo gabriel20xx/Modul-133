@@ -12,6 +12,7 @@ include_once '../everywhere/header.php';
   // Here you would typically include any PHP code required to retrieve the user's data from a database or session
   // For this example, we'll just use hardcoded values
   $filename = basename(__FILE__, '.php');
+  $uuid = $filename;
 
   $sql = "SELECT * FROM users WHERE uuid = '$filename'";
   $result = mysqli_query($conn, $sql);

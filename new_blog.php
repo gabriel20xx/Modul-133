@@ -41,26 +41,29 @@ if (!isset($_SESSION["uuid"])) {
                 <label for="category" class="form-label">Category</label>
                 <select class="form-select" name="category" id="category" aria-label="Default select example">
                     <option selected>Category</option>
-                    <?php 
+                    <?php
                     $sql = "SELECT COUNT(*) as count FROM categories";
                     $result = mysqli_query($conn, $sql);
+
                     if (mysqli_num_rows($result) > 0) {
                         $row = mysqli_fetch_assoc($result);
                         $count = $row["count"];
 
                         for ($i = 0; $i < $count; $i++) {
-                            $sql = "SELECT * FROM categories LIMIT 1 OFFSET" .$i );
+                            $sql = "SELECT * FROM categories LIMIT 1 OFFSET " . $i;
                             $result = mysqli_query($conn, $sql);
                             $resultCheck = mysqli_num_rows($result);
-                
+
                             if ($resultCheck > 0) {
                                 $row = mysqli_fetch_assoc($result);
                                 $name = $row['name'];
 
-                                echo "<option value='1'>$name</option>";
+                                echo "<option value='$name'>$name</option>";
                             }
                         }
-                        ?>
+                    }
+                    ?>
+
                 </select>
             </div>
             <div class="mb-3">

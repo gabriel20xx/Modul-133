@@ -88,12 +88,13 @@ include_once 'everywhere/header.php'
 
               if ($resultCheck > 0) {
                 $row = mysqli_fetch_assoc($result);
+                $uuid = $row['uuid'];
                 $title = $row['title'];
                 $description = $row['description'];
                 $createdAt = $row['createdAt'];
 
                 echo "
-      <a href='#' class='list-group-item list-group-item-action'>
+      <a href='blogs/$uuid.php' class='list-group-item list-group-item-action'>
             <div class='d-flex w-100 justify-content-between'>
               <h5 class='mb-1'>$title</h5>
               <small>$createdAt</small>

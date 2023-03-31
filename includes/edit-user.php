@@ -13,6 +13,7 @@ if (isset($_POST['submit'])) {
     updateUser($conn, $uuid, $username, $email, $password);
 
 } else {
-    header("location: ../profile/$uuid.php");
+    echo "<p>$uuid dies ist die uuid2</p>";
+    //header("location: ../profile/$uuid.php");
     exit();
 }

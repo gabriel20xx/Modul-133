@@ -36,14 +36,12 @@ include_once 'everywhere/header.php'
             Dropdown button
         </button>
         <!-- Change this to a dropdown choose button -->
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" name="Politics">Politics</a>
-            <a class="dropdown-item" name="Politics">Sport</a>
-            <a class="dropdown-item" name="Politics">Music</a>
-            <a class="dropdown-item" name="Politics">Art</a>
-            <a class="dropdown-item" name="Politics">TBZ</a>
-            <a class="dropdown-item">Other</a>
-        </div>
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Category</option>
+            <option value="1">Politics</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+            </select>
         </div>
 
         <form action="includes/create-blog.php" method="post">

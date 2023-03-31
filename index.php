@@ -26,6 +26,7 @@ include_once 'everywhere/header.php'
     <div class="jumbotron mt-4">
       <h1 class="display-4">Welcome to The GCT Corner!</h1>
       <img src="pictures/communicate.png" class="img-fluid" alt="Responsive image">
+      <h2 class="display-4">Our offer</h2>
       <p class="lead">
         In our forum you will find different categories tailored to different interests. For example, you can find out about the latest developments in medicine or discuss the latest trends and games with other gaming enthusiasts. We also cover topics such as the environment, politics and society. If you have questions or problems, you can always ask for our help and support. Our moderators are always there for you and are happy to help.
       </p>
@@ -68,27 +69,82 @@ include_once 'everywhere/header.php'
       <div class="col-lg-8">
         <h2>Recent Topics</h2>
         <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">Topic 1</h5>
-              <small>3 days ago</small>
-            </div>
-            <p class="mb-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">Topic 2</h5>
-              <small>1 week ago</small>
-            </div>
-            <p class="mb-1">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">Topic 3</h5>
-              <small>2 weeks ago</small>
-            </div>
-            <p class="mb-1">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-          </a>
+          <?php
+          $sql = "SELECT COUNT(*) as count FROM blogs";
+          $result = mysqli_query($conn, $sql);
+
+          if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $count = $row["count"];
+
+            if ($count > 12) {
+              $newcount = 12;
+            }
+
+            for ($i = 0; $i < $newcount; $i++) {
+              $sql = "SELECT * FROM blogs ORDER BY createdAt DESC LIMIT 1 OFFSET " . (($currentPage - 1) * 12 + $i);
+              $result = mysqli_query($conn, $sql);
+              $resultCheck = mysqli_num_rows($result);
+
+              if ($resultCheck > 0) {
+                $row = mysqli_fetch_assoc($result);
+                $title = $row['title'];
+                $link = $row['uuid'];
+                $description = $row['description'];
+                $date1 = $row['createdAt'];
+                $date2 = date('Y-m-d H:i:s');
+                $diff = abs(strtotime($date2) - strtotime($date1));
+
+                $years = floor($diff / (365 * 60 * 60 * 24));
+                $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+                $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
+                $hours = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24 - $days * 60 * 60 * 24) / (60 * 60));
+                $minutes = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24 - $days * 60 * 60 * 24 - $hours * 60 * 60) / 60);
+                $seconds = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24 - $days * 60 * 60 * 24 - $hours * 60 * 60 - $minutes * 60));
+
+                if ($years == 0) {
+                  if ($months == 0) {
+                    if ($days == 0) {
+                      if ($hours == 0) {
+                        if ($minutes == 0) {
+                          $timeago = $seconds . ' seconds';
+                        } else {
+                          $timeago = $minutes . ' minutes';
+                        }
+                      } else {
+                        $timeago = $hours . ' hours';
+                      }
+                    } else {
+                      $timeago = $days . ' days';
+                    }
+                  } else {
+                    $timeago = $months . ' months';
+                  }
+                } else {
+                  $timeago = $years . ' years';
+                }
+
+                $createdBy = $row['user_uuid'];
+                $createdByUser = "SELECT * FROM users WHERE uuid = '$createdBy'";
+                $result2 = mysqli_query($conn, $createdByUser);
+                $resultCheck2 = mysqli_num_rows($result2);
+
+                if ($resultCheck2 > 0) {
+                  $row2 = mysqli_fetch_assoc($result2);
+                  $username = $row2['username'];
+
+                  echo "<a href='#' class='list-group-item list-group-item-action'>
+                      <div class='d-flex w-100 justify-content-between'>
+                        <h5 class='mb-1'>$title</h5>
+                        <small>$timeago ago</small>
+                      </div>
+                      <p class='mb-1'>$description</p>
+                    </a>";
+                }
+              }
+            }
+          }
+          ?>
         </div>
       </div>
     </div>

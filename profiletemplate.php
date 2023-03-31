@@ -36,7 +36,7 @@ include_once '../everywhere/header.php';
           <p><?php echo $email ?></p>
         </div>
         <hr>
-        <form method="post" action="includes/edit-delete-user.php">
+        <form method="post">
           <div class="form-group">
             <label for="uuid">UUID</label>
             <input type="text" class="form-control hidden" id="uuid" name="uuid" value="<?php echo $uuid ?>" disabled>

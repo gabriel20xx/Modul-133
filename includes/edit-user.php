@@ -1,5 +1,5 @@
 <?php
-$uuid = $_POST['uuid'];
+$uuid = $_GET['uuid'];
 echo "<p>$uuid dies ist die uuid</p>";
 if (isset($_POST['submit'])) {
     $uuid = $_POST['uuid'];

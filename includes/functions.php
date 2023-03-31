@@ -383,7 +383,7 @@ function deleteUser($conn, $uuid) {
                 header("location: ../profiles/$uuid.php?error=stmtfailed");
                 exit();
             }
-            mysqli_stmt_bind_param($stmt, "s", $comment_uuid);
+            mysqli_stmt_bind_param($stmt, "s", $uuid);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
 

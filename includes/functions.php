@@ -395,7 +395,7 @@ function deleteUser($conn, $uuid) {
             // Destroy the session
             session_destroy();
         
-            header("Location: ../index.php?error=userdeleted");
+            header("Location: ../../index.php?error=userdeleted");
             exit;    
         }
     }

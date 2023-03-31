@@ -6,6 +6,8 @@ include_once 'everywhere/header.php';
 <?php
 if (isset($_GET["page"])) {
     $currentPage = $_GET["page"];
+} else {
+    $currentPage = 1;
 }
 ?>
 

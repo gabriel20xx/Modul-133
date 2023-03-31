@@ -31,11 +31,7 @@ if (!isset($_SESSION["uuid"])) {
             ?>
         </div>
 
-
-
         <!-- Change this to a dropdown choose button -->
-
-
         <form action="includes/create-blog.php" method="post">
             <div class="mb-3">
                 <label for="category" class="form-label">Category</label>

@@ -79,7 +79,7 @@ $filename = basename(__FILE__, '.php');
                 }
             ?>
         </div>
-
+<!-- Comment section-->
         <?php
             $sql = "SELECT COUNT(*) AS count FROM comments WHERE blog_uuid ='$filename'";
             $result = mysqli_query($conn, $sql);

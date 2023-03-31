@@ -81,10 +81,10 @@ if (isset($_GET["page"])) {
         $count = $row["count"];
 
         if ($count > 12) {
-            $count = 12;
+            $newcount = 12;
         }
 
-        for ($i = 0; $i < $count; $i++) {
+        for ($i = 0; $i < $newcount; $i++) {
             $sql = "SELECT * FROM blogs ORDER BY createdAt DESC LIMIT 1 OFFSET " . (($currentPage-1) * 12 + $i);
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);
@@ -97,13 +97,35 @@ if (isset($_GET["page"])) {
                 $date1 = $row['createdAt'];
                 $date2 = date('Y-m-d H:i:s');
                 $diff = abs(strtotime($date2) - strtotime($date1));
-
+            
                 $years = floor($diff / (365*60*60*24));
                 $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
                 $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24) / (60*60*24));
                 $hours = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24) / (60*60));
                 $minutes = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60)/ 60);
                 $seconds = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60 - $minutes*60));
+                
+                if ($years == 0){
+                    if ($months == 0){
+                        if ($days == 0){
+                            if ($hours == 0){
+                                if ($minutes == 0){
+                                    $timeago = $seconds.' seconds';
+                                } else {
+                                    $timeago = $minutes.' minutes';
+                                }
+                            } else {
+                                $timeago = $hours.' hours';
+                            }
+                        } else {
+                            $timeago = $days.' days';
+                        }
+                    } else {
+                        $timeago = $months.' months';
+                    }      
+                } else {
+                    $timeago = $years.' years';
+                }
 
                 $createdBy = $row['user_uuid'];
                 $createdByUser = "SELECT * FROM users WHERE uuid = '$createdBy'";
@@ -121,7 +143,7 @@ if (isset($_GET["page"])) {
                         <p class='card-text'>$description</p>
                         <a href='blogs/$link.php' class='btn btn-primary'>Go to article</a>
                     </div>
-                    <div class='card-footer text-muted'>$years years, $months months, $days days, $hours hours, $minutes minutes, $seconds seconds ago</div>
+                    <div class='card-footer text-muted'>$timeago ago</div>
                 </div>";
                 }
             }
@@ -132,54 +154,47 @@ if (isset($_GET["page"])) {
     </div>
 
     <?php
-        if (!$currentPage == 1) {
-            $previousPage = $currentPage-1;
-        } else {
-            $previousPage = "None";
-        }
+    if ($currentPage != 1) {
+        $previousPage = $currentPage-1;
+    } else {
+        $previousPage = "None";
+    }
 
-        if ($count > 12*$currentPage) {
-            $nextPage = $currentPage+1;
-        } else {
-            $nextPage = "None";
-        }
-    ?>
+    if ($count > 12*($currentPage)) {
+        $nextPage = $currentPage+1;
+    } else {
+        $nextPage = "None";
+    }
+?>
 
-    <div>
-        <ul class="pagination justify-content-center">
-
-            <?php 
-            if ($count > 12 && $currentPage != 1) {
-                echo "
-                <li class='page-item'>
-                <a class='page-link' href='forum.php?page=$previousPage' aria-label='Previous'>
-                    <span aria-hidden='true'>«</span>
+<div>
+    <ul class="pagination justify-content-center">
+        <?php 
+        if ($count > 12 && $currentPage != 1) {
+            echo "<li class='page-item'>
+                  <a class='page-link' href='forum.php?page=$previousPage' aria-label='Previous'>
+                      <span aria-hidden='true'>«</span>
+                  </a>
                 </li>
                 
-                </a><li class='page-item'><a class='page-link' href='forum.php?page=$previousPage'>$previousPage</a></li>
-                ";
-            }
+                <li class='page-item'><a class='page-link' href='forum.php?page=$previousPage'>$previousPage</a></li>";
+        }
 
-            echo "
-            </a><li class='page-item'><a class='page-link' href='forum.php?page=$currentPage'>$currentPage</a>
-            ";
+        echo "<li class='page-item'><a class='page-link' href='forum.php?page=$currentPage'>$currentPage</a></li>";
 
-            if ($count > 2*12 && ($count % $currentPage) > 12) {
-                echo "
-                <li class='page-item'><a class='page-link' href='forum.php?page=$nextPage'>$nextPage</a></li>
+        if ($count > 12*($currentPage)) {
+            echo "<li class='page-item'><a class='page-link' href='forum.php?page=$nextPage'>$nextPage</a></li>
 
-                <li class='page-item'>
-                <a class='page-link' href='forum.php?page=$nextPage' aria-label='Next'>
-                    <span aria-hidden='true'>»</span>
-                </a>
-                </li>
-                ";
-            }
-            ?>
-
-
+                  <li class='page-item'>
+                  <a class='page-link' href='forum.php?page=$nextPage' aria-label='Next'>
+                      <span aria-hidden='true'>»</span>
+                  </a>
+                </li>";
+        }
+        ?>
     </ul>
-    </div>
+</div>
+
     <?php
     include_once 'everywhere/footer.php';
     ?>

@@ -9,7 +9,6 @@ if (isset($_POST["submit"])) {
 
     editBlog($conn, $uuid);
 
-} else {
     header("Location: ../forum.php");
     exit;
 }

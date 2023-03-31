@@ -1,18 +1,21 @@
 <?php
 
 # Create User
-function createUser($conn, $uuid, $username, $email, $password) {
+function createUser($conn, $username, $email, $password) {
     $uuid = uuid_create(UUID_TYPE_RANDOM);
-    $sql = "INSERT INTO users (uuid, username, email, password) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO users (uuid, username, email, password, salt) VALUES (?, ?, ?, ?, ?)";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../register.php?error=stmtfailed");
         exit();
     }
 
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $salt = bin2hex(random_bytes(8)); // generate a unique salt value for each user
+    $pepper = 'thegctboys'; // define a unique pepper value for our application
+    
+    $hashedPassword = password_hash($salt . $password . $pepper, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt, "ssss", $uuid, $username, $email, $hashedPassword);
+    mysqli_stmt_bind_param($stmt, "sssss", $uuid, $username, $email, $hashedPassword, $salt);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
@@ -43,25 +46,41 @@ function createUser($conn, $uuid, $username, $email, $password) {
 }
 
 # Login User
-function loginUser($conn, $username, $password) {
-    $usernameExists = usernameExists($conn, $username, $username);
+function loginUser($conn, $username, $password, $rememberMe) {
+    $user = usernameExists($conn, $username, $username);
 
-    if ($usernameExists === false) {
+    if (!$user) {
         header("location: ../login.php?error=wronglogin");
         exit();
     }
 
-    $passwordHashed = $usernameExists["password"];
-    $checkPassword = password_verify($password, $passwordHashed);
+    $salt = $user["salt"]; // get the salt value of the user
+    $pepper = 'thegctboys'; // define the unique pepper value for our application
+
+    $hashedPassword = $user["password"];
+    $checkPassword = password_verify($salt . $password . $pepper, $hashedPassword); // verify the hashed password with the salt and pepper
 
     if ($checkPassword === false) {
         header("location: ../login.php?error=wronglogin");
         exit();
     }
     else if ($checkPassword === true) {
+        if ($rememberMe === true) {
+            // Set the expiration time for the cookie (in seconds)
+            $expiration = time() + (86400 * 30); // 30 days from now
+
+            // Generate a random token to use as the cookie value
+            $token = bin2hex(random_bytes(32));
+
+            // Set the cookie
+            setcookie('login_token', $token, $expiration, '/');
+
+            // Store the token in a database or other storage mechanism
+            // so that it can be verified later
+        }
         session_start();
-        $_SESSION["uuid"] = $usernameExists["uuid"];
-        $_SESSION["username"] = $usernameExists["username"];
+        $_SESSION["uuid"] = $user["uuid"];
+        $_SESSION["username"] = $user["username"];
         header("location: ../index.php?error=loggedin");
         exit();
     }
@@ -93,6 +112,19 @@ function invalidEmail($email) {
         $result = true;
     }
     else {
+        $result = false;
+    }
+    return $result;
+}
+
+function passwordRequirements($password) {
+    $hasNumber = preg_match('/\d/', $password);
+    $hasChar = preg_match('/[a-zA-Z]/', $password);
+    $hasSymbol = preg_match('/[^a-zA-Z\d]/', $password);
+
+    if (strlen($password) < 8 || !$hasNumber || !$hasChar || !$hasSymbol) {
+        $result = true;
+    } else {
         $result = false;
     }
     return $result;
@@ -297,8 +329,60 @@ function deleteComment($conn, $blog_uuid, $comment_uuid) {
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
         
-            header("Location: ../blogs/$blog_uuid.php?error=commentdeleted");
-            exit;
+        header("Location: ../blogs/$blog_uuid.php?error=commentdeleted");
+            exit;    
+        }
+    }
+}
+
+function updateUser($conn, $uuid, $username, $email, $password) {
+    $sql = "UPDATE users (uuid, username, email, password, salt) VALUES (?, ?, ?, ?, ?)";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../register.php?error=stmtfailed");
+        exit();
+    }
+
+    $salt = bin2hex(random_bytes(8)); // generate a unique salt value for each user
+    $pepper = 'thegctboys'; // define a unique pepper value for our application
+    
+    $hashedPassword = password_hash($salt . $password . $pepper, PASSWORD_DEFAULT);
+
+    mysqli_stmt_bind_param($stmt, "sssss", $uuid, $username, $email, $hashedPassword, $salt);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    header("Location: ../profiles/$uuid.php?error=profileupdated");
+    exit;
+}
+
+function deleteUser($conn, $uuid) {
+    $sql = "SELECT * FROM users WHERE uuid = '$uuid'";
+    $result = mysqli_query($conn, $sql);
+    $resultCheck = mysqli_num_rows($result);
+    
+    if ($resultCheck > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $sql = "DELETE FROM users WHERE uuid = ?";
+            $stmt = mysqli_stmt_init($conn);
+            if (!mysqli_stmt_prepare($stmt, $sql)) {
+                header("location: ../profiles/$uuid.php?error=stmtfailed");
+                exit();
+            }
+            mysqli_stmt_bind_param($stmt, "s", $comment_uuid);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+
+            session_start();
+
+            // Unset all of the session variables
+            $_SESSION = array();
+        
+            // Destroy the session
+            session_destroy();
+        
+            header("Location: ../index.php?error=userdeleted");
+            exit;    
         }
     }
 }

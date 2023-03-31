@@ -3,11 +3,15 @@ include_once 'includes/connect-db.php';
 include_once 'everywhere/header.php';
 ?>
 
-<body class="text-center login-page">
+<body>
+    <?php
+        include_once 'everywhere/navbar.php'
+    ?>
+    <div class="text-center login-page">
     <!-- Insert Register Code here-->
     <main class="form-signin w-100 m-auto">
     <form action="includes/register.php" method="post">
-        <img class="mb-4" src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="logo" width="72" height="57">
+    <img class="mb-4" src="pictures/LogoGCT.png" alt="LogoGTC" width="200px">
         <h1 class="h3 mb-3 fw-normal">Please register</h1>
 
         <div class='errors'>
@@ -29,6 +33,12 @@ include_once 'everywhere/header.php';
                 echo 
                 '<div class="alert alert-danger" role="alert">
                 Email not valid!
+                </div>';
+            }
+            else if ($_GET["error"] == "passwordtooweak") {
+                echo 
+                '<div class="alert alert-danger" role="alert">
+                Passwords must contain at least 8 characters, 1 number and 1 symbol!
                 </div>';
             }
             else if ($_GET["error"] == "passwordsdontmatch") {
@@ -79,12 +89,9 @@ include_once 'everywhere/header.php';
         <a href="login.php">
         <div class="w-100 btn btn-lg btn-secondary">Go to login</div>
         </a>
-        <p class="mt-5 mb-3 text-muted">&copy; Gabriel, Cornel, Till 2023</p>
+        <p class="mt-5 mb-3 text-muted"><?php include_once 'everywhere/footer.php';?></p>
     </form>
     
     </main>
-
-    <?php
-/*     include_once 'everywhere/footer.php'; */
-    ?>
+    </div>
 </body>

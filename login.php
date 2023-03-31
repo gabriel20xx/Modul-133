@@ -4,11 +4,14 @@ include_once 'everywhere/header.php';
 ?>
 
 <body>
+    <?php
+        include_once 'everywhere/navbar.php'
+    ?>
 <div class="text-center login-page">
     <!-- Insert Login Code here-->
     <main class="form-signin w-100 m-auto">
     <form action="includes/login.php" method="post">
-        <img class="mb-4" src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" alt="logo" width="72" height="57">
+        <img class="mb-4" src="pictures/LogoGCT.png" alt="LogoGTC" width="200px">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
         <div class="errors">
@@ -41,22 +44,15 @@ include_once 'everywhere/header.php';
 
         <div class="checkbox mb-3">
         <label>
-            <input type="checkbox" value="remember-me"> Remember me
+            <input name="remember-me" type="checkbox" value="1"> Remember me
         </label>
         </div>
         <button class="w-100 btn btn-lg mb-3 btn-primary" name="submit" type="submit">Sign in</button>
         <a href="register.php">
         <div class="w-100 btn btn-lg btn-secondary">Go to register</div>
         </a>
-        <p class="mt-5 mb-3 text-muted">&copy; Gabriel, Cornel, Till 2023</p>
+        <p class="mt-5 mb-3 text-muted"><?php include_once 'everywhere/footer.php';?></p>
     </form>
-
-    
 </main>
 </div>
-
-
-    <?php
-/*     include_once 'everywhere/footer.php'; */
-    ?>
 </body>

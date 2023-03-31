@@ -21,6 +21,10 @@ if (isset($_POST['submit'])) {
         header("location: ../register.php?error=invalidemail");
         exit();
     }
+    if (passwordRequirements($password) !== false){
+        header("location: ../register.php?error=passwordtooweak");
+        exit();
+    }
     if (passwordMatch($password, $password_rep) !== false){
         header("location: ../register.php?error=passwordsdontmatch");
         exit();

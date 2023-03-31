@@ -1,4 +1,5 @@
 <?php
+
 $dbServer = "8.34.222.223";
 $dbUsername = "phpuser";
 $dbPassword = "phppassword";

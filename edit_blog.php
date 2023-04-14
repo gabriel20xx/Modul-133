@@ -60,11 +60,11 @@ include_once 'everywhere/header.php'
             </div>
             <div class="mb-3">
             <label for="title" class="form-label">Title</label>
-                <input type="text" name="title" class="form-control" id="title" placeholder="Insert good title here" value="<?php echo $title ?>">
+                <input type="text" name="title" class="form-control" id="title" value="<?php echo $title ?>">
             </div>
             <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" name="description" id="description" rows="10" placeholder="Insert description here"><?php echo $description ?></textarea>
+                <textarea class="form-control" name="description" id="description" rows="10" value="<?php echo $description ?>"></textarea>
             </div>
             <button class="btn btn-lg mb-3 btn-primary" name="submit" type="submit">Update Blog</button>
             <a href="blogs/<?php echo $uuid ?>.php">

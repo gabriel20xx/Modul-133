@@ -118,7 +118,7 @@ if (isset($_GET["page"])) {
                             <h5 class='card-title'>$title</h5>
                             <p class='card-text'>$description</p>
                             <p class='card-text'>$category</p>
-                            <a href='blogs/$link.php' class='btn btn-primary'>Go to article</a>
+                            <a href='blogs/$uuid.php' class='btn btn-primary'>Go to article</a>
                         </div>
                         <div class='card-footer text-muted'>$timeago ago</div>
                     </div>";

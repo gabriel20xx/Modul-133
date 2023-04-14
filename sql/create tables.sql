@@ -19,12 +19,12 @@ CREATE TABLE blogs (
     uuid CHAR(36) NOT NULL,
     title VARCHAR(50),
     description VARCHAR(2000),
-    category CHAR(36),
+    category_id CHAR(36),
     createdAt DATETIME,
     user_uuid CHAR(36),
     PRIMARY KEY (uuid),
     FOREIGN KEY (user_uuid) REFERENCES users(uuid),
-    FOREIGN KEY (category) REFERENCES categories(id)
+    FOREIGN KEY (category_id) REFERENCES categories(id)
 );
 
 CREATE TABLE comments ( 

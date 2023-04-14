@@ -12,11 +12,12 @@ CREATE TABLE blogs (
     uuid char(36) NOT NULL,
     title varchar(50),
     description varchar(2000),
+    category varchar(30),
     createdAt datetime,
     user_uuid char(36),
     PRIMARY KEY (uuid),
     FOREIGN KEY (user_uuid) REFERENCES users(uuid) 
-    FOREIGN KEY (name) REFERENCES categories(name)
+    FOREIGN KEY (category) REFERENCES categories(name)
 );
 
 

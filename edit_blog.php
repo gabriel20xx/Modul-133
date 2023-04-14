@@ -28,6 +28,7 @@ include_once 'everywhere/header.php'
     <!-- Insert Blogpage Code here-->
     <div class="container">
         <form action="includes/edit-blog.php" method="post">
+            <input type='hidden' name='uuid' value='$uuid'>
             <div class="mb-3">
                 <label for="category" class="form-label">Category</label>
                 <select class="form-select" name="category" id="category" aria-label="Default select example">

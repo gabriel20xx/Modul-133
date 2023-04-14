@@ -181,7 +181,7 @@ function emptyInputLogin($username, $password) {
 
 
 # Hier kommen alle Funktionen (Überprüfung der Daten und Daten(-bank)verarbeitung)
-function createBlog($conn, $title, $description, $category) {
+function createBlog($conn, $title, $description, $category_id) {
     $uuid = uuid_create(UUID_TYPE_RANDOM);
     $createdAt = date('Y-m-d H:i:s');
     $createdBy = $_SESSION["uuid"];
@@ -193,12 +193,12 @@ function createBlog($conn, $title, $description, $category) {
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "ssssss", $uuid, $title, $description, $category, $createdAt, $createdBy);
+    mysqli_stmt_bind_param($stmt, "ssssss", $uuid, $title, $description, $category_id, $createdAt, $createdBy);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
 
-    # Create Blog page
+    // Create Blog page
 
     $sql = "SELECT * FROM blogs WHERE uuid = ?";
     $stmt = mysqli_stmt_init($conn);

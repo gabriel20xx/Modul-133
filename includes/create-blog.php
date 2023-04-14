@@ -17,7 +17,7 @@ if (isset($_POST["submit"])) {
         exit();
     };
 
-    createBlog($conn, $title, $description, $category);
+    createBlog($conn, $title, $description, $category_id);
 
 } else {
     header("location: ../new_blog.php");

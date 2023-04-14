@@ -50,10 +50,10 @@ $filename = basename(__FILE__, '.php');
                     echo "
                         <form action='../includes/edit-blog.php' method='post'>
                             <div class='mb-3'>
-                                <textarea class='form-control' name='title' class='form-control' id='title'>$title</textarea>
+                                <textarea class='form-control' name='title' class='form-control' id='title' disabled>$title</textarea>
                             </div>
                             <div class='mb-3'>
-                                <textarea class='form-control' name='description' id='description' rows='10'>$description</textarea>
+                                <textarea class='form-control' name='description' id='description' rows='10' disabled>$description</textarea>
                             </div>
                         ";
                 }
@@ -114,9 +114,8 @@ $filename = basename(__FILE__, '.php');
 
                         echo "
                             <div class='container'>
-                            <form action='../includes/edit-comment.php' method='post'>
                                 <div class='mb-3'>
-                                    <textarea class='form-control' name='description' id='description' rows='10'>$description</textarea>
+                                    <textarea class='form-control' name='description' id='description' disabled>$description</textarea>
                                 </div>
 
                                 <p>$createdAt</p>
@@ -127,10 +126,11 @@ $filename = basename(__FILE__, '.php');
 
                         if (isset($_SESSION['uuid']) == $user_uuid) {
                             echo
-                            "
+                            "<form action='../includes/edit-comment.php' method='post'>
                                     <input type='hidden' name='blog_uuid' value='$uuid'>
                                     <input type='hidden' name='comment_uuid' value='$comment_uuid'>
                                     <button type='submit' class='w-100 btn btn-secondary' name='submit'>Edit</button>
+                                    </form>
                             
                                     <form action='../includes/delete-comment.php' method='post'>
                                     <input type='hidden' name='blog_uuid' value='$uuid'>

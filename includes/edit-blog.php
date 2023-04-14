@@ -12,7 +12,7 @@ if (isset($_POST["submit"])) {
 
     editBlog($conn, $uuid, $title, $description, $category);
 
-    header("Location: ../forum.php");
+    header("Location: ../blogs/$uuid.php=postupdated");
     exit;
 }
 ?>

@@ -58,6 +58,7 @@ include_once 'everywhere/header.php'
 
                 </select>
             </div>
+            <input type='hidden' name='uuid' value='<?php echo $uuid ?>'>
             <div class="mb-3">
             <label for="title" class="form-label">Title</label>
                 <input type="text" name="title" class="form-control" id="title" value="<?php echo $title ?>">

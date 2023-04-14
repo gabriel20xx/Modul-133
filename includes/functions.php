@@ -181,11 +181,29 @@ function emptyInputLogin($username, $password) {
 
 
 # Hier kommen alle Funktionen (Überprüfung der Daten und Daten(-bank)verarbeitung)
-function createBlog($conn, $title, $description, $category_id) {
+function createBlog($conn, $title, $description, $category) {
     $uuid = uuid_create(UUID_TYPE_RANDOM);
     $createdAt = date('Y-m-d H:i:s');
     $createdBy = $_SESSION["uuid"];
-    $category_id = 1;
+    
+    
+    $sql = "SELECT * FROM categories WHERE name = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../forum.php?error=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "s", $id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $resultCheck = mysqli_num_rows($result);
+
+    if ($resultCheck > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $category_id = $row['category_id'];
+    }
+    mysqli_stmt_close($stmt);
+
 
     $sql = "INSERT INTO blogs (uuid, title, description, category_id, createdAt, user_uuid) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_stmt_init($conn);

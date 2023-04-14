@@ -7,7 +7,7 @@ if (isset($_POST["submit"])) {
     $description = $_POST["description"];
     $category = $_POST["category"];
 
-    header("Location: ../forum.php?$uuid$title$description$category");
+    header("Location: ../forum.php?bla$uuid$title$description$category");
 
     require_once 'connect-db.php';
     require_once 'functions.php';

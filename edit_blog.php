@@ -19,7 +19,7 @@ include_once 'everywhere/header.php'
                     $uuid = $row['uuid'];
                     $title = $row['title'];
                     $description = $row['description'];
-    
+                    $category = $row['category'];
                 }
             }
         }
@@ -31,8 +31,9 @@ include_once 'everywhere/header.php'
             <div class="mb-3">
                 <label for="category" class="form-label">Category</label>
                 <select class="form-select" name="category" id="category" aria-label="Default select example">
-                    <option selected>Category</option>
+                    <option selected>$category</option>
                     <?php
+                    echo "<option selected>$category</option>";
                     $sql = "SELECT COUNT(*) as count FROM categories";
                     $result = mysqli_query($conn, $sql);
 

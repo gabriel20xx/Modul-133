@@ -48,9 +48,10 @@ include_once 'everywhere/header.php'
 
                             if ($resultCheck > 0) {
                                 $row = mysqli_fetch_assoc($result);
+                                $id = $row['id'];
                                 $name = $row['name'];
 
-                                echo "<option value='$name'>$name</option>";
+                                echo "<option value='$id'>$name</option>";
                             }
                         }
                     }

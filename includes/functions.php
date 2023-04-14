@@ -230,7 +230,7 @@ function editBlog($conn, $uuid, $title, $description, $category) {
     $sql = "SELECT * FROM blogs WHERE uuid = '$uuid'";
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
-    
+
     if ($resultCheck > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             $user_uuid = $row['user_uuid'];
@@ -240,15 +240,16 @@ function editBlog($conn, $uuid, $title, $description, $category) {
                 exit();
             }
 
-            $sql = "UPDATE FROM blogs SET title = $title, description = $description, category = $category WHERE uuid = '$uuid'";
+            $sql = "UPDATE blogs SET title = ?, description = ?, category = ? WHERE uuid = ?";
             $stmt = mysqli_stmt_init($conn);
             if (!mysqli_stmt_prepare($stmt, $sql)) {
                 header("location: ../blogs/$uuid.php?error=stmtfailed");
                 exit();
             }
-            mysqli_stmt_bind_param($stmt, "ssss", $uuid, $title, $description, $category);
+            mysqli_stmt_bind_param($stmt, "ssss", $title, $description, $category, $uuid);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
+            header("Location: ../blogs/$uuid.php?error=postupdated");
             exit();
         }
     }

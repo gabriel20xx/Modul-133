@@ -36,6 +36,10 @@ function createUser($conn, $username, $email, $password) {
             $uuid = $row['uuid'];
             copy('../profiletemplate.php', '../profiles/'.$uuid.'.php');
             mysqli_stmt_close($stmt);
+            $rememberMe = false;
+            loginUser($conn, $username, $password, $rememberMe);
+
+
             header("location: ../register.php?error=none");
             exit();
         }

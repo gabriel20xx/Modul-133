@@ -65,11 +65,8 @@ $filename = basename(__FILE__, '.php');
                         $user_uuid = $row['user_uuid'];
                         if (isset($_SESSION['uuid']) == $user_uuid) {
                         echo 
-                            "/* <form action='../includes/edit-blog.php' method='post'>
-                            <input type='hidden' name='uuid' value='$uuid'> */
-                            <a class='btn btn-lg btn-success' href='../edit_blog.php?edit=$uuid' role='button'>Edit</a>
-/*                             <button type='submit' class='w-100 btn btn-secondary' name='submit'>Edit</button>
-                            </form> */
+                            " 
+                            <a class='mt-2 w-100 btn btn-lg btn-success' href='../edit_blog.php?edit=$uuid' role='button'>Edit</a>
                     
                             <form action='../includes/delete-blog.php' method='post'>
                             <input type='hidden' name='uuid' value='$uuid'>

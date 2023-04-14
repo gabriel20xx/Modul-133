@@ -193,7 +193,7 @@ function createBlog($conn, $title, $description, $category) {
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "sssss", $uuid, $title, $description, $category $createdAt, $createdBy);
+    mysqli_stmt_bind_param($stmt, "ssssss", $uuid, $title, $description, $category, $createdAt, $createdBy);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 

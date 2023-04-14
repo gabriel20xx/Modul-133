@@ -181,7 +181,7 @@ function emptyInputLogin($username, $password) {
 
 
 # Hier kommen alle Funktionen (Überprüfung der Daten und Daten(-bank)verarbeitung)
-function createBlog($conn, $title, $description) {
+function createBlog($conn, $title, $description, $category) {
     $uuid = uuid_create(UUID_TYPE_RANDOM);
     $createdAt = date('Y-m-d H:i:s');
     $createdBy = $_SESSION["uuid"];
@@ -193,7 +193,7 @@ function createBlog($conn, $title, $description) {
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "sssss", $uuid, $title, $description, $createdAt, $createdBy);
+    mysqli_stmt_bind_param($stmt, "sssss", $uuid, $title, $description, $category $createdAt, $createdBy);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
@@ -223,6 +223,34 @@ function createBlog($conn, $title, $description) {
 
     mysqli_stmt_close($stmt);
     exit();
+}
+
+function editBlog($conn, $uuid, $title, $description, $category) {
+    $sql = "SELECT * FROM blogs WHERE uuid = '$uuid'";
+    $result = mysqli_query($conn, $sql);
+    $resultCheck = mysqli_num_rows($result);
+    
+    if ($resultCheck > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $user_uuid = $row['user_uuid'];
+
+            if (!isset($_SESSION["uuid"]) == $user_uuid) {
+                header("location: ../blogs/$uuid.php?error=notauthorized");
+                exit();
+            }
+
+            $sql = "UPDATE FROM blogs SET title = $title, description = $description, category = $category WHERE uuid = '$uuid'";
+            $stmt = mysqli_stmt_init($conn);
+            if (!mysqli_stmt_prepare($stmt, $sql)) {
+                header("location: ../blogs/$uuid.php?error=stmtfailed");
+                exit();
+            }
+            mysqli_stmt_bind_param($stmt, "ssss", $uuid, $title, $description, $category);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+            exit();
+        }
+    }
 }
 
 function deleteBlog($conn, $uuid) {

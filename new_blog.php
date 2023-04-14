@@ -36,7 +36,7 @@ if (!isset($_SESSION["uuid"])) {
             <div class="mb-3">
                 <label for="category" class="form-label">Category</label>
                 <select class="form-select" name="category" id="category" aria-label="Default select example">
-                    <option selected>Category</option>
+                    <option selected name='category'>Category</option>
                     <?php
                     $sql = "SELECT COUNT(*) as count FROM categories";
                     $result = mysqli_query($conn, $sql);

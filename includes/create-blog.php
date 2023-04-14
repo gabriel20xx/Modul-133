@@ -3,6 +3,7 @@
 if (isset($_POST["submit"])) {
     $title = $_POST["title"];
     $description = $_POST["description"];
+    $category = $_POST["category"];
 
     require_once 'connect-db.php';
     require_once 'functions.php';
@@ -16,7 +17,7 @@ if (isset($_POST["submit"])) {
         exit();
     };
 
-    createBlog($conn, $title, $description);
+    createBlog($conn, $title, $description, $category);
 
 } else {
     header("location: ../new_blog.php");

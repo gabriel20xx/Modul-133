@@ -70,6 +70,10 @@ if (isset($_GET["page"])) {
                         $uuid = $row['uuid'];
                         $title = $row['title'];
                         $description = $row['description'];
+                        $category_id = $row['category_id'];
+
+                        $category = $category_id;
+
                         $date1 = $row['createdAt'];
                         $date2 = date('Y-m-d H:i:s');
                         $diff = abs(strtotime($date2) - strtotime($date1));

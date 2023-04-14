@@ -133,17 +133,17 @@ if (isset($_GET["page"])) {
                         <div class='card-footer text-muted'>$timeago ago</div>
                     </div>";
                             } else {
-                                header("location: ../forum.php?error=userdata");
+                                header("location: forum.php?error=userdata");
                             }
                         } else {
-                            header("location: ../forum.php?error=categorydata");
+                            header("location: forum.php?error=categorydata");
                         }
                     } else {
-                        header("location: ../forum.php?error=blogdata");
+                        header("location: forum.php?error=blogdata");
                     }
                 }
             } else {
-                header("location: ../forum.php?error=countblogs");
+                header("location: forum.php?error=countblogs");
             }
             ?>
 

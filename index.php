@@ -94,34 +94,34 @@ include_once 'everywhere/header.php'
                 $date1 = $row['createdAt'];
                 $date2 = date('Y-m-d H:i:s');
                 $diff = abs(strtotime($date2) - strtotime($date1));
-            
-                $years = floor($diff / (365*60*60*24));
-                $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-                $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24) / (60*60*24));
-                $hours = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24) / (60*60));
-                $minutes = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60)/ 60);
-                $seconds = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24 - $days*60*60*24 - $hours*60*60 - $minutes*60));
-                
-                if ($years == 0){
-                    if ($months == 0){
-                        if ($days == 0){
-                            if ($hours == 0){
-                                if ($minutes == 0){
-                                    $timeago = $seconds.' seconds';
-                                } else {
-                                    $timeago = $minutes.' minutes';
-                                }
-                            } else {
-                                $timeago = $hours.' hours';
-                            }
+
+                $years = floor($diff / (365 * 60 * 60 * 24));
+                $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+                $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
+                $hours = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24 - $days * 60 * 60 * 24) / (60 * 60));
+                $minutes = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24 - $days * 60 * 60 * 24 - $hours * 60 * 60) / 60);
+                $seconds = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24 - $days * 60 * 60 * 24 - $hours * 60 * 60 - $minutes * 60));
+
+                if ($years == 0) {
+                  if ($months == 0) {
+                    if ($days == 0) {
+                      if ($hours == 0) {
+                        if ($minutes == 0) {
+                          $timeago = $seconds . ' seconds';
                         } else {
-                            $timeago = $days.' days';
+                          $timeago = $minutes . ' minutes';
                         }
+                      } else {
+                        $timeago = $hours . ' hours';
+                      }
                     } else {
-                        $timeago = $months.' months';
-                    }      
+                      $timeago = $days . ' days';
+                    }
+                  } else {
+                    $timeago = $months . ' months';
+                  }
                 } else {
-                    $timeago = $years.' years';
+                  $timeago = $years . ' years';
                 }
 
                 echo "
@@ -138,7 +138,7 @@ include_once 'everywhere/header.php'
             }
           }
           ?>
-          
+
         </div>
       </div>
     </div>

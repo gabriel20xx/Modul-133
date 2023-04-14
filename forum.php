@@ -57,18 +57,18 @@ if (isset($_GET["page"])) {
                 $count = $row["count"];
 
                 if ($count > 12) {
-                    $newcount = 12;
+                    $count = 12;
                 }
 
-                for ($i = 0; $i < $newcount; $i++) {
-                    $sql = "SELECT * FROM blogs ORDER BY createdAt DESC LIMIT 1 OFFSET " . (($currentPage - 1) * 12 + $i);
+                for ($i = 0; $i < $count; $i++) {
+                    $sql = "SELECT * FROM blogs LIMIT 1 OFFSET " . $i;
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
 
                     if ($resultCheck > 0) {
                         $row = mysqli_fetch_assoc($result);
+                        $uuid = $row['uuid'];
                         $title = $row['title'];
-                        $link = $row['uuid'];
                         $description = $row['description'];
                         $date1 = $row['createdAt'];
                         $date2 = date('Y-m-d H:i:s');
@@ -103,7 +103,7 @@ if (isset($_GET["page"])) {
                             $timeago = $years . ' years';
                         }
 
-/*                         $createdBy = $row['user_uuid'];
+                        /*                         $createdBy = $row['user_uuid'];
                         $createdByUser = "SELECT * FROM users WHERE uuid = '$createdBy'";
                         $result2 = mysqli_query($conn, $createdByUser);
                         $resultCheck2 = mysqli_num_rows($result2);
@@ -112,7 +112,7 @@ if (isset($_GET["page"])) {
                             $row2 = mysqli_fetch_assoc($result2);
                             $username = $row2['username'];
                         } */
-                            echo "<div class='col-md-4 g-4 mg-4 p-0 card'>
+                        echo "<div class='col-md-4 g-4 mg-4 p-0 card'>
                         <div class='card-header'>$username</div>
                         <div class='card-body'>
                             <h5 class='card-title'>$title</h5>

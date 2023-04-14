@@ -36,7 +36,6 @@ if (!isset($_SESSION["uuid"])) {
             <div class="mb-3">
                 <label for="category" class="form-label">Category</label>
                 <select class="form-select" name="category" id="category" aria-label="Default select example">
-                    <option selected>Category</option>
                     <?php
                     $sql = "SELECT COUNT(*) as count FROM categories";
                     $result = mysqli_query($conn, $sql);
@@ -52,9 +51,14 @@ if (!isset($_SESSION["uuid"])) {
 
                             if ($resultCheck > 0) {
                                 $row = mysqli_fetch_assoc($result);
+                                $id = $row['id'];
                                 $name = $row['name'];
 
-                                echo "<option value='$name'>$name</option>";
+                                if ($i == 0) {
+                                    echo "<option value='$id' selected>$name</option>"; // add selected attribute here
+                                } else {
+                                    echo "<option value='$id'>$name</option>";
+                                }
                             }
                         }
                     }
@@ -62,6 +66,7 @@ if (!isset($_SESSION["uuid"])) {
 
                 </select>
             </div>
+
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" name="title" class="form-control" id="title" placeholder="Insert good title here">

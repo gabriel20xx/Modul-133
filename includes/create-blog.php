@@ -3,7 +3,7 @@
 if (isset($_POST["submit"])) {
     $title = $_POST["title"];
     $description = $_POST["description"];
-    $category = $_POST["category"];
+    $category_id = $_POST["category"];
 
     require_once 'connect-db.php';
     require_once 'functions.php';

@@ -50,10 +50,10 @@ $filename = basename(__FILE__, '.php');
                     echo "
                         <form action='../includes/edit-blog.php' method='post'>
                             <div class='mb-3'>
-                                <textarea class='form-control' name='title' class='form-control' id='title' disabled>$title</textarea>
+                                <textarea class='form-control' name='title' id='title' disabled>$title</textarea>
                             </div>
                             <div class='mb-3'>
-                                <textarea class='form-control' name='description' id='description' rows='10' disabled>$description</textarea>
+                                <textarea class='form-control' name='description' id='description' disabled>$description</textarea>
                             </div>
                         ";
                 }

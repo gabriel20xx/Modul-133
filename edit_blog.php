@@ -67,6 +67,9 @@ include_once 'everywhere/header.php'
                 <textarea class="form-control" name="description" id="description" rows="10" placeholder="Insert description here"><?php echo $description ?></textarea>
             </div>
             <button class="btn btn-lg mb-3 btn-primary" name="submit" type="submit">Update Blog</button>
+            <a href="blogs/uuid.php">
+                <div class="w-100 btn btn-lg btn-secondary">Cancel</div>
+            </a>
         </form>
     </div>
 

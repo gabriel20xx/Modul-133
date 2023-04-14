@@ -12,7 +12,6 @@ if (isset($_POST["submit"])) {
 
     editBlog($conn, $uuid, $title, $description, $category);
 
-    header("Location: ../blogs/$uuid.php=postupdated");
     exit;
 }
 ?>

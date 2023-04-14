@@ -71,9 +71,7 @@ if (isset($_GET["page"])) {
                         $title = $row['title'];
                         $description = $row['description'];
                         $category_id = $row['category_id'];
-
-                        $category = $category_id;
-
+                        $createdBy = $row['user_uuid'];
                         $date1 = $row['createdAt'];
                         $date2 = date('Y-m-d H:i:s');
                         $diff = abs(strtotime($date2) - strtotime($date1));
@@ -107,7 +105,6 @@ if (isset($_GET["page"])) {
                             $timeago = $years . ' years';
                         }
 
-                        $createdBy = $row['user_uuid'];
                         $createdByUser = "SELECT * FROM users WHERE uuid = '$createdBy'";
                         $result2 = mysqli_query($conn, $createdByUser);
                         $resultCheck2 = mysqli_num_rows($result2);
@@ -116,6 +113,16 @@ if (isset($_GET["page"])) {
                             $row2 = mysqli_fetch_assoc($result2);
                             $username = $row2['username'];
                         }
+
+                        $sql = "SELECT * FROM categories WHERE id = '$category_id'";
+                        $result = mysqli_query($conn, $sql);
+                        $resultCheck = mysqli_num_rows($result);
+
+                        if ($resultCheck > 0) {
+                            $row = mysqli_fetch_assoc($result);
+                            $category = $row['name'];
+                        }
+
                         echo "<div class='col-md-4 g-4 mg-4 p-0 card'>
                         <div class='card-header'>$username</div>
                         <div class='card-body'>

@@ -186,7 +186,7 @@ function createBlog($conn, $title, $description, $category) {
     $createdAt = date('Y-m-d H:i:s');
     $createdBy = $_SESSION["uuid"];
 
-    $sql = "INSERT INTO blogs (uuid, title, description, createdAt, user_uuid) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO blogs (uuid, title, description, category, createdAt, user_uuid) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../new_blog.php?error=stmtfailed");

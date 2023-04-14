@@ -135,7 +135,7 @@ $filename = basename(__FILE__, '.php');
                                     <form action='../includes/delete-comment.php' method='post'>
                                     <input type='hidden' name='blog_uuid' value='$uuid'>
                                     <input type='hidden' name='comment_uuid' value='$comment_uuid'>
-                                    <button type='submit' class='mt-2 w-100 btn btn-danger' name='submit'>Delete</button>
+                                    <button type='submit' class='mt-2 w-100 mb-3 btn btn-danger' name='submit'>Delete</button>
                                     </form>";
                         }
                     }

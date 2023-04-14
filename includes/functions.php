@@ -227,7 +227,7 @@ function createBlog($conn, $title, $description, $category_id) {
 }
 
 function editBlog($conn, $uuid, $title, $description, $category) {
-    $sql = "SELECT * FROM blogs WHERE uuid = '$uuid'";
+/*     $sql = "SELECT * FROM blogs WHERE uuid = '$uuid'";
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
 
@@ -239,7 +239,7 @@ function editBlog($conn, $uuid, $title, $description, $category) {
                 header("location: ../blogs/$uuid.php?error=notauthorized");
                 exit();
             }
-
+ */
             $sql = "UPDATE blogs SET title = ?, description = ?, category = ? WHERE uuid = ?";
             $stmt = mysqli_stmt_init($conn);
             if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -252,8 +252,8 @@ function editBlog($conn, $uuid, $title, $description, $category) {
             header("Location: ../blogs/$uuid.php?error=postupdated");
             exit();
         }
-    }
-}
+/*     } 
+} */
 
 function deleteBlog($conn, $uuid) {
     $sql = "SELECT * FROM blogs WHERE uuid = '$uuid'";

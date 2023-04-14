@@ -103,7 +103,7 @@ if (isset($_GET["page"])) {
                             $timeago = $years . ' years';
                         }
 
-                        $createdBy = $row['user_uuid'];
+/*                         $createdBy = $row['user_uuid'];
                         $createdByUser = "SELECT * FROM users WHERE uuid = '$createdBy'";
                         $result2 = mysqli_query($conn, $createdByUser);
                         $resultCheck2 = mysqli_num_rows($result2);
@@ -111,7 +111,7 @@ if (isset($_GET["page"])) {
                         if ($resultCheck2 > 0) {
                             $row2 = mysqli_fetch_assoc($result2);
                             $username = $row2['username'];
-
+                        } */
                             echo "<div class='col-md-4 g-4 mg-4 p-0 card'>
                         <div class='card-header'>$username</div>
                         <div class='card-body'>
@@ -122,7 +122,6 @@ if (isset($_GET["page"])) {
                         </div>
                         <div class='card-footer text-muted'>$timeago ago</div>
                     </div>";
-                        }
                     }
                 }
             }

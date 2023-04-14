@@ -137,78 +137,9 @@ include_once 'everywhere/header.php'
               }
             }
           }
-
-
           ?>
-          <!-- <?php
-          $sql = "SELECT COUNT(*) as count FROM blogs";
-          $result = mysqli_query($conn, $sql);
-
-          if (mysqli_num_rows($result) > 0) {
-            $row = mysqli_fetch_assoc($result);
-            $count = $row["count"];
-
-            if ($count > 12) {
-              $newcount = 12;
-            }
-
-            for ($i = 0; $i < $newcount; $i++) {
-              $sql = "SELECT * FROM blogs ORDER BY createdAt DESC LIMIT 1 OFFSET " . (($currentPage - 1) * 12 + $i);
-              $result = mysqli_query($conn, $sql);
-              $resultCheck = mysqli_num_rows($result);
-
-              if ($resultCheck > 0) {
-                $row = mysqli_fetch_assoc($result);
-                $title = $row['title'];
-                $link = $row['uuid'];
-                $description = $row['description'];
-                $date1 = $row['createdAt'];
-                $date2 = date('Y-m-d H:i:s');
-                $diff = abs(strtotime($date2) - strtotime($date1));
-
-                $years = floor($diff / (365 * 60 * 60 * 24));
-                $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
-                $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
-                $hours = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24 - $days * 60 * 60 * 24) / (60 * 60));
-                $minutes = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24 - $days * 60 * 60 * 24 - $hours * 60 * 60) / 60);
-                $seconds = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24 - $days * 60 * 60 * 24 - $hours * 60 * 60 - $minutes * 60));
-
-                if ($years == 0) {
-                  if ($months == 0) {
-                    if ($days == 0) {
-                      if ($hours == 0) {
-                        if ($minutes == 0) {
-                          $timeago = $seconds . ' seconds';
-                        } else {
-                          $timeago = $minutes . ' minutes';
-                        }
-                      } else {
-                        $timeago = $hours . ' hours';
-                      }
-                    } else {
-                      $timeago = $days . ' days';
-                    }
-                  } else {
-                    $timeago = $months . ' months';
-                  }
-                } else {
-                  $timeago = $years . ' years';
-                }
-
-                echo "<div class='col-md-4 g-4 mg-4 p-0 card'>
-                    <div class='card-header'>$username</div>
-                    <div class='card-body'>
-                        <h5 class='card-title'>$title</h5>
-                        <p class='card-text'>$description</p>
-                        <a href='blogs/$link.php' class='btn btn-primary'>Go to article</a>
-                    </div>
-                    <div class='card-footer text-muted'>$timeago ago</div>
-                </div>";
-              }
-            }
-          }
-          ?> 
-        </div> -->
+          
+        </div>
       </div>
     </div>
     <div class="row mt-3">

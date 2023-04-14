@@ -70,60 +70,80 @@ if (isset($_GET["page"])) {
                         $title = $row['title'];
                         $link = $row['uuid'];
                         $description = $row['description'];
-                        $date1 = $row['createdAt'];
-                        $date2 = date('Y-m-d H:i:s');
-                        $diff = abs(strtotime($date2) - strtotime($date1));
+                        $category_id = $row['category_id'];
 
-                        $years = floor($diff / (365 * 60 * 60 * 24));
-                        $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
-                        $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
-                        $hours = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24 - $days * 60 * 60 * 24) / (60 * 60));
-                        $minutes = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24 - $days * 60 * 60 * 24 - $hours * 60 * 60) / 60);
-                        $seconds = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24 - $days * 60 * 60 * 24 - $hours * 60 * 60 - $minutes * 60));
+                        $sql = "SELECT * FROM categories WHERE id = '$category_id'";
+                        $result = mysqli_query($conn, $sql);
+                        $resultCheck = mysqli_num_rows($result);
 
-                        if ($years == 0) {
-                            if ($months == 0) {
-                                if ($days == 0) {
-                                    if ($hours == 0) {
-                                        if ($minutes == 0) {
-                                            $timeago = $seconds . ' seconds';
+                        if ($resultCheck > 0) {
+                            $row = mysqli_fetch_assoc($result);
+                            $category = $row['name'];
+
+                            $date1 = $row['createdAt'];
+                            $date2 = date('Y-m-d H:i:s');
+                            $diff = abs(strtotime($date2) - strtotime($date1));
+
+                            $years = floor($diff / (365 * 60 * 60 * 24));
+                            $months = floor(($diff - $years * 365 * 60 * 60 * 24) / (30 * 60 * 60 * 24));
+                            $days = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
+                            $hours = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24 - $days * 60 * 60 * 24) / (60 * 60));
+                            $minutes = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24 - $days * 60 * 60 * 24 - $hours * 60 * 60) / 60);
+                            $seconds = floor(($diff - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24 - $days * 60 * 60 * 24 - $hours * 60 * 60 - $minutes * 60));
+
+                            if ($years == 0) {
+                                if ($months == 0) {
+                                    if ($days == 0) {
+                                        if ($hours == 0) {
+                                            if ($minutes == 0) {
+                                                $timeago = $seconds . ' seconds';
+                                            } else {
+                                                $timeago = $minutes . ' minutes';
+                                            }
                                         } else {
-                                            $timeago = $minutes . ' minutes';
+                                            $timeago = $hours . ' hours';
                                         }
                                     } else {
-                                        $timeago = $hours . ' hours';
+                                        $timeago = $days . ' days';
                                     }
                                 } else {
-                                    $timeago = $days . ' days';
+                                    $timeago = $months . ' months';
                                 }
                             } else {
-                                $timeago = $months . ' months';
+                                $timeago = $years . ' years';
+                            }
+
+                            $createdBy = $row['user_uuid'];
+                            $createdByUser = "SELECT * FROM users WHERE uuid = '$createdBy'";
+                            $result2 = mysqli_query($conn, $createdByUser);
+                            $resultCheck2 = mysqli_num_rows($result2);
+
+                            if ($resultCheck2 > 0) {
+                                $row2 = mysqli_fetch_assoc($result2);
+                                $username = $row2['username'];
+
+                                echo "<div class='col-md-4 g-4 mg-4 p-0 card'>
+                        <div class='card-header'>$username</div>
+                        <div class='card-body'>
+                            <h5 class='card-title'>$title</h5>
+                            <p class='card-text'>$description</p>
+                            <p class='card-text'>$category</p>
+                            <a href='blogs/$link.php' class='btn btn-primary'>Go to article</a>
+                        </div>
+                        <div class='card-footer text-muted'>$timeago ago</div>
+                    </div>";
+                            } else {
+                                header("location: ../forum.php?error=userdata");
                             }
                         } else {
-                            $timeago = $years . ' years';
+                            header("location: ../forum.php?error=categorydata");
                         }
-
-                        $createdBy = $row['user_uuid'];
-                        $createdByUser = "SELECT * FROM users WHERE uuid = '$createdBy'";
-                        $result2 = mysqli_query($conn, $createdByUser);
-                        $resultCheck2 = mysqli_num_rows($result2);
-
-                        if ($resultCheck2 > 0) {
-                            $row2 = mysqli_fetch_assoc($result2);
-                            $username = $row2['username'];
-
-                            echo "<div class='col-md-4 g-4 mg-4 p-0 card'>
-                    <div class='card-header'>$username</div>
-                    <div class='card-body'>
-                        <h5 class='card-title'>$title</h5>
-                        <p class='card-text'>$description</p>
-                        <a href='blogs/$link.php' class='btn btn-primary'>Go to article</a>
-                    </div>
-                    <div class='card-footer text-muted'>$timeago ago</div>
-                </div>";
-                        }
+                    } else {
+                        header("location: ../forum.php?error=blogdata");
                     }
                 }
+            } else {
+                header("location: ../forum.php?error=countblogs");
             }
             ?>
 

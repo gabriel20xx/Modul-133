@@ -1,2 +1,2 @@
 USE m133;
-SELECT * FROM categories;
+SELECT * FROM blogs;

@@ -185,7 +185,7 @@ function createBlog($conn, $title, $description, $category_id) {
     $uuid = uuid_create(UUID_TYPE_RANDOM);
     $createdAt = date('Y-m-d H:i:s');
     $createdBy = $_SESSION["uuid"];
-    $category_id = "TEst";
+    $category_id = 1;
 
     $sql = "INSERT INTO blogs (uuid, title, description, category_id, createdAt, user_uuid) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_stmt_init($conn);

@@ -29,6 +29,35 @@ include_once 'everywhere/header.php'
     <div class="container">
         <form action="includes/edit-blog.php" method="post">
             <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <select class="form-select" name="category" id="category" aria-label="Default select example">
+                    <option selected>Category</option>
+                    <?php
+                    $sql = "SELECT COUNT(*) as count FROM categories";
+                    $result = mysqli_query($conn, $sql);
+
+                    if (mysqli_num_rows($result) > 0) {
+                        $row = mysqli_fetch_assoc($result);
+                        $count = $row["count"];
+
+                        for ($i = 0; $i < $count; $i++) {
+                            $sql = "SELECT * FROM categories LIMIT 1 OFFSET " . $i;
+                            $result = mysqli_query($conn, $sql);
+                            $resultCheck = mysqli_num_rows($result);
+
+                            if ($resultCheck > 0) {
+                                $row = mysqli_fetch_assoc($result);
+                                $name = $row['name'];
+
+                                echo "<option value='$name'>$name</option>";
+                            }
+                        }
+                    }
+                    ?>
+
+                </select>
+            </div>
+            <div class="mb-3">
             <label for="title" class="form-label">Title</label>
                 <input type="text" name="title" class="form-control" id="title" placeholder="Insert good title here" value="<?php echo $title ?>">
             </div>

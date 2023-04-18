@@ -82,11 +82,11 @@ if (isset($_GET["page"])) {
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="?sort=a-z">A-Z</a></li>
-                    <li><a class="dropdown-item" href="#">Z-A</a></li>
-                    <li><a class="dropdown-item" href="#">Created asc</a></li>
-                    <li><a class="dropdown-item" href="#">Created desc</a></li>
-                    <li><a class="dropdown-item" href="#">User asc</a></li>
-                    <li><a class="dropdown-item" href="#">User desc</a></li>
+                    <li><a class="dropdown-item" href="?sort=z-a">Z-A</a></li>
+                    <li><a class="dropdown-item" href="?sort=created-asc">Created asc</a></li>
+                    <li><a class="dropdown-item" href="?sort=created-desc">Created desc</a></li>
+                    <li><a class="dropdown-item" href="?sort=user-asc">User asc</a></li>
+                    <li><a class="dropdown-item" href="?sort=user-desc">User desc</a></li>
                 </ul>
             </div>
         </div>
@@ -106,8 +106,28 @@ if (isset($_GET["page"])) {
                     $count = 12;
                 }
 
+                // Get ?sort header
+                if (isset($_GET["sort"])) {
+                    if ($_GET["sort"] == "a-z") {
+                        $sort = "title ASC";
+                    } else if ($_GET["sort"] == "z-a") {
+                        $sort = "title DESC";
+                    } else if ($_GET["sort"] == "created-asc") {
+                        $sort = "createdAt ASC";
+                    } else if ($_GET["sort"] == "created-desc") {
+                        $sort = "createdAt DESC";
+                    } else if ($_GET["sort"] == "user-asc") {
+                        $sort = "user_uuid ASC";
+                    } else if ($_GET["sort"] == "user-desc") {
+                        $sort = "user_uuid DESC";
+                    }
+                } else {
+                    $sort = "createdAt DESC";
+                }
+
+
                 for ($i = 0; $i < $count; $i++) {
-                    $sql = "SELECT * FROM blogs ORDER BY createdAt DESC LIMIT 1 OFFSET " . $i;
+                    $sql = "SELECT * FROM blogs ORDER BY $sort LIMIT 1 OFFSET " . $i;
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
 

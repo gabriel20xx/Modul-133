@@ -6,8 +6,6 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    header("Location: ../index.php?uuid=$uuid-username=$username-email=$email-password=$password");
-
     require_once 'connect-db.php';
     require_once 'functions.php';
 

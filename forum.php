@@ -34,8 +34,18 @@ if (isset($_GET["page"])) {
             ?>
         </div>
         <h1 class="display-4 text-center">Forum</h1>
-        <div class="dropdowns-container row">
-            <div class="col-sm-4 dropdown">
+        <?php
+        if (isset($_SESSION["uuid"])) {
+            echo '    
+            <div class="text-center mt-5">
+            <div>
+            <a class="btn btn-lg btn-success" href="new_blog.php" role="button">Create new post</a>
+            </div>    
+            </div>';
+        }
+        ?>
+        <div class="dropdowns-container d-flex justify-content-between">
+            <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Filter by category
                 </button>
@@ -66,15 +76,7 @@ if (isset($_GET["page"])) {
                     ?>
                 </ul>
             </div>
-            <div class="col-sm-4 text-center">
-                <?php
-                if (isset($_SESSION["uuid"])) {
-                    echo '    
-    <a class="btn btn-lg btn-success" href="new_blog.php" role="button">Create new post</a>';
-                }
-                ?>
-            </div>
-            <div class="col-sm-4 dropdown">
+            <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Sort by
                 </button>

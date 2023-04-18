@@ -244,7 +244,7 @@ function editBlog($conn, $uuid, $title, $description, $category) {
         $category_id = $row['id'];
     }
 
-    $sql = "UPDATE blogs SET title = ?, description = ?, category = ? WHERE uuid = ?";
+    $sql = "UPDATE blogs SET title = ?, description = ?, category_id = ? WHERE uuid = ?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../blogs/$uuid.php?error=stmtfailed");

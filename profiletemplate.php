@@ -12,7 +12,6 @@ include_once '../everywhere/header.php';
   // Here you would typically include any PHP code required to retrieve the user's data from a database or session
   // For this example, we'll just use hardcoded values
   $filename = basename(__FILE__, '.php');
-  $uuid = $filename;
 
   $sql = "SELECT * FROM users WHERE uuid = '$filename'";
   $result = mysqli_query($conn, $sql);
@@ -37,6 +36,7 @@ include_once '../everywhere/header.php';
         </div>
         <hr>
         <form action="../includes/edit-profile.php" method="post">
+          <input type='hidden' name='uuid' value='<?php echo $filename ?>'>
           <div class="form-group">
             <label for="username">Username</label>
             <input type="text" class="form-control" id="username" name="username" value="<?php echo $username ?>" disabled>

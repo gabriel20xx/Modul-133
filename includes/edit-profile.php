@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_POST['submit'])) {
-    $uuid = $_SESSION["uuid"];
+    $uuid = $_POST['uuid'];
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];

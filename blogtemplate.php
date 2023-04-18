@@ -64,7 +64,7 @@ $filename = basename(__FILE__, '.php');
                     if (isset($_SESSION['uuid']) == $user_uuid) {
                         echo
                         " 
-                            <a class='mt-2 btn btn-lg btn-secondary' href='../edit_blog.php?edit=$uuid' role='button'>Edit</a>
+                            <a class='mt-2 btn btn-secondary' href='../edit_blog.php?edit=$uuid' role='button'>Edit</a>
                             <form action='../includes/delete-blog.php' method='post'>
                             <input type='hidden' name='uuid' value='$uuid'>
                             <button type='submit' class='mt-2 btn btn-danger' name='submit'>Delete</button>

@@ -211,7 +211,7 @@ if (isset($_GET["page"])) {
                         }
 
                         echo "<div class='col-md-4'>
-                        <div class='g-4 mg-4 p-0 card'>
+                        <div class='m-2 card'>
                         <div class='card-header'>$username</div>
                         <div class='card-body'>
                             <h5 class='card-title'>$title</h5>

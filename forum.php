@@ -125,9 +125,42 @@ if (isset($_GET["page"])) {
                     $sort = "createdAt DESC";
                 }
 
+                if (isset($_GET["sort"])) {
+                    if ($_GET["sort"] == "a-z") {
+                        $sort = "title ASC";
+                    } else if ($_GET["sort"] == "z-a") {
+                        $sort = "title DESC";
+                    } else if ($_GET["sort"] == "created-asc") {
+                        $sort = "createdAt ASC";
+                    } else if ($_GET["sort"] == "created-desc") {
+                        $sort = "createdAt DESC";
+                    } else if ($_GET["sort"] == "user-asc") {
+                        $sort = "user_uuid ASC";
+                    } else if ($_GET["sort"] == "user-desc") {
+                        $sort = "user_uuid DESC";
+                    }
+                } else {
+                    $sort = "createdAt DESC";
+                }
+
+                $sql = "SELECT * FROM categories";
+                $result = mysqli_query($conn, $sql);
+                $resultCheck = mysqli_num_rows($result);
+
+                if ($resultCheck > 0) {
+                    $row = mysqli_fetch_assoc($result);
+                    $category = $row['name'];
+                }
+
+                if (isset($_GET["category"])) {
+                    $category = "WHERE category ='" . $_GET["category"] . "'";
+                } else {
+                    $category = "";
+                }
+
 
                 for ($i = 0; $i < $count; $i++) {
-                    $sql = "SELECT * FROM blogs ORDER BY $sort LIMIT 1 OFFSET " . $i;
+                    $sql = "SELECT * FROM blogs ORDER BY $sort $category LIMIT 1 OFFSET " . $i;
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
 

@@ -23,7 +23,7 @@ include_once 'everywhere/header.php'
     </div>
 
     <!-- Insert Homepage Code here-->
-    <div class="jumbotron mt-4">
+    <div class="jumbotron">
       <h1 class="display-4">Welcome to The GCT Corner!</h1>
       <img src="pictures/communicate.png" class="img-fluid" alt="Responsive image">
       <h2 class="display-4">Our offer!</h2>

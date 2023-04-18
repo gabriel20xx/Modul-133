@@ -395,6 +395,7 @@ function editProfile($conn, $uuid, $username, $email, $password) {
     if ($resultCheck > 0) {
         $row = mysqli_fetch_assoc($result);
         $hashedPassword = $row['password'];
+        $salt = $row['salt'];
 
         if (!password_verify($password, $hashedPassword)) {
             $salt = bin2hex(random_bytes(8)); // generate a unique salt value for each user

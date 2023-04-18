@@ -240,28 +240,29 @@ if (isset($_GET["page"])) {
                 <?php
                 if ($count > 12 && $currentPage != 1) {
                     echo "<li class='page-item'>
-                  <a class='page-link' href='?<?php echo http_build_query(array_merge($_GET, array('page' => '$previousPage'))) ?>' aria-label='Previous'>
-                      <span aria-hidden='true'>«</span>
-                  </a>
-                </li>
-                
-                <li class='page-item'><a class='page-link' href='?<?php echo http_build_query(array_merge($_GET, array('page' => '$previousPage'))) ?>'>$previousPage</a></li>";
+                <a class='page-link' href='?" . http_build_query(array_merge($_GET, array('page' => $previousPage))) . "' aria-label='Previous'>
+                    <span aria-hidden='true'>«</span>
+                </a>
+            </li>
+            
+            <li class='page-item'><a class='page-link' href='?" . http_build_query(array_merge($_GET, array('page' => $previousPage))) . "'>$previousPage</a></li>";
                 }
 
-                echo "<li class='page-item'><a class='page-link' href='?<?php echo http_build_query(array_merge($_GET, array('page' => '$currentPage'))) ?>'>$currentPage</a></li>";
+                echo "<li class='page-item'><a class='page-link' href='?" . http_build_query(array_merge($_GET, array('page' => $currentPage))) . "'>$currentPage</a></li>";
 
                 if ($count > 12 * ($currentPage)) {
-                    echo "<li class='page-item'><a class='page-link' href='?<?php echo http_build_query(array_merge($_GET, array('page' => '$nextPage'))) ?>'>$nextPage</a></li>
+                    echo "<li class='page-item'><a class='page-link' href='?" . http_build_query(array_merge($_GET, array('page' => $nextPage))) . "'>$nextPage</a></li>
 
-                  <li class='page-item'>
-                  <a class='page-link' href='?<?php echo http_build_query(array_merge($_GET, array('page' => '$nextPage'))) ?>' aria-label='Next'>
-                      <span aria-hidden='true'>»</span>
-                  </a>
-                </li>";
+            <li class='page-item'>
+                <a class='page-link' href='?" . http_build_query(array_merge($_GET, array('page' => $nextPage))) . "' aria-label='Next'>
+                    <span aria-hidden='true'>»</span>
+                </a>
+            </li>";
                 }
                 ?>
             </ul>
         </div>
+
 
         <?php
         include_once 'everywhere/footer.php';

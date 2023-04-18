@@ -41,6 +41,7 @@ if (isset($_GET["page"])) {
                 </button>
                 <ul class="dropdown-menu">
                     <?php
+                    echo "<li><a class='dropdown-item' href='?" . http_build_query(array_merge($_GET, array('category' => 'all'))) . "'>All</a></li>";
                     $sql = "SELECT COUNT(*) as count FROM categories";
                     $result = mysqli_query($conn, $sql);
 
@@ -127,14 +128,20 @@ if (isset($_GET["page"])) {
 
                 if (isset($_GET["category"])) {
                     $category = $_GET["category"];
-                    $sql = "SELECT * FROM categories WHERE name = '$category'";
-                    $result = mysqli_query($conn, $sql);
-                    $resultCheck = mysqli_num_rows($result);
 
-                    if ($resultCheck > 0) {
-                        $row = mysqli_fetch_assoc($result);
-                        $category_id = $row['id'];
-                        $category_sql = "WHERE category_id ='$category_id'";
+                    if ($category == "all") {
+                        $category_sql = "";
+                    } else {
+
+                        $sql = "SELECT * FROM categories WHERE name = '$category'";
+                        $result = mysqli_query($conn, $sql);
+                        $resultCheck = mysqli_num_rows($result);
+
+                        if ($resultCheck > 0) {
+                            $row = mysqli_fetch_assoc($result);
+                            $category_id = $row['id'];
+                            $category_sql = "WHERE category_id ='$category_id'";
+                        }
                     }
                 } else {
                     $category_sql = "";

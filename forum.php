@@ -210,7 +210,8 @@ if (isset($_GET["page"])) {
                             $category = $row['name'];
                         }
 
-                        echo "<div class='col-md-4 g-4 mg-4 p-0 card'>
+                        echo "<div class='col-md-4'>
+                        <div class='g-4 mg-4 p-0 card'>
                         <div class='card-header'>$username</div>
                         <div class='card-body'>
                             <h5 class='card-title'>$title</h5>
@@ -219,6 +220,7 @@ if (isset($_GET["page"])) {
                         </div>
                         <div class='card-footer text-muted'>$category</div>
                         <div class='card-footer text-muted'>$timeago ago</div>
+                    </div>
                     </div>";
                     }
                 }

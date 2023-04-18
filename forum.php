@@ -210,7 +210,7 @@ if (isset($_GET["page"])) {
                             $category = $row['name'];
                         }
 
-                        echo "<div class='col-md-4'>
+                        echo "<div class='col-md-4 p-0'>
                         <div class='m-2 card'>
                         <div class='card-header'>$username</div>
                         <div class='card-body'>

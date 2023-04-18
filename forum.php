@@ -34,7 +34,8 @@ if (isset($_GET["page"])) {
             ?>
         </div>
         <h1 class="display-4 text-center">Forum</h1>
-        <div class="dropdown">
+        <div class="dropdowns-container d-flex justify-content-between">
+  <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Filter by category
             </button>
@@ -63,7 +64,8 @@ if (isset($_GET["page"])) {
                     }
                     ?>
             </ul>
-        </div>
+            </div>
+
         <?php
         if (isset($_SESSION["uuid"])) {
             echo '    
@@ -86,6 +88,7 @@ if (isset($_GET["page"])) {
                 <li><a class="dropdown-item" href="#">User asc</a></li>
                 <li><a class="dropdown-item" href="#">User desc</a></li>
             </ul>
+        </div>
         </div>
 
         <!-- Grid overview -->
@@ -230,7 +233,7 @@ if (isset($_GET["page"])) {
         ?>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://unpkg.com/@popperjs/core@2.10.3/dist/umd/popper.min.js"></script>
 <!-- CSS -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" rel="stylesheet">

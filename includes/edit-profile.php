@@ -10,6 +10,7 @@ if (isset($_POST['submit'])) {
     require_once 'functions.php';
 
     header("Location: ../index.php?uuid=$uuid");
+    exit();
 
     editProfile($conn, $uuid, $username, $email, $password);
 

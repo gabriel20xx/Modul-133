@@ -1,4 +1,4 @@
-<?php 
+<?php
 include_once '../includes/connect-db.php';
 include_once '../everywhere/header.php';
 ?>
@@ -13,109 +13,104 @@ $filename = basename(__FILE__, '.php');
     ?>
     <div class='container'>
         <div class='errors'>
-        <?php
+            <?php
             if (isset($_GET["error"])) {
                 if ($_GET["error"] == "stmtfailed") {
-                    echo 
+                    echo
                     '<div class="alert alert-danger" role="alert">
                     Something went wrong!
                     </div>';
-                }
-                else if ($_GET["error"] == "emptyinput") {
-                    echo 
+                } else if ($_GET["error"] == "emptyinput") {
+                    echo
                     '<div class="alert alert-danger" role="alert">
                     Please fill in the field!
                     </div>';
-                }
-                else if ($_GET["error"] == "commentcreated") {
-                    echo 
+                } else if ($_GET["error"] == "commentcreated") {
+                    echo
                     '<div class="alert alert-success" role="alert">
                     Comment created!
                     </div>';
                 }
             }
-        ?>
+            ?>
         </div>
 
         <!-- Insert Blog Code here-->
-        <div class="text-center container">
+        <div class="text-center">
             <?php
-                $sql = "SELECT * FROM blogs WHERE uuid = '$filename'";
-                $result = mysqli_query($conn, $sql);
-                $resultCheck = mysqli_num_rows($result);
+            $sql = "SELECT * FROM blogs WHERE uuid = '$filename'";
+            $result = mysqli_query($conn, $sql);
+            $resultCheck = mysqli_num_rows($result);
 
-                if ($resultCheck > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        $uuid = $row['uuid'];
-                        $title = $row['title'];
-                        $description = $row['description'];
-                        echo "<h1 class='border'>$title</h1>";
-                        echo "<p class='border'>$description</p>";
-                    }
+            if ($resultCheck > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $uuid = $row['uuid'];
+                    $title = $row['title'];
+                    $description = $row['description'];
+                    echo "<h1 class='border'>$title</h1>";
+                    echo "<p class='border'>$description</p>";
                 }
+            }
             ?>
             <?php
-                $sql = "SELECT * FROM blogs WHERE uuid = '$filename'";
-                $result = mysqli_query($conn, $sql);
-                $resultCheck = mysqli_num_rows($result);
+            $sql = "SELECT * FROM blogs WHERE uuid = '$filename'";
+            $result = mysqli_query($conn, $sql);
+            $resultCheck = mysqli_num_rows($result);
 
-                if ($resultCheck > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        $uuid = $row['uuid'];
-                        $user_uuid = $row['user_uuid'];
-                        if (isset($_SESSION['uuid']) == $user_uuid) {
-                        echo 
-                            " 
+            if ($resultCheck > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $uuid = $row['uuid'];
+                    $user_uuid = $row['user_uuid'];
+                    if (isset($_SESSION['uuid']) == $user_uuid) {
+                        echo
+                        " 
                             <a class='mt-2 btn btn-lg btn-secondary' href='../edit_blog.php?edit=$uuid' role='button'>Edit</a>
                             <form action='../includes/delete-blog.php' method='post'>
                             <input type='hidden' name='uuid' value='$uuid'>
                             <button type='submit' class='mt-2 btn btn-danger' name='submit'>Delete</button>
                             </form>";
-                        }
                     }
                 }
+            }
             ?>
         </div>
-<!-- Comment section-->
+        <!-- Comment section-->
         <?php
-            $sql = "SELECT COUNT(*) AS count FROM comments WHERE blog_uuid ='$filename'";
-            $result = mysqli_query($conn, $sql);
+        $sql = "SELECT COUNT(*) AS count FROM comments WHERE blog_uuid ='$filename'";
+        $result = mysqli_query($conn, $sql);
 
-            if (mysqli_num_rows($result) > 0) {
-                $row = mysqli_fetch_assoc($result);
-                $count = $row["count"];
+        if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $count = $row["count"];
 
-                for ($i = 0; $i < $count; $i++) {
-                    $sql = "SELECT * FROM comments WHERE blog_uuid ='$filename' ORDER BY createdAt DESC LIMIT $i, 1";
-                    $result = mysqli_query($conn, $sql);
-                    $resultCheck = mysqli_num_rows($result);
+            for ($i = 0; $i < $count; $i++) {
+                $sql = "SELECT * FROM comments WHERE blog_uuid ='$filename' ORDER BY createdAt DESC LIMIT $i, 1";
+                $result = mysqli_query($conn, $sql);
+                $resultCheck = mysqli_num_rows($result);
 
-                    if ($resultCheck > 0) {
-                        $row = mysqli_fetch_assoc($result);
-                        $comment_uuid = $row['uuid'];
-                        $description = $row['description'];
-                        $createdAt = $row['createdAt'];
-                        $user_uuid = $row['user_uuid'];
-                        $createdByUser = "SELECT * FROM users WHERE uuid = '$user_uuid'";
-                        $result2 = mysqli_query($conn, $createdByUser);
-                        $resultCheck2 = mysqli_num_rows($result2);
-        
-                        if ($resultCheck2 > 0) {
-                            $row2 = mysqli_fetch_assoc($result2);
-                            $username = $row2['username'];
+                if ($resultCheck > 0) {
+                    $row = mysqli_fetch_assoc($result);
+                    $comment_uuid = $row['uuid'];
+                    $description = $row['description'];
+                    $createdAt = $row['createdAt'];
+                    $user_uuid = $row['user_uuid'];
+                    $createdByUser = "SELECT * FROM users WHERE uuid = '$user_uuid'";
+                    $result2 = mysqli_query($conn, $createdByUser);
+                    $resultCheck2 = mysqli_num_rows($result2);
 
-                            echo "
-                                <div class='container'>
+                    if ($resultCheck2 > 0) {
+                        $row2 = mysqli_fetch_assoc($result2);
+                        $username = $row2['username'];
+
+                        echo "
                                     <p>$description</p>
                                     <p>$createdAt</p>
                                     <p>$username</p>
-                                </div>
-                
                             ";
 
-                            if (isset($_SESSION['uuid']) == $user_uuid) {
-                                echo 
-                                    "<form action='../includes/edit-comment.php' method='post'>
+                        if (isset($_SESSION['uuid']) == $user_uuid) {
+                            echo
+                            "<form action='../includes/edit-comment.php' method='post'>
                                     <input type='hidden' name='blog_uuid' value='$uuid'>
                                     <input type='hidden' name='comment_uuid' value='$comment_uuid'>
                                     <button type='submit' class='btn btn-secondary' name='submit'>Edit</button>
@@ -126,17 +121,17 @@ $filename = basename(__FILE__, '.php');
                                     <input type='hidden' name='comment_uuid' value='$comment_uuid'>
                                     <button type='submit' class='mt-2 btn btn-danger' name='submit'>Delete</button>
                                     </form>";
-                            }
                         }
                     }
                 }
             }
+        }
         ?>
 
         <?php
         if (isset($_SESSION["uuid"])) {
 
-        echo "
+            echo "
         <form action='../includes/create-comment.php' method='post'>
             <div class='form-floating'>
                 <textarea class='form-control' placeholder='Leave a comment here' name='description' id='description' style='height: 100px'></textarea>

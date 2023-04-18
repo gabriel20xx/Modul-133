@@ -58,7 +58,7 @@ if (isset($_GET["page"])) {
                                 $id = $row['id'];
                                 $name = $row['name'];
 
-                                echo "<li><a class='dropdown-item' href='?category=$name'>$name</a></li>";
+                                echo "<li><a class='dropdown-item' href='?<?php echo http_build_query(array_merge($_GET, array('category' => '$name'))) ?>'>$name</a></li>";
                             }
                         }
                     }
@@ -81,12 +81,12 @@ if (isset($_GET["page"])) {
                     Sort by
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="?sort=a-z">A-Z</a></li>
-                    <li><a class="dropdown-item" href="?sort=z-a">Z-A</a></li>
-                    <li><a class="dropdown-item" href="?sort=created-asc">Created asc</a></li>
-                    <li><a class="dropdown-item" href="?sort=created-desc">Created desc</a></li>
-                    <li><a class="dropdown-item" href="?sort=user-asc">User asc</a></li>
-                    <li><a class="dropdown-item" href="?sort=user-desc">User desc</a></li>
+                    <li><a class="dropdown-item" href="?<?php echo http_build_query(array_merge($_GET, array('sort' => 'a-z'))) ?>">A-Z</a></li>
+                    <li><a class="dropdown-item" href="?<?php echo http_build_query(array_merge($_GET, array('sort' => 'z-a'))) ?>">Z-A</a></li>
+                    <li><a class="dropdown-item" href="?<?php echo http_build_query(array_merge($_GET, array('sort' => 'created-asc'))) ?>">Created asc</a></li>
+                    <li><a class="dropdown-item" href="?<?php echo http_build_query(array_merge($_GET, array('sort' => 'created-desc'))) ?>">Created desc</a></li>
+                    <li><a class="dropdown-item" href="?<?php echo http_build_query(array_merge($_GET, array('sort' => 'user-asc'))) ?>">User asc</a></li>
+                    <li><a class="dropdown-item" href="?<?php echo http_build_query(array_merge($_GET, array('sort' => 'user-desc'))) ?>">User desc</a></li>
                 </ul>
             </div>
         </div>
@@ -240,21 +240,21 @@ if (isset($_GET["page"])) {
                 <?php
                 if ($count > 12 && $currentPage != 1) {
                     echo "<li class='page-item'>
-                  <a class='page-link' href='forum.php?page=$previousPage' aria-label='Previous'>
+                  <a class='page-link' href='?<?php echo http_build_query(array_merge($_GET, array('page' => '$previousPage'))) ?>' aria-label='Previous'>
                       <span aria-hidden='true'>«</span>
                   </a>
                 </li>
                 
-                <li class='page-item'><a class='page-link' href='forum.php?page=$previousPage'>$previousPage</a></li>";
+                <li class='page-item'><a class='page-link' href='?<?php echo http_build_query(array_merge($_GET, array('page' => '$previousPage'))) ?>'>$previousPage</a></li>";
                 }
 
-                echo "<li class='page-item'><a class='page-link' href='forum.php?page=$currentPage'>$currentPage</a></li>";
+                echo "<li class='page-item'><a class='page-link' href='?<?php echo http_build_query(array_merge($_GET, array('page' => '$currentPage'))) ?>'>$currentPage</a></li>";
 
                 if ($count > 12 * ($currentPage)) {
-                    echo "<li class='page-item'><a class='page-link' href='forum.php?page=$nextPage'>$nextPage</a></li>
+                    echo "<li class='page-item'><a class='page-link' href='?<?php echo http_build_query(array_merge($_GET, array('page' => '$nextPage'))) ?>'>$nextPage</a></li>
 
                   <li class='page-item'>
-                  <a class='page-link' href='forum.php?page=$nextPage' aria-label='Next'>
+                  <a class='page-link' href='?<?php echo http_build_query(array_merge($_GET, array('page' => '$nextPage'))) ?>' aria-label='Next'>
                       <span aria-hidden='true'>»</span>
                   </a>
                 </li>";

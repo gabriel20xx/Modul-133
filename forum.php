@@ -35,12 +35,12 @@ if (isset($_GET["page"])) {
         </div>
         <h1 class="display-4 text-center">Forum</h1>
         <div class="dropdowns-container d-flex justify-content-between">
-  <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Filter by category
-            </button>
-            <ul class="dropdown-menu">
-                <?php
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Filter by category
+                </button>
+                <ul class="dropdown-menu">
+                    <?php
                     $sql = "SELECT COUNT(*) as count FROM categories";
                     $result = mysqli_query($conn, $sql);
 
@@ -63,37 +63,37 @@ if (isset($_GET["page"])) {
                         }
                     }
                     ?>
-            </ul>
+                </ul>
             </div>
 
-        <?php
-        if (isset($_SESSION["uuid"])) {
-            echo '    
+            <?php
+            if (isset($_SESSION["uuid"])) {
+                echo '    
     <div class="text-center mt-5">
     <div>
     <a class="btn btn-lg btn-success" href="new_blog.php" role="button">Create new post</a>
     </div>    
     </div>';
-        }
-        ?>
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Sort by
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">A-Z</a></li>
-                <li><a class="dropdown-item" href="#">Z-A</a></li>
-                <li><a class="dropdown-item" href="#">Created asc</a></li>
-                <li><a class="dropdown-item" href="#">Created desc</a></li>
-                <li><a class="dropdown-item" href="#">User asc</a></li>
-                <li><a class="dropdown-item" href="#">User desc</a></li>
-            </ul>
-        </div>
+            }
+            ?>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Sort by
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">A-Z</a></li>
+                    <li><a class="dropdown-item" href="#">Z-A</a></li>
+                    <li><a class="dropdown-item" href="#">Created asc</a></li>
+                    <li><a class="dropdown-item" href="#">Created desc</a></li>
+                    <li><a class="dropdown-item" href="#">User asc</a></li>
+                    <li><a class="dropdown-item" href="#">User desc</a></li>
+                </ul>
+            </div>
         </div>
 
         <!-- Grid overview -->
 
-        <div class="row mb-3 p-5 text-center">
+        <div class="row mb-3 text-center">
             <?php
             $sql = "SELECT COUNT(*) as count FROM blogs";
             $result = mysqli_query($conn, $sql);
@@ -233,11 +233,10 @@ if (isset($_GET["page"])) {
         ?>
     </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://unpkg.com/@popperjs/core@2.10.3/dist/umd/popper.min.js"></script>
-<!-- CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2.10.3/dist/umd/popper.min.js"></script>
+    <!-- CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
-
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>

@@ -137,12 +137,12 @@ if (isset($_GET["page"])) {
                         $category_sql = "WHERE category_id ='$category_id'";
                     }
                 } else {
-                    $categor_sql = "";
+                    $category_sql = "";
                 }
 
 
                 for ($i = 0; $i < $count; $i++) {
-                    $sql = "SELECT * FROM blogs $category ORDER BY $sort LIMIT 1 OFFSET " . $i;
+                    $sql = "SELECT * FROM blogs $category_sql ORDER BY $sort LIMIT 1 OFFSET " . $i;
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
 

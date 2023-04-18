@@ -51,7 +51,7 @@ if (isset($_GET["page"])) {
                 </button>
                 <ul class="dropdown-menu">
                     <?php
-                    echo "<li><a class='dropdown-item' href='?" . http_build_query(array_merge($_GET, array('category' => 'all'))) . "'>All</a></li>";
+                    echo "<li><a class='dropdown-item' href='?" . http_build_query(array_merge($_GET, array('category' => 'all'))) . "'>Everything</a></li>";
                     $sql = "SELECT COUNT(*) as count FROM categories";
                     $result = mysqli_query($conn, $sql);
 

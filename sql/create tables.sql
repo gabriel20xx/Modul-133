@@ -39,7 +39,15 @@ CREATE TABLE comments (
 );
 
 INSERT INTO categories (id, name) VALUES
-('1', 'home'),
-('2', 'drei'),
-('3', 'test'),
-('4', 'Cornel');
+('1', 'General Discussion'),
+('2', 'Announcements'),
+('3', 'Introductions'),
+('4', 'Feedback & Suggestions'),
+('5', 'Gaming'),
+('6', 'Music'),
+('7', 'TV & Movies'),
+('8', 'Sports'),
+('9', 'Science & Technology'),
+('10', 'Art & Design'),
+('11', 'Off-topic Discussion'),
+('12', 'Forum Games');

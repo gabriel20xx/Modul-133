@@ -212,7 +212,7 @@ if (isset($_GET["page"])) {
 
                         echo "<div class='col-md-4 p-0'>
                         <div class='m-2 card'>
-                        <div class='card-header'><a href='profile/$createdBy.php'>$username</a></div>
+                        <div class='card-header'><a href='profiles/$createdBy.php'>$username</a></div>
                         <div class='card-body'>
                             <h5 class='card-title'>$title</h5>
                             <p class='card-text'>$description</p>

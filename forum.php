@@ -78,7 +78,13 @@ if (isset($_GET["page"])) {
             </div>
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Sort by
+                    <?php 
+                    if (isset($_GET["sort"])) {
+                        $sort = $_GET["sort"];
+                        echo "Sort by $sort";
+                     } else {
+                        echo "Sort by";
+                     } ?>
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="?<?php echo http_build_query(array_merge($_GET, array('sort' => 'a-z'))) ?>">A-Z</a></li>

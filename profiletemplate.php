@@ -47,7 +47,7 @@ include_once '../everywhere/header.php';
           </div>
           <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>" disabled>
+            <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>">
           </div>
           <?php if (isset($_SESSION['uuid']) && $_SESSION['uuid'] == $filename) : ?>
             <div class="form-group">

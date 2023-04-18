@@ -212,13 +212,13 @@ if (isset($_GET["page"])) {
 
                         echo "<div class='col-md-4 p-0'>
                         <div class='m-2 card'>
-                        <div class='card-header'>$username</div>
+                        <div class='card-header'><a href='profile/createdBy.php'>$username</a></div>
                         <div class='card-body'>
                             <h5 class='card-title'>$title</h5>
                             <p class='card-text'>$description</p>
                             <a href='blogs/$uuid.php' class='btn btn-primary'>Go to article</a>
                         </div>
-                        <div class='card-footer text-muted'>$category</div>
+                        <div class='card-footer text-muted'><a href='?" . http_build_query(array_merge($_GET, array('category' => $category))) . "'>$category</a></div>
                         <div class='card-footer text-muted'>$timeago ago</div>
                     </div>
                     </div>";

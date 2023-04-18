@@ -210,19 +210,16 @@ if (isset($_GET["page"])) {
                             $category = $row['name'];
                         }
 
-                        echo "<div class='col-md-4 mb-4 mx-2'>
-                        <div class='card'>
-                            <div class='card-header'>$username</div>
-                            <div class='card-body'>
-                                <h5 class='card-title'>$title</h5>
-                                <p class='card-text'>$description</p>
-                                <p class='card-text'>$category</p>
-                                <a href='blogs/$uuid.php' class='btn btn-primary'>Go to article</a>
-                            </div>
-                            <div class='card-footer text-muted'>$timeago ago</div>
+                        echo "<div class='col-md-4 g-4 mg-4 p-0 card'>
+                        <div class='card-header'>$username</div>
+                        <div class='card-body'>
+                            <h5 class='card-title'>$title</h5>
+                            <p class='card-text'>$description</p>
+                            <a href='blogs/$uuid.php' class='btn btn-primary'>Go to article</a>
                         </div>
-                    </div>                    
-                    ";
+                        <div class='card-footer text-muted'>$category</div>
+                        <div class='card-footer text-muted'>$timeago ago</div>
+                    </div>";
                     }
                 }
             }

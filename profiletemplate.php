@@ -47,7 +47,7 @@ include_once '../everywhere/header.php';
           </div>
           <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>">
+            <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>" disabled>
           </div>
           <?php if (isset($_SESSION['uuid']) && $_SESSION['uuid'] == $filename) : ?>
             <div class="form-group">
@@ -95,9 +95,9 @@ include_once '../everywhere/header.php';
       editBtn.classList.remove("d-none");
       saveBtn.classList.add("d-none");
       deleteBtn.classList.remove("d-none");
-      usernameInput.disabled = true;
-      emailInput.disabled = true;
-      passwordInput.disabled = true;
+      //usernameInput.disabled = true;
+      //emailInput.disabled = true;
+      //passwordInput.disabled = true;
     });
 
     // Show confirmation dialog on delete click

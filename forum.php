@@ -113,42 +113,41 @@ if (isset($_GET["page"])) {
                     } else if ($_GET["sort"] == "z-a") {
                         $sort = "title DESC";
                     } else if ($_GET["sort"] == "created-asc") {
-                        $sort = "created_at ASC";
+                        $sort = "createdAt ASC";
                     } else if ($_GET["sort"] == "created-desc") {
-                        $sort = "created_at DESC";
+                        $sort = "createdAt DESC";
                     } else if ($_GET["sort"] == "user-asc") {
                         $sort = "user_uuid ASC";
                     } else if ($_GET["sort"] == "user-desc") {
                         $sort = "user_uuid DESC";
-                    } else {
-                        $sort = "created_at DESC";
                     }
                 } else {
-                    $sort = "created_at DESC";
+                    $sort = "createdAt DESC";
                 }
 
                 if (isset($_GET["category"])) {
-                    $category = mysqli_real_escape_string($conn, $_GET["category"]);
-                    $sql = "SELECT id FROM categories WHERE name = '$category'";
+                    $category = $_GET["category"];
+                    $sql = "SELECT * FROM categories WHERE name = '$category'";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
 
                     if ($resultCheck > 0) {
                         $row = mysqli_fetch_assoc($result);
                         $category_id = $row['id'];
-                        $category_sql = "WHERE category_id = '$category_id'";
-                    } else {
-                        $category_sql = "";
+                        $category_sql = "WHERE category ='$category_id'";
                     }
                 } else {
-                    $category_sql = "";
+                    $categor_sql = "";
                 }
 
-                $blogs_sql = "SELECT * FROM blogs $category_sql ORDER BY $sort LIMIT $count";
-                $result = mysqli_query($conn, $blogs_sql);
 
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
+                for ($i = 0; $i < $count; $i++) {
+                    $sql = "SELECT * FROM blogs $category ORDER BY $sort LIMIT 1 OFFSET " . $i;
+                    $result = mysqli_query($conn, $sql);
+                    $resultCheck = mysqli_num_rows($result);
+
+                    if ($resultCheck > 0) {
+                        $row = mysqli_fetch_assoc($result);
                         $uuid = $row['uuid'];
                         $title = $row['title'];
                         $description = $row['description'];

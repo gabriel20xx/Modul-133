@@ -418,7 +418,7 @@ function editProfile($conn, $uuid, $username, $email, $password) {
         header("Location: ../profiles/$uuid.php?error=profileupdated");
         exit();
     } else {
-        header("Location: ../profiles/$uuid.php?error=stmtfailed");
+        header("Location: ../profiles/$uuid.php?error=noresult");
         exit();
     }
 }

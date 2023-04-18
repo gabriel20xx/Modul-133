@@ -1,7 +1,8 @@
 <?php
 
 # Create User
-function createUser($conn, $username, $email, $password) {
+function createUser($conn, $username, $email, $password)
+{
     $uuid = uuid_create(UUID_TYPE_RANDOM);
     $sql = "INSERT INTO users (uuid, username, email, password, salt) VALUES (?, ?, ?, ?, ?)";
     $stmt = mysqli_stmt_init($conn);
@@ -12,7 +13,7 @@ function createUser($conn, $username, $email, $password) {
 
     $salt = bin2hex(random_bytes(8)); // generate a unique salt value for each user
     $pepper = 'thegctboys'; // define a unique pepper value for our application
-    
+
     $hashedPassword = password_hash($salt . $password . $pepper, PASSWORD_DEFAULT);
 
     mysqli_stmt_bind_param($stmt, "sssss", $uuid, $username, $email, $hashedPassword, $salt);
@@ -34,7 +35,7 @@ function createUser($conn, $username, $email, $password) {
     if ($resultCheck > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             $uuid = $row['uuid'];
-            copy('../profiletemplate.php', '../profiles/'.$uuid.'.php');
+            copy('../profiletemplate.php', '../profiles/' . $uuid . '.php');
             mysqli_stmt_close($stmt);
             $rememberMe = false;
             loginUser($conn, $username, $password, $rememberMe);
@@ -50,7 +51,8 @@ function createUser($conn, $username, $email, $password) {
 }
 
 # Login User
-function loginUser($conn, $username, $password, $rememberMe) {
+function loginUser($conn, $username, $password, $rememberMe)
+{
     $user = usernameExists($conn, $username, $username);
 
     if (!$user) {
@@ -67,8 +69,7 @@ function loginUser($conn, $username, $password, $rememberMe) {
     if ($checkPassword === false) {
         header("location: ../login.php?error=wronglogin");
         exit();
-    }
-    else if ($checkPassword === true) {
+    } else if ($checkPassword === true) {
         if ($rememberMe === true) {
             // Set the expiration time for the cookie (in seconds)
             $expiration = time() + (86400 * 30); // 30 days from now
@@ -91,37 +92,38 @@ function loginUser($conn, $username, $password, $rememberMe) {
 }
 
 # Registration Functions
-function emptyInputSignup($username, $email, $password, $password_rep) {
+function emptyInputSignup($username, $email, $password, $password_rep)
+{
     if (empty($username) || empty($email) || empty($password) || empty($password_rep)) {
         $result = true;
-    }
-    else {
+    } else {
         $result = false;
     }
     return $result;
 }
 
-function invalidUsername($username) {
+function invalidUsername($username)
+{
     if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
         $result = true;
-    }
-    else {
+    } else {
         $result = false;
     }
     return $result;
 }
 
-function invalidEmail($email) {
+function invalidEmail($email)
+{
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $result = true;
-    }
-    else {
+    } else {
         $result = false;
     }
     return $result;
 }
 
-function passwordRequirements($password) {
+function passwordRequirements($password)
+{
     $hasNumber = preg_match('/\d/', $password);
     $hasChar = preg_match('/[a-zA-Z]/', $password);
     $hasSymbol = preg_match('/[^a-zA-Z\d]/', $password);
@@ -134,17 +136,18 @@ function passwordRequirements($password) {
     return $result;
 }
 
-function passwordMatch($password, $password_rep) {
+function passwordMatch($password, $password_rep)
+{
     if ($password !== $password_rep) {
         $result = true;
-    }
-    else {
+    } else {
         $result = false;
     }
     return $result;
 }
 
-function usernameExists($conn, $username, $email) {
+function usernameExists($conn, $username, $email)
+{
     $sql = "SELECT * FROM users WHERE username = ? OR email = ?;";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -159,8 +162,7 @@ function usernameExists($conn, $username, $email) {
 
     if ($row = mysqli_fetch_assoc($resultData)) {
         return $row;
-    }
-    else{
+    } else {
         $result = false;
         return $result;
     }
@@ -169,11 +171,11 @@ function usernameExists($conn, $username, $email) {
 }
 
 # Login functions
-function emptyInputLogin($username, $password) {
+function emptyInputLogin($username, $password)
+{
     if (empty($username) || empty($password)) {
         $result = true;
-    }
-    else { 
+    } else {
         $result = false;
     }
     return $result;
@@ -181,7 +183,8 @@ function emptyInputLogin($username, $password) {
 
 
 # Hier kommen alle Funktionen (Überprüfung der Daten und Daten(-bank)verarbeitung)
-function createBlog($conn, $title, $description, $category_id) {
+function createBlog($conn, $title, $description, $category_id)
+{
     $uuid = uuid_create(UUID_TYPE_RANDOM);
     $createdAt = date('Y-m-d H:i:s');
     $createdBy = $_SESSION["uuid"];
@@ -216,7 +219,7 @@ function createBlog($conn, $title, $description, $category_id) {
     if ($resultCheck > 0) {
         $row = mysqli_fetch_assoc($result);
         $uuid = $row['uuid'];
-        copy('../blogtemplate.php', '../blogs/'.$uuid.'.php');
+        copy('../blogtemplate.php', '../blogs/' . $uuid . '.php');
         mysqli_stmt_close($stmt);
         header("location: ../forum.php?page=1&error=postcreated");
         exit();
@@ -226,7 +229,8 @@ function createBlog($conn, $title, $description, $category_id) {
     exit();
 }
 
-function editBlog($conn, $uuid, $title, $description, $category) {
+function editBlog($conn, $uuid, $title, $description, $category)
+{
     $sql = "SELECT * FROM categories WHERE name = ?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -258,11 +262,12 @@ function editBlog($conn, $uuid, $title, $description, $category) {
 }
 
 
-function deleteBlog($conn, $uuid) {
+function deleteBlog($conn, $uuid)
+{
     $sql = "SELECT * FROM blogs WHERE uuid = '$uuid'";
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
-    
+
     if ($resultCheck > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             $user_uuid = $row['user_uuid'];
@@ -281,38 +286,38 @@ function deleteBlog($conn, $uuid) {
             mysqli_stmt_bind_param($stmt, "s", $uuid);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
-        
-        
+
+
             // Delete the blog
             unlink("../blogs/$uuid.php");
             header("Location: ../forum.php?error=postdeleted");
             exit;
-
         }
     }
 }
 
-function emptyInputCreateBlog($title, $description) {
+function emptyInputCreateBlog($title, $description)
+{
     if (empty($title) || empty($description)) {
         $result = true;
-    }
-    else { 
+    } else {
         $result = false;
     }
     return $result;
 }
 
-function checkUserLogin() {
+function checkUserLogin()
+{
     if (!isset($_SESSION["uuid"])) {
         $result = true;
-    }
-    else {
+    } else {
         $result = false;
     }
     return $result;
 }
 
-function createComment($conn, $description, $blog_uuid) {
+function createComment($conn, $description, $blog_uuid)
+{
     $uuid = uuid_create(UUID_TYPE_RANDOM);
     $createdAt = date('Y-m-d H:i:s');
     $user_uuid = $_SESSION["uuid"];
@@ -332,21 +337,22 @@ function createComment($conn, $description, $blog_uuid) {
     exit();
 }
 
-function emptyInputCreateComment($description) {
+function emptyInputCreateComment($description)
+{
     if (empty($description)) {
         $result = true;
-    }
-    else { 
+    } else {
         $result = false;
     }
     return $result;
 }
 
-function deleteComment($conn, $blog_uuid, $comment_uuid) {
+function deleteComment($conn, $blog_uuid, $comment_uuid)
+{
     $sql = "SELECT * FROM comments WHERE uuid = '$comment_uuid'";
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
-    
+
     if ($resultCheck > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             $user_uuid = $row['user_uuid'];
@@ -365,55 +371,63 @@ function deleteComment($conn, $blog_uuid, $comment_uuid) {
             mysqli_stmt_bind_param($stmt, "s", $comment_uuid);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
-        
-        header("Location: ../blogs/$blog_uuid.php?error=commentdeleted");
-            exit;    
+
+            header("Location: ../blogs/$blog_uuid.php?error=commentdeleted");
+            exit;
         }
     }
 }
 
-function updateUser($conn, $uuid, $username, $email, $password) {
-    $sql = "SELECT * FROM users WHERE uuid = '$uuid'";
-    $result = mysqli_query($conn, $sql);
-    $resultCheck = mysqli_num_rows($result);
-
-    echo "<p>Test</p>";
-
-
-    $sql = "UPDATE users SET username=?, email=?, password=?, salt=? WHERE uuid=?";
+function editProfile($conn, $uuid, $username, $email, $password) {
+    $sql = "SELECT * FROM users WHERE uuid = ?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-      header("location: ../register.php?error=stmtfailed");
-      exit();
+        header("Location: ../register.php?error=stmtfailed");
+        exit();
     }
+
+    mysqli_stmt_bind_param($stmt, "s", $uuid);
+    mysqli_stmt_execute($stmt);
+
+    $result = mysqli_stmt_get_result($stmt);
+    $resultCheck = mysqli_num_rows($result);
 
     if ($resultCheck > 0) {
         $row = mysqli_fetch_assoc($result);
-        if ($row["password"] == $password){
-            $hashedPassword = $row["password"];
-        } else {
+        $hashedPassword = $row['password'];
+
+        if (!password_verify($password, $hashedPassword)) {
             $salt = bin2hex(random_bytes(8)); // generate a unique salt value for each user
             $pepper = 'thegctboys'; // define a unique pepper value for our application
-            
-            $hashedPassword = password_hash($salt . $password . $pepper, PASSWORD_DEFAULT);        
-        }
-    }
 
-  
-    
-    mysqli_stmt_bind_param($stmt, "sssss", $username, $email, $hashedPassword, $salt, $uuid);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_close($stmt);
-  
-    header("Location: ../profiles/$uuid.php?error=profileupdated");
-    exit();
+            $hashedPassword = password_hash($salt . $password . $pepper, PASSWORD_DEFAULT);
+        }
+
+        $sql = "UPDATE users SET username=?, email=?, password=?, salt=? WHERE uuid=?";
+        $stmt = mysqli_stmt_init($conn);
+        if (!mysqli_stmt_prepare($stmt, $sql)) {
+            header("Location: ../register.php?error=stmtfailed");
+            exit();
+        }
+
+        mysqli_stmt_bind_param($stmt, "sssss", $username, $email, $hashedPassword, $salt, $uuid);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+
+        header("Location: ../profiles/$uuid.php?error=profileupdated");
+        exit();
+    } else {
+        header("Location: ../register.php?error=usernotfound");
+        exit();
+    }
 }
 
-function deleteUser($conn, $uuid) {
+function deleteUser($conn, $uuid)
+{
     $sql = "SELECT * FROM users WHERE uuid = '$uuid'";
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
-    
+
     if ($resultCheck > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             $sql = "DELETE FROM users WHERE uuid = ?";
@@ -430,12 +444,12 @@ function deleteUser($conn, $uuid) {
 
             // Unset all of the session variables
             $_SESSION = array();
-        
+
             // Destroy the session
             session_destroy();
-        
+
             header("Location: ../index.php?error=userdeleted");
-            exit;    
+            exit;
         }
     }
 }

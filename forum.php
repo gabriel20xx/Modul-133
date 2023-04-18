@@ -125,24 +125,24 @@ if (isset($_GET["page"])) {
                     $sort = "createdAt DESC";
                 }
 
-                $sql = "SELECT * FROM categories";
-                $result = mysqli_query($conn, $sql);
-                $resultCheck = mysqli_num_rows($result);
-
-                if ($resultCheck > 0) {
-                    $row = mysqli_fetch_assoc($result);
-                    $category = $row['name'];
-                }
-
                 if (isset($_GET["category"])) {
-                    $category = "WHERE category ='" . $_GET["category"] . "'";
+                    $category = $_GET["category"];
+                    $sql = "SELECT * FROM categories WHERE name = '$category'";
+                    $result = mysqli_query($conn, $sql);
+                    $resultCheck = mysqli_num_rows($result);
+
+                    if ($resultCheck > 0) {
+                        $row = mysqli_fetch_assoc($result);
+                        $category_id = $row['id'];
+                        $category_sql = "WHERE category ='$category_id'";
+                    }
                 } else {
-                    $category = "";
+                    $categor_sql = "";
                 }
 
 
                 for ($i = 0; $i < $count; $i++) {
-                    $sql = "SELECT * FROM blogs ORDER BY $sort $category LIMIT 1 OFFSET " . $i;
+                    $sql = "SELECT * FROM blogs ORDER BY $sort $category_sql LIMIT 1 OFFSET " . $i;
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
 

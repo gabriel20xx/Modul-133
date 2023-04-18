@@ -35,7 +35,7 @@ include_once 'everywhere/header.php'
       </p>
       <hr class="my-4">
       <p>Explore our forums, create your own topics, and engage in discussions with other members of our community.</p>
-      <a class="btn btn-primary btn-lg" href="#" role="button">Get Started</a>
+      <a class="btn btn-primary btn-lg" href="forum.php" role="button">Get Started</a>
     </div>
     <div class="row">
       <div class="col-lg-4">
@@ -82,7 +82,7 @@ include_once 'everywhere/header.php'
             }
 
             for ($i = 0; $i < $count; $i++) {
-              $sql = "SELECT * FROM blogs LIMIT 1 OFFSET " . $i;
+              $sql = "SELECT * FROM blogs ORDER BY createdAt DESC LIMIT 1 OFFSET " . $i;
               $result = mysqli_query($conn, $sql);
               $resultCheck = mysqli_num_rows($result);
 
@@ -160,7 +160,7 @@ include_once 'everywhere/header.php'
     <!-- Call to action section -->
     <div class="row mt-3">
       <div class="col-12 text-center">
-        <a href="#" class="btn btn-primary">Join Us Now</a>
+        <a href="register.php" class="btn btn-primary">Join Us Now</a>
       </div>
     </div>
 

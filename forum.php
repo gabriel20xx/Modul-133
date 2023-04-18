@@ -70,10 +70,8 @@ if (isset($_GET["page"])) {
             <?php
             if (isset($_SESSION["uuid"])) {
                 echo '    
-/*     <div class="text-center mt-5"> */
     <div>
     <a class="btn btn-lg btn-success" href="new_blog.php" role="button">Create new post</a>
-/*     </div>     */
     </div>';
             }
             ?>

@@ -227,22 +227,36 @@ function createBlog($conn, $title, $description, $category_id) {
 }
 
 function editBlog($conn, $uuid, $title, $description, $category) {
-// Get Category id from name
+    $sql = "SELECT * FROM categories WHERE name = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../blogs/$uuid.php?error=stmtfailed");
+        exit();
+    }
 
-            $sql = "UPDATE blogs SET title = ?, description = ?, category = ? WHERE uuid = ?";
-            $stmt = mysqli_stmt_init($conn);
-            if (!mysqli_stmt_prepare($stmt, $sql)) {
-                header("location: ../blogs/$uuid.php?error=stmtfailed");
-                exit();
-            }
-            mysqli_stmt_bind_param($stmt, "ssss", $title, $description, $category, $uuid);
-            mysqli_stmt_execute($stmt);
-            mysqli_stmt_close($stmt);
-            header("Location: ../blogs/$uuid.php?error=postupdated");
-            exit();
-        }
-/*     } 
-} */
+    mysqli_stmt_bind_param($stmt, "s", $category);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $resultCheck = mysqli_num_rows($result);
+
+    if ($resultCheck > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $category_id = $row['id'];
+    }
+
+    $sql = "UPDATE blogs SET title = ?, description = ?, category = ? WHERE uuid = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../blogs/$uuid.php?error=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "ssis", $title, $description, $category_id, $uuid);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("Location: ../blogs/$uuid.php?error=postupdated");
+    exit();
+}
+
 
 function deleteBlog($conn, $uuid) {
     $sql = "SELECT * FROM blogs WHERE uuid = '$uuid'";

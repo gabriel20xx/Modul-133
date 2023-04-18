@@ -58,7 +58,7 @@ if (isset($_GET["page"])) {
                                 $id = $row['id'];
                                 $name = $row['name'];
 
-                                echo "<li><a class='dropdown-item' href='?<?php echo http_build_query(array_merge($_GET, array('category' => '$name'))) ?>'>$name</a></li>";
+                                echo "<li><a class='dropdown-item' href='?" . http_build_query(array_merge($_GET, array('category' => $name))) . "'>$name</a></li>";
                             }
                         }
                     }

@@ -47,7 +47,30 @@ if (isset($_GET["page"])) {
         <div class="dropdowns-container d-flex justify-content-between">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Filter by category
+                    <?php
+                    if (isset($_GET["category"])) {
+                        $category = $_GET["category"];
+
+                        if ($category == "all") {
+                            $category_sql = "";
+                        } else {
+
+                            $sql = "SELECT * FROM categories WHERE name = '$category'";
+                            $result = mysqli_query($conn, $sql);
+                            $resultCheck = mysqli_num_rows($result);
+
+                            if ($resultCheck > 0) {
+                                $row = mysqli_fetch_assoc($result);
+                                $category_id = $row['id'];
+                                $category_sql = "WHERE category_id ='$category_id'";
+                            }
+                        }
+                        echo "Filter by $category";
+                    } else {
+                        $category_sql = "";
+                        echo "Filter by category";
+                    }
+                    ?>
                 </button>
                 <ul class="dropdown-menu">
                     <?php
@@ -78,13 +101,27 @@ if (isset($_GET["page"])) {
             </div>
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <?php 
+                    <?php
                     if (isset($_GET["sort"])) {
-                        $sort = $_GET["sort"];
+                        if ($_GET["sort"] == "a-z") {
+                            $sort = "title ASC";
+                        } else if ($_GET["sort"] == "z-a") {
+                            $sort = "title DESC";
+                        } else if ($_GET["sort"] == "created-asc") {
+                            $sort = "createdAt ASC";
+                        } else if ($_GET["sort"] == "created-desc") {
+                            $sort = "createdAt DESC";
+                        } else if ($_GET["sort"] == "user-asc") {
+                            $sort = "user_uuid ASC";
+                        } else if ($_GET["sort"] == "user-desc") {
+                            $sort = "user_uuid DESC";
+                        }
                         echo "Sort by $sort";
-                     } else {
-                        echo "Sort by";
-                     } ?>
+                    } else {
+                        $sort = "createdAt DESC";
+                        echo "Sort by $sort";
+                    }
+                    ?>
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="?<?php echo http_build_query(array_merge($_GET, array('sort' => 'a-z'))) ?>">A-Z</a></li>
@@ -110,46 +147,6 @@ if (isset($_GET["page"])) {
 
                 if ($count > 12) {
                     $count = 12;
-                }
-
-                // Get ?sort header
-                if (isset($_GET["sort"])) {
-                    if ($_GET["sort"] == "a-z") {
-                        $sort = "title ASC";
-                    } else if ($_GET["sort"] == "z-a") {
-                        $sort = "title DESC";
-                    } else if ($_GET["sort"] == "created-asc") {
-                        $sort = "createdAt ASC";
-                    } else if ($_GET["sort"] == "created-desc") {
-                        $sort = "createdAt DESC";
-                    } else if ($_GET["sort"] == "user-asc") {
-                        $sort = "user_uuid ASC";
-                    } else if ($_GET["sort"] == "user-desc") {
-                        $sort = "user_uuid DESC";
-                    }
-                } else {
-                    $sort = "createdAt DESC";
-                }
-
-                if (isset($_GET["category"])) {
-                    $category = $_GET["category"];
-
-                    if ($category == "all") {
-                        $category_sql = "";
-                    } else {
-
-                        $sql = "SELECT * FROM categories WHERE name = '$category'";
-                        $result = mysqli_query($conn, $sql);
-                        $resultCheck = mysqli_num_rows($result);
-
-                        if ($resultCheck > 0) {
-                            $row = mysqli_fetch_assoc($result);
-                            $category_id = $row['id'];
-                            $category_sql = "WHERE category_id ='$category_id'";
-                        }
-                    }
-                } else {
-                    $category_sql = "";
                 }
 
 

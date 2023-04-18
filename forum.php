@@ -58,7 +58,7 @@ if (isset($_GET["page"])) {
                                 $id = $row['id'];
                                 $name = $row['name'];
 
-                                echo "<li><a class='dropdown-item' href='#'>$name</a></li>";
+                                echo "<li><a class='dropdown-item' href='?category=$name'>$name</a></li>";
                             }
                         }
                     }
@@ -81,7 +81,7 @@ if (isset($_GET["page"])) {
                     Sort by
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">A-Z</a></li>
+                    <li><a class="dropdown-item" href="?sort=a-z">A-Z</a></li>
                     <li><a class="dropdown-item" href="#">Z-A</a></li>
                     <li><a class="dropdown-item" href="#">Created asc</a></li>
                     <li><a class="dropdown-item" href="#">Created desc</a></li>
@@ -93,7 +93,7 @@ if (isset($_GET["page"])) {
 
         <!-- Grid overview -->
 
-        <div class="row mb-3 text-center">
+        <div class="row mb-3 p-2 text-center">
             <?php
             $sql = "SELECT COUNT(*) as count FROM blogs";
             $result = mysqli_query($conn, $sql);

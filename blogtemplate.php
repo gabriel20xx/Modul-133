@@ -38,7 +38,7 @@ $filename = basename(__FILE__, '.php');
         </div>
 
         <!-- Insert Blog Code here-->
-        <div class="text-center">
+        <div class="text-center container">
             <?php
                 $sql = "SELECT * FROM blogs WHERE uuid = '$filename'";
                 $result = mysqli_query($conn, $sql);
@@ -49,8 +49,8 @@ $filename = basename(__FILE__, '.php');
                         $uuid = $row['uuid'];
                         $title = $row['title'];
                         $description = $row['description'];
-                        echo "<h1>$title</h1>";
-                        echo "<p>$description</p>";
+                        echo "<h1 class='border'>$title</h1>";
+                        echo "<p class='border'>$description</p>";
                     }
                 }
             ?>
@@ -66,11 +66,10 @@ $filename = basename(__FILE__, '.php');
                         if (isset($_SESSION['uuid']) == $user_uuid) {
                         echo 
                             " 
-                            <a class='mt-2 w-100 btn btn-lg btn-secondary' href='../edit_blog.php?edit=$uuid' role='button'>Edit</a>
-                    
+                            <a class='mt-2 btn btn-lg btn-secondary' href='../edit_blog.php?edit=$uuid' role='button'>Edit</a>
                             <form action='../includes/delete-blog.php' method='post'>
                             <input type='hidden' name='uuid' value='$uuid'>
-                            <button type='submit' class='mt-2 w-100 btn btn-danger' name='submit'>Delete</button>
+                            <button type='submit' class='mt-2 btn btn-danger' name='submit'>Delete</button>
                             </form>";
                         }
                     }
@@ -119,13 +118,13 @@ $filename = basename(__FILE__, '.php');
                                     "<form action='../includes/edit-comment.php' method='post'>
                                     <input type='hidden' name='blog_uuid' value='$uuid'>
                                     <input type='hidden' name='comment_uuid' value='$comment_uuid'>
-                                    <button type='submit' class='w-100 btn btn-secondary' name='submit'>Edit</button>
+                                    <button type='submit' class='btn btn-secondary' name='submit'>Edit</button>
                                     </form>
                             
                                     <form action='../includes/delete-comment.php' method='post'>
                                     <input type='hidden' name='blog_uuid' value='$uuid'>
                                     <input type='hidden' name='comment_uuid' value='$comment_uuid'>
-                                    <button type='submit' class='mt-2 w-100 btn btn-danger' name='submit'>Delete</button>
+                                    <button type='submit' class='mt-2 btn btn-danger' name='submit'>Delete</button>
                                     </form>";
                             }
                         }
@@ -144,7 +143,7 @@ $filename = basename(__FILE__, '.php');
                 <label for='description'>Comments</label>
             </div>
             <input type='hidden' name='blog_uuid' value='$filename'>
-            <button class='w-100 btn btn-lg mb-3 btn-success' name='submit' type='submit'>Add Comment</button>
+            <button class='btn btn-lg mb-3 btn-success' name='submit' type='submit'>Add Comment</button>
         </form>
         ";
         }

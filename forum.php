@@ -34,6 +34,36 @@ if (isset($_GET["page"])) {
             ?>
         </div>
         <h1 class="display-4 text-center">Forum</h1>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Filter by category
+            </button>
+            <ul class="dropdown-menu">
+                <?php
+                    $sql = "SELECT COUNT(*) as count FROM categories";
+                    $result = mysqli_query($conn, $sql);
+
+                    if (mysqli_num_rows($result) > 0) {
+                        $row = mysqli_fetch_assoc($result);
+                        $count = $row["count"];
+
+                        for ($i = 0; $i < $count; $i++) {
+                            $sql = "SELECT * FROM categories LIMIT 1 OFFSET " . $i;
+                            $result = mysqli_query($conn, $sql);
+                            $resultCheck = mysqli_num_rows($result);
+
+                            if ($resultCheck > 0) {
+                                $row = mysqli_fetch_assoc($result);
+                                $id = $row['id'];
+                                $name = $row['name'];
+
+                                echo "<li><a class='dropdown-item' href='#'>$name</a></li>";
+                            }
+                        }
+                    }
+                    ?>
+            </ul>
+        </div>
         <?php
         if (isset($_SESSION["uuid"])) {
             echo '    
@@ -44,6 +74,19 @@ if (isset($_GET["page"])) {
     </div>';
         }
         ?>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Sort by
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">A-Z</a></li>
+                <li><a class="dropdown-item" href="#">Z-A</a></li>
+                <li><a class="dropdown-item" href="#">Created asc</a></li>
+                <li><a class="dropdown-item" href="#">Created desc</a></li>
+                <li><a class="dropdown-item" href="#">User asc</a></li>
+                <li><a class="dropdown-item" href="#">User desc</a></li>
+            </ul>
+        </div>
 
         <!-- Grid overview -->
 

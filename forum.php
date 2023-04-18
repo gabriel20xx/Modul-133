@@ -134,7 +134,7 @@ if (isset($_GET["page"])) {
                     if ($resultCheck > 0) {
                         $row = mysqli_fetch_assoc($result);
                         $category_id = $row['id'];
-                        $category_sql = "WHERE category ='$category_id'";
+                        $category_sql = "WHERE category_id = '$category_id'";
                     }
                 } else {
                     $categor_sql = "";

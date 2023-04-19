@@ -40,8 +40,6 @@ function createUser($conn, $username, $email, $password)
             $rememberMe = false;
             loginUser($conn, $username, $password, $rememberMe);
 
-
-            header("location: ../register.php?error=none");
             exit();
         }
     }
@@ -86,7 +84,6 @@ function loginUser($conn, $username, $password, $rememberMe)
         session_start();
         $_SESSION["uuid"] = $user["uuid"];
         $_SESSION["username"] = $user["username"];
-        header("location: ../index.php?error=loggedin");
         exit();
     }
 }

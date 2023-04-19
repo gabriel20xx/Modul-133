@@ -52,7 +52,7 @@ include_once '../everywhere/header.php';
             </div>
             <div class="text-right">
               <button type="button" class="btn btn-primary" name="edit" id="edit-btn">Edit</button>
-              <button type="submit" class="btn btn-success d-none" name="save" id="save-btn">Save</button>
+              <button type="submit" class="btn btn-success d-none" name="submit" id="save-btn">Save</button>
               <button type="button" class="btn btn-danger" id="delete-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete Account</button>
             </div>
           <?php endif; ?>
@@ -76,8 +76,9 @@ include_once '../everywhere/header.php';
         </div>
         <div class="modal-footer">
           <form action="../includes/edit-or-delete-user.php" method="post">
+            <input type='hidden' name='uuid' value='<?php echo $filename ?>'>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" name="delete" class="btn btn-danger">Understood</button>
+            <button type="submit" name="submit" class="btn btn-danger">Understood</button>
           </form>
         </div>
       </div>
@@ -127,18 +128,18 @@ include_once '../everywhere/header.php';
           }
         } */
   </script>
-  <script>
+  <!--   <script>
     const myModal = document.getElementById('staticBackdrop')
     const myInput = document.getElementById('delete-btn')
 
     myModal.addEventListener('shown.bs.modal', () => {
       myInput.focus()
     })
-  </script>
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2.10.3/dist/umd/popper.min.js"></script>
+  </script> -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://unpkg.com/@popperjs/core@2.10.3/dist/umd/popper.min.js"></script>
 
-    <!-- JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+  <!-- JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
 
 </body>

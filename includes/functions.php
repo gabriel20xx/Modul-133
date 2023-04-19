@@ -378,7 +378,7 @@ function deleteComment($conn, $blog_uuid, $comment_uuid)
     }
 }
 
-function editProfile($conn, $uuid, $username, $email, $password) {
+function editUser($conn, $uuid, $username, $email, $password) {
     $sql = "SELECT * FROM users WHERE uuid = ?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -423,34 +423,38 @@ function editProfile($conn, $uuid, $username, $email, $password) {
     }
 }
 
-function deleteUser($conn, $uuid)
-{
-    $sql = "SELECT * FROM users WHERE uuid = '$uuid'";
-    $result = mysqli_query($conn, $sql);
+function deleteUser($conn, $uuid) {
+    $sql = "SELECT * FROM users WHERE uuid = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../profiles/$uuid.php?error=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, "s", $uuid);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
     $resultCheck = mysqli_num_rows($result);
 
     if ($resultCheck > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            $sql = "DELETE FROM users WHERE uuid = ?";
-            $stmt = mysqli_stmt_init($conn);
-            if (!mysqli_stmt_prepare($stmt, $sql)) {
-                header("location: ../profiles/$uuid.php?error=stmtfailed");
-                exit();
-            }
-            mysqli_stmt_bind_param($stmt, "s", $uuid);
-            mysqli_stmt_execute($stmt);
-            mysqli_stmt_close($stmt);
-
-            session_start();
-
-            // Unset all of the session variables
-            $_SESSION = array();
-
-            // Destroy the session
-            session_destroy();
-
-            header("Location: ../index.php?error=userdeleted");
-            exit;
+        $sql = "DELETE FROM users WHERE uuid = ?";
+        $stmt = mysqli_stmt_init($conn);
+        if (!mysqli_stmt_prepare($stmt, $sql)) {
+            header("location: ../profiles/$uuid.php?error=stmtfailed");
+            exit();
         }
+        mysqli_stmt_bind_param($stmt, "s", $uuid);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+
+        session_start();
+
+        // Unset all of the session variables
+        $_SESSION = array();
+
+        // Destroy the session
+        session_destroy();
+
+        header("Location: ../index.php?error=userdeleted");
+        exit();
     }
 }

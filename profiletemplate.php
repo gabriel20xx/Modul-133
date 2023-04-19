@@ -35,7 +35,7 @@ include_once '../everywhere/header.php';
           <p><?php echo $email ?></p>
         </div>
         <hr>
-        <form action="../includes/edit-profile.php" method="post">
+        <form action="../includes/edit-user.php" method="post">
           <input type='hidden' name='uuid' value='<?php echo $filename ?>'>
           <div class="form-group">
             <label for="username">Username</label>
@@ -53,7 +53,7 @@ include_once '../everywhere/header.php';
             <div class="text-right">
               <button type="button" class="btn btn-primary" name="edit" id="edit-btn">Edit</button>
               <button type="submit" class="btn btn-success d-none" name="submit" id="save-btn">Save</button>
-              <button type="button" class="btn btn-danger" name="delete" id="delete-btn" onclick="confirmDelete(); document.forms[0].action='../includes/delete-user.php';">Delete Account</button>
+              <button type="button" class="btn btn-danger" name="delete" id="delete-btn" onclick="confirmDelete(); ">Delete Account</button>
             </div>
           <?php endif; ?>
         </form>
@@ -114,7 +114,7 @@ include_once '../everywhere/header.php';
                 // Send the request to the server
                 xhttp.open("POST", "includes/delete-user.php", true); // Replace "path/to/file.txt" with the actual file path
                 xhttp.send(); */
-
+                document.forms[0].action='../includes/delete-user.php';
         alert("Account deleted successfully.");
       }
     }

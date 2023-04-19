@@ -9,7 +9,7 @@ if (isset($_POST['submit'])) {
     require_once 'connect-db.php';
     require_once 'functions.php';
 
-    editProfile($conn, $uuid, $username, $email, $password);
+    editUser($conn, $uuid, $username, $email, $password);
 
 } else {
     header("Location: ../index.php");

@@ -53,7 +53,7 @@ include_once '../everywhere/header.php';
             <div class="text-right">
               <button type="button" class="btn btn-primary" name="edit" id="edit-btn">Edit</button>
               <button type="submit" class="btn btn-success d-none" name="save" id="save-btn">Save</button>
-              <button type="submit" class="btn btn-danger" name="delete" id="delete-btn">Delete Account</button>
+              <button type="button" class="btn btn-danger" id="delete-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">>Delete Account</button>
             </div>
           <?php endif; ?>
         </form>
@@ -61,7 +61,30 @@ include_once '../everywhere/header.php';
       </div>
     </div>
   </div>
-<!--  onclick="document.forms[0].method='post'.action='../includes/edit-user.php';" -->
+  <!--  onclick="document.forms[0].method='post'.action='../includes/edit-user.php';" -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">User deletion</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete your account? This action cannot be undone.
+        </div>
+        <div class="modal-footer">
+          <form action="../includes/edit-or-delete-user.php" method="post">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" name="delete" class="btn btn-danger">Understood</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
 
   <?php
@@ -97,12 +120,12 @@ include_once '../everywhere/header.php';
     });
 
     // Show confirmation dialog on delete click
-/*     function confirmDelete() {
-      if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
-                document.forms[0].action='../includes/delete-user.php';
-        alert("Account deleted successfully.");
-      }
-    } */
+    /*     function confirmDelete() {
+          if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+                    document.forms[0].action='../includes/delete-user.php';
+            alert("Account deleted successfully.");
+          }
+        } */
   </script>
 
 </body>

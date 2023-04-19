@@ -35,7 +35,7 @@ include_once '../everywhere/header.php';
           <p><?php echo $email ?></p>
         </div>
         <hr>
-        <form action="../includes/edit-or-delete-user.php" method="post">
+        <form action="../includes/edit-user.php" method="post">
           <input type='hidden' name='uuid' value='<?php echo $filename ?>'>
           <div class="form-group">
             <label for="username">Username</label>
@@ -75,7 +75,7 @@ include_once '../everywhere/header.php';
           Are you sure you want to delete your account? This action cannot be undone.
         </div>
         <div class="modal-footer">
-          <form action="../includes/edit-or-delete-user.php" method="post">
+          <form action="../includes/delete-user.php" method="post">
             <input type='hidden' name='uuid' value='<?php echo $filename ?>'>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="submit" name="submit" class="btn btn-danger">Understood</button>

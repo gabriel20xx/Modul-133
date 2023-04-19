@@ -35,7 +35,7 @@ include_once '../everywhere/header.php';
           <p><?php echo $email ?></p>
         </div>
         <hr>
-        <form action="../includes/edit-user.php" method="post">
+        <form action="../includes/edit-or-delete-user.php" method="post">
           <input type='hidden' name='uuid' value='<?php echo $filename ?>'>
           <div class="form-group">
             <label for="username">Username</label>
@@ -52,8 +52,8 @@ include_once '../everywhere/header.php';
             </div>
             <div class="text-right">
               <button type="button" class="btn btn-primary" name="edit" id="edit-btn">Edit</button>
-              <button type="submit" class="btn btn-success d-none" name="submit" id="save-btn">Save</button>
-              <button type="button" class="btn btn-danger" name="delete" id="delete-btn" onclick="confirmDelete(); ">Delete Account</button>
+              <button type="submit" class="btn btn-success d-none" name="save" id="save-btn">Save</button>
+              <button type="submit" class="btn btn-danger" name="delete" id="delete-btn">Delete Account</button>
             </div>
           <?php endif; ?>
         </form>
@@ -97,27 +97,12 @@ include_once '../everywhere/header.php';
     });
 
     // Show confirmation dialog on delete click
-    function confirmDelete() {
+/*     function confirmDelete() {
       if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
-        // Here you would typically include any PHP code required to delete the user's account from a database or session
-        // Create a new XMLHttpRequest object
-        /*         var xhttp = new XMLHttpRequest();
-
-                // Define the function to be executed when the response is received
-                xhttp.onreadystatechange = function() {
-                  if (this.readyState == 4 && this.status == 200) {
-                    // The response is ready and the status code is 200 (OK)
-                    console.log(this.responseText); // Do something with the file's contents
-                  }
-                };
-
-                // Send the request to the server
-                xhttp.open("POST", "includes/delete-user.php", true); // Replace "path/to/file.txt" with the actual file path
-                xhttp.send(); */
                 document.forms[0].action='../includes/delete-user.php';
         alert("Account deleted successfully.");
       }
-    }
+    } */
   </script>
 
 </body>

@@ -19,8 +19,11 @@ if (isset($_POST["submit"])) {
     }
 
     loginUser($conn, $username, $password, $rememberMe);
+
+    header("location: ../index.php?error=loggedin");
+    exit();
 }
 else {
-    header("location: ../login.php");
+    header("location: ../index.php");
     exit();
 }

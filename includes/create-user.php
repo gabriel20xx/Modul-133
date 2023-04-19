@@ -35,7 +35,11 @@ if (isset($_POST['submit'])) {
     }
 
     createUser($conn, $username, $email, $password);
+
+    header("location: ../index.php?error=registered");
+    exit();
 }
 else {
-    header("location: ../register.php");
+    header("location: ../index.php");
+    exit();
 }

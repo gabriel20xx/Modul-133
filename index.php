@@ -17,6 +17,24 @@ include_once 'everywhere/header.php'
                 You logged in successfully!
                 <button type="button" class="btn-close" aria-label="Close"></button>
                 </div>';
+        } else if ($_GET["error"] == "userdeleted") {
+          echo
+          '<div class="alert alert-success alert-dismissible fade show" role="alert" id="alertBox">
+                You successfully deleted your account!
+                <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>';
+        } else if ($_GET["error"] == "loggedout") {
+          echo
+          '<div class="alert alert-success alert-dismissible fade show" role="alert" id="alertBox">
+                You successfully logged out from your account!
+                <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>';
+        } else if ($_GET["error"] == "registered") {
+          echo
+          '<div class="alert alert-success alert-dismissible fade show" role="alert" id="alertBox">
+                You successfully registered and automatically logged in!
+                <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>';
         }
       }
       ?>

@@ -18,7 +18,7 @@
           <a class="nav-link" href="../about.php">About</a>
         </li>
       </ul>
-      <ul class="navbar-nav">
+      <ul class="navbar-nav mx-auto">
       <?php if(isset($_SESSION["uuid"])) {
         echo "
           <li class='nav-item w-300 me-2'>

@@ -39,13 +39,8 @@ function createUser($conn, $username, $email, $password)
             mysqli_stmt_close($stmt);
             $rememberMe = false;
             loginUser($conn, $username, $password, $rememberMe);
-
-            exit();
         }
     }
-
-    mysqli_stmt_close($stmt);
-    exit();
 }
 
 # Login User
@@ -84,7 +79,6 @@ function loginUser($conn, $username, $password, $rememberMe)
         session_start();
         $_SESSION["uuid"] = $user["uuid"];
         $_SESSION["username"] = $user["username"];
-        exit();
     }
 }
 

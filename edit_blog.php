@@ -77,9 +77,9 @@ include_once 'everywhere/header.php'
                 <label for="description" class="form-label">Description</label>
                 <textarea class="form-control" name="description" id="description"><?php echo $description ?></textarea>
             </div>
-            <button class="btn btn-lg mb-3 btn-primary" name="submit" type="submit">Update Blog</button>
+            <button class="btn mb-3 btn-primary" name="submit" type="submit">Update Blog</button>
             <a href="blogs/<?php echo $uuid ?>.php">
-                <div class="btn btn-lg mb-3 btn-secondary">Cancel</div>
+                <div class="btn mb-3 btn-secondary">Cancel</div>
             </a>
         </form>
     </div>

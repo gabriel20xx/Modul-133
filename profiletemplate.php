@@ -37,16 +37,16 @@ include_once '../everywhere/header.php';
         <hr>
         <form action="../includes/edit-user.php" method="post">
           <input type='hidden' name='uuid' value='<?php echo $filename ?>'>
-          <div class="form-group">
+          <div class="form-group mb-2">
             <label for="username">Username</label>
             <input type="text" class="form-control" id="username" name="username" value="<?php echo $username ?>" disabled>
           </div>
-          <div class="form-group">
+          <div class="form-group mb-2">
             <label for="email">Email address</label>
             <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>" disabled>
           </div>
           <?php if (isset($_SESSION['uuid']) && $_SESSION['uuid'] == $filename) : ?>
-            <div class="form-group">
+            <div class="form-group mb-2">
               <label for="password">Password</label>
               <input type="password" class="form-control" id="password" name="password" value="<?php echo $password ?>" disabled>
             </div>

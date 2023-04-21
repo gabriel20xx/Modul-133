@@ -67,7 +67,7 @@ $filename = basename(__FILE__, '.php');
                             <a class='mt-2 btn btn-secondary' href='../edit_blog.php?edit=$uuid' role='button'>Edit</a>
                             <form action='../includes/delete-blog.php' method='post'>
                             <input type='hidden' name='uuid' value='$uuid'>
-                            <div class='text-right'>
+                            <div class='text-right mb-3'>
                             <button type='submit' class='mt-2 btn btn-danger' name='submit'>Delete</button>
                             <div>
                             </form>";
@@ -114,13 +114,13 @@ $filename = basename(__FILE__, '.php');
                             <input type='hidden' name='blog_uuid' value='<?php echo $uuid ?>'>
                             <input type='hidden' name='comment_uuid' value='<?php echo $comment_uuid ?>'>
                             <button type='button' class='btn btn-secondary' id='edit-btn'>Edit</button>
-                            <button type='submit' class='btn btn-primary d-none' name='submit' id='save-btn'>Save</button>
+                            <button type='submit' class='btn btn-primary mb-2 d-none' name='submit' id='save-btn'>Save</button>
                     </form>
 
                     <form action='../includes/delete-comment.php' method='post'>
                         <input type='hidden' name='blog_uuid' value='<?php echo $uuid ?>'>
                         <input type='hidden' name='comment_uuid' value='<?php echo $comment_uuid ?>'>
-                        <button type='submit' class='mt-2 btn btn-danger' name='submit' id='delete-btn'>Delete</button>
+                        <button type='submit' class='mt-2 mb-2 btn btn-danger' name='submit' id='delete-btn'>Delete</button>
                     </form>
                 <?php endif; ?>
     <?php
@@ -134,7 +134,7 @@ $filename = basename(__FILE__, '.php');
 
         echo "
         <form action='../includes/create-comment.php' method='post'>
-            <div class='form-floating'>
+            <div class='form-floating mb-2'>
                 <textarea class='form-control' placeholder='Leave a comment here' name='description' id='description'></textarea>
                 <label for='description'>Comments</label>
             </div>

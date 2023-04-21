@@ -5,6 +5,10 @@
   text-decoration: none;
 }
 
+textarea {
+  height: auto;
+}
+
 .nav-button-login, .nav-button-register {
   width: 10rem;
 }
@@ -13,7 +17,7 @@
   display: none;
 }
 
-/* Für Login */
+/* Für Login und Register */
 .login-page {
   display: flex;
   align-items: center;

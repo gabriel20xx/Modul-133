@@ -218,7 +218,7 @@ if (isset($_GET["page"])) {
                         <div class='card-header'><a href='profiles/$createdBy.php'>$username</a></div>
                         <div class='card-body'>
                             <h5 class='card-title'>". substr($title, 0, 30) ."</h5>
-                            <p class='card-text'>" . substr($description, 0, 50) . "</p>
+                            <p class='card-text'>" . substr($description, 0, 50) . " ...</p>
                             <a href='blogs/$uuid.php' class='btn btn-primary'>Go to article</a>
                         </div>
                         <div class='card-footer text-muted'><a href='?" . http_build_query(array_merge($_GET, array('category' => $category))) . "'>$category</a></div>

@@ -150,7 +150,7 @@ include_once 'everywhere/header.php'
                     <h5 class='mb-1'>". substr($title, 0, 30) ."</h5>
                     <small>$timeago ago</small>
                   </div>
-                  <p class='mb-1'>". substr($description, 0, 50) ."</p>
+                  <p class='mb-1'>". substr($description, 0, 50) ." ...</p>
                 </a>
                 ";
               }

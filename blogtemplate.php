@@ -104,21 +104,21 @@ $filename = basename(__FILE__, '.php');
                     }
         ?>
                     <form action='../includes/edit-comment.php' method='post'>
-                        <p><?php echo $description ?></p>
+                        <textarea class="form-control" name="description" id="description" rows="5"><?php echo $description ?></textarea>
                         <p><?php echo $createdAt ?></p>
                         <p><?php echo $username ?></p>
 
                         <?php if (isset($_SESSION['uuid']) && $_SESSION['uuid'] == $user_uuid) : ?>
                             <input type='hidden' name='blog_uuid' value='<?php echo $uuid ?>'>
                             <input type='hidden' name='comment_uuid' value='<?php echo $comment_uuid ?>'>
-                            <button type='button' class='btn btn-secondary' name='submit'>Edit</button>
-                            <button type='submit' class='btn btn-primary' name='submit'>Save</button>
+                            <button type='button' class='btn btn-secondary' name='submit' id='edit-btn'>Edit</button>
+                            <button type='submit' class='btn btn-primary' name='submit' id='save-btn'>Save</button>
                     </form>
 
                     <form action='../includes/delete-comment.php' method='post'>
                         <input type='hidden' name='blog_uuid' value='<?php echo $uuid ?>'>
                         <input type='hidden' name='comment_uuid' value='<?php echo $comment_uuid ?>'>
-                        <button type='submit' class='mt-2 btn btn-danger' name='submit'>Delete</button>
+                        <button type='submit' class='mt-2 btn btn-danger' name='submit' id='delete-btn'>Delete</button>
                     </form>
                 <?php endif; ?>
     <?php
@@ -147,4 +147,34 @@ $filename = basename(__FILE__, '.php');
     <?php
     include_once '../everywhere/footer.php'
     ?>
+
+<script>
+    var editBtn = document.getElementById("edit-btn");
+    var saveBtn = document.getElementById("save-btn");
+    var deleteBtn = document.getElementById("delete-btn");
+    var descriptionInput = document.getElementById("description");
+
+    // Enable form inputs and show/hide buttons on edit click
+    editBtn.addEventListener("click", function() {
+      editBtn.classList.add("d-none");
+      saveBtn.classList.remove("d-none");
+      deleteBtn.classList.add("d-none");
+      descriptionInput.disabled = false;
+    });
+
+    // Disable form inputs and show/hide buttons on save click
+    saveBtn.addEventListener("click", function() {
+      editBtn.classList.remove("d-none");
+      saveBtn.classList.add("d-none");
+      deleteBtn.classList.remove("d-none");
+    });
+
+    // Show confirmation dialog on delete click
+    /*     function confirmDelete() {
+          if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+                    document.forms[0].action='../includes/delete-user.php';
+            alert("Account deleted successfully.");
+          }
+        } */
+  </script>
 </body>

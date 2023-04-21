@@ -369,7 +369,8 @@ function deleteComment($conn, $blog_uuid, $comment_uuid)
     }
 }
 
-function editUser($conn, $uuid, $username, $email, $password) {
+function editUser($conn, $uuid, $username, $email, $password)
+{
     $sql = "SELECT * FROM users WHERE uuid = ?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -414,7 +415,8 @@ function editUser($conn, $uuid, $username, $email, $password) {
     }
 }
 
-function deleteUser($conn, $uuid) {
+function deleteUser($conn, $uuid)
+{
     $sql = "SELECT * FROM users WHERE uuid = ?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {

@@ -58,29 +58,32 @@ include_once 'everywhere/header.php'
     <div class="row">
       <div class="col-lg-4">
         <h2>Forum Categories</h2>
-        <ul class="list-group">
-          <?php
-          $sql = "SELECT COUNT(*) as count FROM categories";
-          $result = mysqli_query($conn, $sql);
+        <?php
+        $sql = "SELECT COUNT(*) as count FROM categories";
+        $result = mysqli_query($conn, $sql);
 
-          if (mysqli_num_rows($result) > 0) {
-            $row = mysqli_fetch_assoc($result);
-            $count = $row["count"];
+        if (mysqli_num_rows($result) > 0) {
+          $row = mysqli_fetch_assoc($result);
+          $count = $row["count"];
 
-            for ($i = 0; $i < $count; $i++) {
-              $sql = "SELECT * FROM categories LIMIT 1 OFFSET " . $i;
-              $result = mysqli_query($conn, $sql);
-              $resultCheck = mysqli_num_rows($result);
+          for ($i = 0; $i < $count; $i++) {
+            $sql = "SELECT * FROM categories LIMIT 1 OFFSET " . $i;
+            $result = mysqli_query($conn, $sql);
+            $resultCheck = mysqli_num_rows($result);
 
-              if ($resultCheck > 0) {
-                $row = mysqli_fetch_assoc($result);
-                $name = $row['name'];
+            if ($resultCheck > 0) {
+              $row = mysqli_fetch_assoc($result);
+              $name = $row['name'];
 
-                echo "<li class='list-group-item'>$name</li>";
-              }
+              echo "<a href='forum.php?category=$name' class='list-group-item list-group-item-action'>
+                <div class='d-flex w-100 justify-content-between'>
+                <p class='mb-1'>$name</p>
+                </div>
+                </a>";
             }
           }
-          ?>
+        }
+        ?>
 
         </ul>
       </div>

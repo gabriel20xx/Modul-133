@@ -41,8 +41,8 @@ include_once 'everywhere/header.php'
     </div>
 
     <!-- Insert Homepage Code here-->
-    <div class="jumbotron">
-      <h1 class="display-4">Welcome to The GCT Corner!</h1>
+    <div class="jumbotron text-center">
+      <h1 class="display-4 text-center">Welcome to The GCT Corner!</h1>
       <img src="pictures/communicate.png" class="img-fluid" alt="Responsive image">
       <h2 class="display-4">Our offer!</h2>
       <p class="lead">

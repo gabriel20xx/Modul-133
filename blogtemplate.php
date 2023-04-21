@@ -170,13 +170,5 @@ $filename = basename(__FILE__, '.php');
       saveBtn.classList.add("d-none");
       deleteBtn.classList.remove("d-none");
     });
-
-    // Show confirmation dialog on delete click
-    /*     function confirmDelete() {
-          if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
-                    document.forms[0].action='../includes/delete-user.php';
-            alert("Account deleted successfully.");
-          }
-        } */
   </script>
 </body>

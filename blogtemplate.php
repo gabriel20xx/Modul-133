@@ -104,15 +104,15 @@ $filename = basename(__FILE__, '.php');
                     }
         ?>
                     <form action='../includes/edit-comment.php' method='post'>
-                        <textarea class="form-control" name="description" id="description" rows="5"><?php echo $description ?></textarea>
+                        <textarea class="form-control" name="description" id="description" rows="5" disabled><?php echo $description ?></textarea>
                         <p><?php echo $createdAt ?></p>
                         <p><?php echo $username ?></p>
 
                         <?php if (isset($_SESSION['uuid']) && $_SESSION['uuid'] == $user_uuid) : ?>
                             <input type='hidden' name='blog_uuid' value='<?php echo $uuid ?>'>
                             <input type='hidden' name='comment_uuid' value='<?php echo $comment_uuid ?>'>
-                            <button type='button' class='btn btn-secondary' name='submit' id='edit-btn'>Edit</button>
-                            <button type='submit' class='btn btn-primary' name='submit' id='save-btn'>Save</button>
+                            <button type='button' class='btn btn-secondary' id='edit-btn'>Edit</button>
+                            <button type='submit' class='btn btn-primary d-none' name='submit' id='save-btn'>Save</button>
                     </form>
 
                     <form action='../includes/delete-comment.php' method='post'>

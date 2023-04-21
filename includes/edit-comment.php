@@ -1,15 +1,14 @@
 <?php
 
 if (isset($_POST["submit"])) {
-    $uuid = $_POST["uuid"];
-    $title = $_POST["title"];
+    $blog_uuid = $_POST["blog_uuid"];
+    $comment_uuid = $_POST["comment_uuid"];
     $description = $_POST["description"];
-    $category = $_POST["category"];
 
     require_once 'connect-db.php';
     require_once 'functions.php';
 
-    editBlog($conn, $uuid, $title, $description, $category);
+    editComment($conn, $blog_uuid, $comment_uuid, $description);
 
     exit();
 } 

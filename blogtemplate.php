@@ -101,37 +101,36 @@ $filename = basename(__FILE__, '.php');
                     if ($resultCheck2 > 0) {
                         $row2 = mysqli_fetch_assoc($result2);
                         $username = $row2['username'];
-
-                        echo "
-                                    <p>$description</p>
-                                    <p>$createdAt</p>
-                                    <p>$username</p>
-                            ";
-
-                        if (isset($_SESSION['uuid']) == $user_uuid) {
-                            echo
-                            "<form action='../includes/edit-comment.php' method='post'>
-                                    <input type='hidden' name='blog_uuid' value='$uuid'>
-                                    <input type='hidden' name='comment_uuid' value='$comment_uuid'>
-                                    <button type='submit' class='btn btn-secondary' name='submit'>Edit</button>
-                                    </form>
-                            
-                                    <form action='../includes/delete-comment.php' method='post'>
-                                    <input type='hidden' name='blog_uuid' value='$uuid'>
-                                    <input type='hidden' name='comment_uuid' value='$comment_uuid'>
-                                    <button type='submit' class='mt-2 btn btn-danger' name='submit'>Delete</button>
-                                    </form>";
-                        }
                     }
+        ?>
+                    <form action='../includes/edit-comment.php' method='post'>
+                        <p><?php echo $description ?></p>
+                        <p><?php echo $createdAt ?></p>
+                        <p><?php echo $username ?></p>
+
+                        <?php if (isset($_SESSION['uuid']) && $_SESSION['uuid'] == $user_uuid) : ?>
+                            <input type='hidden' name='blog_uuid' value='<?php echo $uuid ?>'>
+                            <input type='hidden' name='comment_uuid' value='<?php echo $comment_uuid ?>'>
+                            <button type='button' class='btn btn-secondary' name='submit'>Edit</button>
+                            <button type='submit' class='btn btn-primary' name='submit'>Save</button>
+                    </form>
+
+                    <form action='../includes/delete-comment.php' method='post'>
+                        <input type='hidden' name='blog_uuid' value='<?php echo $uuid ?>'>
+                        <input type='hidden' name='comment_uuid' value='<?php echo $comment_uuid ?>'>
+                        <button type='submit' class='mt-2 btn btn-danger' name='submit'>Delete</button>
+                    </form>
+                <?php endif; ?>
+    <?php
                 }
             }
         }
-        ?>
+    ?>
 
-        <?php
-        if (isset($_SESSION["uuid"])) {
+    <?php
+    if (isset($_SESSION["uuid"])) {
 
-            echo "
+        echo "
         <form action='../includes/create-comment.php' method='post'>
             <div class='form-floating'>
                 <textarea class='form-control' placeholder='Leave a comment here' name='description' id='description' style='height: 100px'></textarea>
@@ -141,9 +140,9 @@ $filename = basename(__FILE__, '.php');
             <button class='btn btn-lg mb-3 btn-success' name='submit' type='submit'>Add Comment</button>
         </form>
         ";
-        }
+    }
 
-        ?>
+    ?>
     </div>
     <?php
     include_once '../everywhere/footer.php'

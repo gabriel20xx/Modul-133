@@ -75,7 +75,7 @@ include_once 'everywhere/header.php'
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" name="description" id="description" rows="10"><?php echo $description ?></textarea>
+                <textarea class="form-control" name="description" id="description" style='height: auto'><?php echo $description ?></textarea>
             </div>
             <button class="btn btn-lg mb-3 btn-primary" name="submit" type="submit">Update Blog</button>
             <a href="blogs/<?php echo $uuid ?>.php">

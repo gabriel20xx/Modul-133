@@ -135,11 +135,11 @@ $filename = basename(__FILE__, '.php');
         echo "
         <form action='../includes/create-comment.php' method='post'>
             <div class='form-floating'>
-                <textarea class='form-control' placeholder='Leave a comment here' name='description' id='description' style='height: 100px'></textarea>
+                <textarea class='form-control' placeholder='Leave a comment here' name='description' id='description' style='height: auto'></textarea>
                 <label for='description'>Comments</label>
             </div>
             <input type='hidden' name='blog_uuid' value='$filename'>
-            <button class='btn btn-lg mb-3 btn-success' name='submit' type='submit'>Add Comment</button>
+            <button class='btn btn-success mb-3' name='submit' type='submit'>Add Comment</button>
         </form>
         ";
     }

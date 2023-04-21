@@ -67,7 +67,9 @@ $filename = basename(__FILE__, '.php');
                             <a class='mt-2 btn btn-secondary' href='../edit_blog.php?edit=$uuid' role='button'>Edit</a>
                             <form action='../includes/delete-blog.php' method='post'>
                             <input type='hidden' name='uuid' value='$uuid'>
+                            <div class='text-right'>
                             <button type='submit' class='mt-2 btn btn-danger' name='submit'>Delete</button>
+                            <div>
                             </form>";
                     }
                 }

@@ -53,7 +53,6 @@ include_once 'everywhere/header.php'
       </p>
       <hr class="my-4">
       <p>Explore our forums, create your own topics, and engage in discussions with other members of our community.</p>
-      <a class="btn btn-primary btn-lg" href="forum.php" role="button">Get Started</a>
     </div>
     <div class="row">
       <div class="col-lg-4">
@@ -159,20 +158,6 @@ include_once 'everywhere/header.php'
           ?>
 
         </div>
-      </div>
-    </div>
-    <div class="row mt-3">
-      <div class="col-md-6">
-        <h2>About Us</h2>
-        <p>We are a community of people who love to explore new technologies and share our knowledge with others.</p>
-      </div>
-      <div class="col-md-6">
-        <h2>Latest News</h2>
-        <ul>
-          <li>Introducing our new website design</li>
-          <li>Join our upcoming webinar on AI and Machine Learning</li>
-          <li>Our team won first prize in a hackathon competition</li>
-        </ul>
       </div>
     </div>
 

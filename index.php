@@ -145,15 +145,14 @@ include_once 'everywhere/header.php'
                 }
 
                 echo "
-          <a href='blogs/$uuid.php' class='list-group-item list-group-item-action'>
-            <div class='d-flex w-100 justify-content-between'>
-              <h5 class='mb-1'>$title</h5>
-              <small>$timeago ago</small>
-            </div>
-            <p class='mb-1'>$description</p>
-          </a>
-      
-      ";
+                <a href='blogs/$uuid.php' class='list-group-item list-group-item-action'>
+                  <div class='d-flex w-100 justify-content-between'>
+                    <h5 class='mb-1'>". substr($title, 0, strpos($title, "\n")) ."</h5>
+                    <small>$timeago ago</small>
+                  </div>
+                  <p class='mb-1'>". substr($description, 0, strpos($description, "\n")) ."</p>
+                </a>
+                ";
               }
             }
           }

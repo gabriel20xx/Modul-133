@@ -64,7 +64,7 @@ function createUser($conn, $username, $email, $password)
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "ssssssbs", $uuid, $username, $email, $hashedPassword, $salt, $role, $verified, $verification_code);
+    mysqli_stmt_bind_param($stmt, "ssssssss", $uuid, $username, $email, $hashedPassword, $salt, $role, $verified, $verification_code);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
@@ -72,7 +72,7 @@ function createUser($conn, $username, $email, $password)
 
     copy('../profiletemplate.php', '../profiles/' . $uuid . '.php');
     mysqli_stmt_close($stmt);
-    
+
     $rememberMe = false;
     loginUser($conn, $username, $password, $rememberMe);
 }
@@ -466,7 +466,7 @@ function verifyEmail($conn, $email, $verification_code)
 function sendEmailPasswordReset($email)
 {
     $subject = "Password Reset";
-    $message = "Click the following link to reset your password: http://thegctcorner.com/reset-password.php?email=$email&code=$verification_code";
+    $message = "Click the following link to reset your password: http://thegctcorner.com/reset-password.php?email=$email";
     $headers = "From: info@thegctcorner.com\r\n";
     $headers .= "Content-type: text/html\r\n";
     mail($email, $subject, $message, $headers);

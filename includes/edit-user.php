@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
     };
 
     if (checkCorrectUser($conn, $uuid, $type) !== false) {
-        header("location: ../blogs/$uuid.php?error=notauthorized");
+        header("location: ../profiles/$uuid.php?error=notauthorized");
         exit();
     };
 

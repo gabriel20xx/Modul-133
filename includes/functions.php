@@ -324,10 +324,10 @@ function usernameExists($conn, $username, $email)
 
 function emailExists($conn, $email)
 {
-    $sql = "SELECT * FROM users WHERE email = ?;";
+    $sql = "SELECT * FROM users WHERE email = ?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../register.php?error=stmtfailed");
+        header("Location: ../register.php?error=stmtfailed");
         exit();
     }
 
@@ -341,9 +341,9 @@ function emailExists($conn, $email)
     } else {
         $result = false;
     }
-    return $result;
 
     mysqli_stmt_close($stmt);
+    return $result;
 }
 
 function emptyInputLogin($username, $password)
@@ -382,25 +382,26 @@ function checkUserLogin()
     return $result;
 }
 
-function checkCorrectUser($conn, $uuid, $type)
-{
-    $sql = "SELECT * FROM $type WHERE uuid = '$uuid'";
-    $result = mysqli_query($conn, $sql);
-    $resultCheck = mysqli_num_rows($result);
+function checkCorrectUser($conn, $uuid, $type) {
+    $sql = "SELECT * FROM $type WHERE uuid = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, 's', $uuid);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
 
-    if ($resultCheck > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            $user_uuid = $row['user_uuid'];
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $user_uuid = $row['user_uuid'];
 
-            if (!isset($_SESSION["uuid"]) == $user_uuid) {
-                $result = true;
-            } else {
-                $result = false;
-            }
-            return $result;
+        if (!isset($_SESSION["uuid"]) || $_SESSION["uuid"] !== $user_uuid) {
+            $result = true;
+        } else {
+            $result = false;
         }
+        return $result;
     }
 }
+
 
 function emptyInputCreateComment($description)
 {

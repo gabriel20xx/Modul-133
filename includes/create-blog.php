@@ -14,6 +14,7 @@ if (isset($_POST["submit"])) {
     };
 
     if (checkUserLogin() !== false) {
+        header("location: ../login.php?error=notloggedin");
         exit();
     };
 

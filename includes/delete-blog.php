@@ -8,6 +8,7 @@ if (isset($_POST["submit"])) {
     require_once 'functions.php';
 
     if (checkUserLogin() !== false) {
+        header("location: ../login.php?error=notloggedin");
         exit();
     };
 

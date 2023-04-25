@@ -47,11 +47,8 @@ $filename = basename(__FILE__, '.php');
                     $uuid = $row['uuid'];
                     $title = $row['title'];
                     $description = $row['description'];
-                    echo "
-                    <div class='text-right'>
-                    <h1 class='border'>$title</h1>
-                    <p class='border'>$description</p>
-                    </div>";
+                    echo "<h1 class='border'>$title</h1>
+                    <p class='border'>$description</p>";
                 }
             }
             ?>

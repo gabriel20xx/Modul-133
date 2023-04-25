@@ -70,27 +70,11 @@ function createUser($conn, $username, $email, $password)
 
     sendEmailVerification($email, $verification_code);
 
-    $sql = "SELECT * FROM users WHERE uuid = ?";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../register.php?error=stmtfailed");
-        exit();
-    }
-
-    mysqli_stmt_bind_param($stmt, "s", $uuid);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    $resultCheck = mysqli_num_rows($result);
-
-    if ($resultCheck > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            $uuid = $row['uuid'];
-            copy('../profiletemplate.php', '../profiles/' . $uuid . '.php');
-            mysqli_stmt_close($stmt);
-            $rememberMe = false;
-            loginUser($conn, $username, $password, $rememberMe);
-        }
-    }
+    copy('../profiletemplate.php', '../profiles/' . $uuid . '.php');
+    mysqli_stmt_close($stmt);
+    
+    $rememberMe = false;
+    loginUser($conn, $username, $password, $rememberMe);
 }
 
 function createBlog($conn, $title, $description, $category_id)
@@ -437,7 +421,8 @@ function sendEmailVerification($email, $verification_code)
     mail($email, $subject, $message, $headers);
 }
 
-function verifyEmail($conn, $email, $verification_code) {
+function verifyEmail($conn, $email, $verification_code)
+{
     $sql = "SELECT * FROM users WHERE email = ?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {

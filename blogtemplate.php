@@ -102,12 +102,14 @@ $filename = basename(__FILE__, '.php');
                         $row2 = mysqli_fetch_assoc($result2);
                         $username = $row2['username'];
                     }
-                    ?>
+        ?>
                     <div class="text-right">
                         <form action='../includes/edit-comment.php' method='post'>
                             <textarea class="form-control" name="description" id="description" rows="5" disabled><?php echo $description ?></textarea>
-                            <p><?php echo $createdAt ?></p>
-                            <p><?php echo $username ?></p>
+                            <div class='text-right>
+                                <p><?php echo $createdAt ?></p>
+                                <p><?php echo $username ?></p>
+                            </div>
 
                             <?php if (isset($_SESSION['uuid']) && $_SESSION['uuid'] == $user_uuid) : ?>
                                 <input type='hidden' name='blog_uuid' value='<?php echo $uuid ?>'>
@@ -120,41 +122,41 @@ $filename = basename(__FILE__, '.php');
                             <input type='hidden' name='blog_uuid' value='<?php echo $uuid ?>'>
                             <input type='hidden' name='comment_uuid' value='<?php echo $comment_uuid ?>'>
                             <button type='submit' class='mt-2 mb-2 btn btn-danger' name='submit' id='delete-btn'>Delete</button>
-                            <?php endif; ?>
+                        <?php endif; ?>
                         </form>
                     </div>
-                <?php
+        <?php
                 }
             }
         }
-    ?>
+        ?>
 
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Blog deletion</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Are you sure you want to delete this blog? This action cannot be undone.
-                </div>
-                <div class="modal-footer">
-                    <form action="../includes/delete-blog.php" method="post">
-                        <input type='hidden' name='uuid' value='<?php echo $filename ?>'>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" name="submit" class="btn btn-danger">Understood</button>
-                    </form>
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Blog deletion</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this blog? This action cannot be undone.
+                    </div>
+                    <div class="modal-footer">
+                        <form action="../includes/delete-blog.php" method="post">
+                            <input type='hidden' name='uuid' value='<?php echo $filename ?>'>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" name="submit" class="btn btn-danger">Understood</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <?php
-    if (isset($_SESSION["uuid"])) {
+        <?php
+        if (isset($_SESSION["uuid"])) {
 
-        echo "
+            echo "
         <form action='../includes/create-comment.php' method='post'>
             <div class='form-floating mb-2'>
                 <textarea class='form-control' placeholder='Leave a comment here' name='description' id='description'></textarea>
@@ -164,9 +166,9 @@ $filename = basename(__FILE__, '.php');
             <button class='btn btn-success mb-3' name='submit' type='submit'>Add Comment</button>
         </form>
         ";
-    }
+        }
 
-    ?>
+        ?>
     </div>
     <?php
     include_once '../everywhere/footer.php'

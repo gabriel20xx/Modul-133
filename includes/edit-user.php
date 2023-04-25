@@ -16,11 +16,11 @@ if (isset($_POST['submit'])) {
     };
 
     // Temprorarely disabled due to malfunctioning
-    if (checkCorrectUser($conn, $uuid, $type) !== false) {
+/*     if (checkCorrectUser($conn, $uuid, $type) !== false) {
         header("location: ../profiles/$uuid.php?error=notauthorized");
         exit();
     };
-
+ */
     editUser($conn, $uuid, $username, $email, $password);
 
     header("Location: ../profiles/$uuid.php?error=profileupdated");

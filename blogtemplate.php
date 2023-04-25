@@ -102,52 +102,54 @@ $filename = basename(__FILE__, '.php');
                         $row2 = mysqli_fetch_assoc($result2);
                         $username = $row2['username'];
                     }
-        ?>
-                    <form action='../includes/edit-comment.php' method='post'>
-                        <textarea class="form-control" name="description" id="description" rows="5" disabled><?php echo $description ?></textarea>
-                        <p><?php echo $createdAt ?></p>
-                        <p><?php echo $username ?></p>
+                    ?>
+                    <div class="text-right">
+                        <form action='../includes/edit-comment.php' method='post'>
+                            <textarea class="form-control" name="description" id="description" rows="5" disabled><?php echo $description ?></textarea>
+                            <p><?php echo $createdAt ?></p>
+                            <p><?php echo $username ?></p>
 
-                        <?php if (isset($_SESSION['uuid']) && $_SESSION['uuid'] == $user_uuid) : ?>
+                            <?php if (isset($_SESSION['uuid']) && $_SESSION['uuid'] == $user_uuid) : ?>
+                                <input type='hidden' name='blog_uuid' value='<?php echo $uuid ?>'>
+                                <input type='hidden' name='comment_uuid' value='<?php echo $comment_uuid ?>'>
+                                <button type='button' class='btn btn-secondary' id='edit-btn'>Edit</button>
+                                <button type='submit' class='btn btn-primary mb-2 d-none' name='submit' id='save-btn'>Save</button>
+                        </form>
+
+                        <form action='../includes/delete-comment.php' method='post'>
                             <input type='hidden' name='blog_uuid' value='<?php echo $uuid ?>'>
                             <input type='hidden' name='comment_uuid' value='<?php echo $comment_uuid ?>'>
-                            <button type='button' class='btn btn-secondary' id='edit-btn'>Edit</button>
-                            <button type='submit' class='btn btn-primary mb-2 d-none' name='submit' id='save-btn'>Save</button>
-                    </form>
-
-                    <form action='../includes/delete-comment.php' method='post'>
-                        <input type='hidden' name='blog_uuid' value='<?php echo $uuid ?>'>
-                        <input type='hidden' name='comment_uuid' value='<?php echo $comment_uuid ?>'>
-                        <button type='submit' class='mt-2 mb-2 btn btn-danger' name='submit' id='delete-btn'>Delete</button>
-                    </form>
+                            <button type='submit' class='mt-2 mb-2 btn btn-danger' name='submit' id='delete-btn'>Delete</button>
+                        </form>
+                    </div>
                 <?php endif; ?>
-    <?php
+                <?php
                 }
             }
         }
     ?>
 
-<!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Blog deletion</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Blog deletion</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this blog? This action cannot be undone.
+                </div>
+                <div class="modal-footer">
+                    <form action="../includes/delete-blog.php" method="post">
+                        <input type='hidden' name='uuid' value='<?php echo $filename ?>'>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="submit" class="btn btn-danger">Understood</button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          Are you sure you want to delete this blog? This action cannot be undone.
-        </div>
-        <div class="modal-footer">
-          <form action="../includes/delete-blog.php" method="post">
-            <input type='hidden' name='uuid' value='<?php echo $filename ?>'>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" name="submit" class="btn btn-danger">Understood</button>
-          </form>
-        </div>
-      </div>
     </div>
-  </div>
 
     <?php
     if (isset($_SESSION["uuid"])) {
@@ -170,30 +172,30 @@ $filename = basename(__FILE__, '.php');
     include_once '../everywhere/footer.php'
     ?>
 
-<script>
-    var editBtn = document.getElementById("edit-btn");
-    var saveBtn = document.getElementById("save-btn");
-    var deleteBtn = document.getElementById("delete-btn");
-    var descriptionInput = document.getElementById("description");
+    <script>
+        var editBtn = document.getElementById("edit-btn");
+        var saveBtn = document.getElementById("save-btn");
+        var deleteBtn = document.getElementById("delete-btn");
+        var descriptionInput = document.getElementById("description");
 
-    // Enable form inputs and show/hide buttons on edit click
-    editBtn.addEventListener("click", function() {
-      editBtn.classList.add("d-none");
-      saveBtn.classList.remove("d-none");
-      deleteBtn.classList.add("d-none");
-      descriptionInput.disabled = false;
-    });
+        // Enable form inputs and show/hide buttons on edit click
+        editBtn.addEventListener("click", function() {
+            editBtn.classList.add("d-none");
+            saveBtn.classList.remove("d-none");
+            deleteBtn.classList.add("d-none");
+            descriptionInput.disabled = false;
+        });
 
-    // Disable form inputs and show/hide buttons on save click
-    saveBtn.addEventListener("click", function() {
-      editBtn.classList.remove("d-none");
-      saveBtn.classList.add("d-none");
-      deleteBtn.classList.remove("d-none");
-    });
-  </script>
+        // Disable form inputs and show/hide buttons on save click
+        saveBtn.addEventListener("click", function() {
+            editBtn.classList.remove("d-none");
+            saveBtn.classList.add("d-none");
+            deleteBtn.classList.remove("d-none");
+        });
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://unpkg.com/@popperjs/core@2.10.3/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2.10.3/dist/umd/popper.min.js"></script>
 
-  <!-- JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
 </body>

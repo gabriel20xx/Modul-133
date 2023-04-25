@@ -48,7 +48,7 @@ include_once 'everywhere/header.php';
                 </div>
                 <button class="w-100 btn btn-lg mb-3 btn-primary" name="submit" type="submit">Sign in</button>
                 <a href="register.php">
-                    <div class="w-100 btn btn-lg btn-secondary">Go to register</div>
+                    <div class="w-100 btn btn-lg mb-3 btn-secondary">Go to register</div>
                 </a>
                 <a href="forgot_password.php">Forgot password?</a>
                 <p class="mt-5 mb-3 text-muted"><?php include_once 'everywhere/footer.php'; ?></p>

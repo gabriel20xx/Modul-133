@@ -27,8 +27,8 @@ include_once 'everywhere/header.php';
                     ?>
                 </div>
 
-                <div class="form-floating mb-5">
-                    <input type="text" name="username" class="form-control form-first" id="username" placeholder="name@example.com">
+                <div class="form-floating mb-3">
+                    <input type="text" name="username" class="form-control" id="username" placeholder="name@example.com">
                     <label for="username">Email address</label>
                 </div>
                 <button class="w-100 btn btn-lg mb-3 btn-primary" name="submit" type="submit">Reset password</button>

@@ -64,7 +64,7 @@ function createUser($conn, $username, $email, $password)
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "ssssssss", $uuid, $username, $email, $hashedPassword, $salt, $role, $verified, $verification_code);
+    mysqli_stmt_bind_param($stmt, "ssssssis", $uuid, $username, $email, $hashedPassword, $salt, $role, $verified, $verification_code);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
@@ -337,9 +337,9 @@ function emailExists($conn, $email)
     $resultData = mysqli_stmt_get_result($stmt);
 
     if (mysqli_fetch_assoc($resultData)) {
-        $result = false;
-    } else {
         $result = true;
+    } else {
+        $result = false;
     }
     return $result;
 

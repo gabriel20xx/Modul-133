@@ -7,7 +7,7 @@ CREATE TABLE users (
     password VARCHAR(200),
     salt VARCHAR(50),
     role VARCHAR(50),
-    verified VARCHAR(10),
+    verified BOOLEAN,
     verification_code VARCHAR(50),
     cookie VARCHAR(100),
     PRIMARY KEY (uuid)

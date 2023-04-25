@@ -9,11 +9,9 @@ include_once '../everywhere/header.php';
   ?>
 
   <?php
-  // Here you would typically include any PHP code required to retrieve the user's data from a database or session
-  // For this example, we'll just use hardcoded values
-  $filename = basename(__FILE__, '.php');
+  $uuid = basename(__FILE__, '.php');
 
-  $sql = "SELECT * FROM users WHERE uuid = '$filename'";
+  $sql = "SELECT * FROM users WHERE uuid = '$uuid'";
   $result = mysqli_query($conn, $sql);
   $resultCheck = mysqli_num_rows($result);
 
@@ -36,7 +34,7 @@ include_once '../everywhere/header.php';
         </div>
         <hr>
         <form action="../includes/edit-user.php" method="post">
-          <input type='hidden' name='uuid' value='<?php echo $filename ?>'>
+          <input type='hidden' name='uuid' value='<?php echo $uuid ?>'>
           <div class="form-group mb-2">
             <label for="username">Username</label>
             <input type="text" class="form-control" id="username" name="username" value="<?php echo $username ?>" disabled>
@@ -45,7 +43,7 @@ include_once '../everywhere/header.php';
             <label for="email">Email address</label>
             <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>" disabled>
           </div>
-          <?php if (isset($_SESSION['uuid']) && $_SESSION['uuid'] == $filename) : ?>
+          <?php if (isset($_SESSION['uuid']) && $_SESSION['uuid'] == $uuid) : ?>
             <div class="form-group mb-2">
               <label for="password">Password</label>
               <input type="password" class="form-control" id="password" name="password" value="<?php echo $password ?>" disabled>
@@ -61,7 +59,6 @@ include_once '../everywhere/header.php';
       </div>
     </div>
   </div>
-  <!--  onclick="document.forms[0].method='post'.action='../includes/edit-user.php';" -->
 
   <!-- Modal -->
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -76,7 +73,7 @@ include_once '../everywhere/header.php';
         </div>
         <div class="modal-footer">
           <form action="../includes/delete-user.php" method="post">
-            <input type='hidden' name='uuid' value='<?php echo $filename ?>'>
+            <input type='hidden' name='uuid' value='<?php echo $uuid ?>'>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="submit" name="submit" class="btn btn-danger">Understood</button>
           </form>

@@ -372,7 +372,7 @@ function checkUserLogin()
 
 function checkCorrectUser($conn, $uuid, $type)
 {
-    $sql = "SELECT * FROM '$type' WHERE uuid = '$uuid'";
+    $sql = "SELECT * FROM $type WHERE uuid = '$uuid'";
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
 

@@ -64,7 +64,7 @@ function createUser($conn, $username, $email, $password)
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "sssss", $uuid, $username, $email, $hashedPassword, $salt, $role, $verified, $verification_code);
+    mysqli_stmt_bind_param($stmt, "ssssssbs", $uuid, $username, $email, $hashedPassword, $salt, $role, $verified, $verification_code);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 

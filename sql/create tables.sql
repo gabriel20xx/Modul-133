@@ -6,7 +6,7 @@ CREATE TABLE users (
     email VARCHAR(50),
     password VARCHAR(200),
     salt VARCHAR(50),
-    cookie VARCHAR(100).
+    cookie VARCHAR(100),
     PRIMARY KEY (uuid)
 );
 

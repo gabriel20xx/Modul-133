@@ -35,7 +35,7 @@ $filename = basename(__FILE__, '.php');
             ?>
         </div>
 
-        <!-- Insert Blog Code here-->
+        <!-- Blog Code -->
         <div class="text-center">
             <?php
             $sql = "SELECT * FROM blogs WHERE uuid = '$filename'";
@@ -64,13 +64,11 @@ $filename = basename(__FILE__, '.php');
                     if (isset($_SESSION['uuid']) == $user_uuid) {
                         echo
                         " 
+                        <input type='hidden' name='uuid' value='$uuid'>
+                        <div class='text-right mb-3'>
                             <a class='mt-2 btn btn-secondary' href='../edit_blog.php?edit=$uuid' role='button'>Edit</a>
-                            <form action='../includes/delete-blog.php' method='post'>
-                            <input type='hidden' name='uuid' value='$uuid'>
-                            <div class='text-right mb-3'>
-                            <button type='submit' class='mt-2 btn btn-danger' name='submit'>Delete</button>
-                            <div>
-                            </form>";
+                            <button type='submit' class='mt-2 btn btn-danger' id='delete-btn' data-bs-toggle='modal' data-bs-target='#staticBackdrop'>Delete</button>
+                        <div>";
                     }
                 }
             }
@@ -128,6 +126,28 @@ $filename = basename(__FILE__, '.php');
             }
         }
     ?>
+
+<!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Blog deletion</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete this blog? This action cannot be undone.
+        </div>
+        <div class="modal-footer">
+          <form action="../includes/delete-blog.php" method="post">
+            <input type='hidden' name='uuid' value='<?php echo $filename ?>'>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" name="submit" class="btn btn-danger">Understood</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
     <?php
     if (isset($_SESSION["uuid"])) {

@@ -146,10 +146,10 @@ include_once 'everywhere/header.php'
                 echo "
                 <a href='blogs/$uuid.php' class='list-group-item list-group-item-action'>
                   <div class='d-flex w-100 justify-content-between'>
-                    <h5 class='mb-1'>". substr($title, 0, 30) ."</h5>
+                    <h5 class='mb-1'>" . substr($title, 0, 30) . "</h5>
                     <small>$timeago ago</small>
                   </div>
-                  <p class='mb-1'>". substr($description, 0, 50) ." ...</p>
+                  <p class='mb-1'>" . substr($description, 0, 50) . " ...</p>
                 </a>
                 ";
               }
@@ -164,7 +164,14 @@ include_once 'everywhere/header.php'
     <!-- Call to action section -->
     <div class="row mt-3">
       <div class="col-12 text-center">
-        <a href="register.php" class="btn btn-primary">Join Us Now</a>
+        <?php if (isset($_SESSION["uuid"])) {
+          echo "
+            <a href='new_blog.php' class='btn btn-success'>Create new post Now</a>";
+        } else {
+          echo "
+            <a href='register.php' class='btn btn-primary'>Join Us Now</a>";
+        }
+        ?>
       </div>
     </div>
 

@@ -18,6 +18,9 @@ if (isset($_POST["submit"])) {
 
     createComment($conn, $description, $blog_uuid);
 
+    header("location: ../blogs/$blog_uuid.php?error=commentcreated");
+    exit();
+
 } else {
     header("location: ../forum.php");
     exit();

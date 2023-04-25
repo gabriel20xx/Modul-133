@@ -68,7 +68,7 @@ $filename = basename(__FILE__, '.php');
                         <div class='text-right mb-3'>
                             <a class='mt-2 btn btn-secondary' href='../edit_blog.php?edit=$uuid' role='button'>Edit</a>
                             <button type='button' class='mt-2 btn btn-danger' id='delete-btn' data-bs-toggle='modal' data-bs-target='#staticBackdrop'>Delete</button>
-                        <div>";
+                        </div>";
                     }
                 }
             }
@@ -120,9 +120,9 @@ $filename = basename(__FILE__, '.php');
                             <input type='hidden' name='blog_uuid' value='<?php echo $uuid ?>'>
                             <input type='hidden' name='comment_uuid' value='<?php echo $comment_uuid ?>'>
                             <button type='submit' class='mt-2 mb-2 btn btn-danger' name='submit' id='delete-btn'>Delete</button>
+                            <?php endif; ?>
                         </form>
                     </div>
-                <?php endif; ?>
                 <?php
                 }
             }

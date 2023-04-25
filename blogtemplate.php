@@ -106,7 +106,7 @@ $filename = basename(__FILE__, '.php');
                     <div class="text-right">
                         <form action='../includes/edit-comment.php' method='post'>
                             <textarea class="form-control" name="description" id="description" rows="5" disabled><?php echo $description ?></textarea>
-                            <div class='text-right>
+                            <div class='text-right'>
                                 <p><?php echo $createdAt ?></p>
                                 <p><?php echo $username ?></p>
                             </div>

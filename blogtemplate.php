@@ -67,7 +67,7 @@ $filename = basename(__FILE__, '.php');
                         <input type='hidden' name='uuid' value='$uuid'>
                         <div class='text-right mb-3'>
                             <a class='mt-2 btn btn-secondary' href='../edit_blog.php?edit=$uuid' role='button'>Edit</a>
-                            <button type='button' class='mt-2 btn btn-danger' id='delete-btn' data-bs-toggle='modal' data-bs-target='#staticBackdrop'>Delete</button>
+                            <button type='button' class='mt-2 btn btn-danger' id='delete-blog-btn' data-bs-toggle='modal' data-bs-target='#staticBackdrop'>Delete</button>
                         </div>";
                     }
                 }

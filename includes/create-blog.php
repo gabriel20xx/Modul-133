@@ -19,6 +19,9 @@ if (isset($_POST["submit"])) {
 
     createBlog($conn, $title, $description, $category_id);
 
+    header("location: ../forum.php?page=1&error=postcreated");
+    exit();
+
 } else {
     header("location: ../new_blog.php");
     exit();

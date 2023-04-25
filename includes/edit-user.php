@@ -5,7 +5,7 @@ if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $type = 'users';
+    $type = "users";
 
     require_once 'connect-db.php';
     require_once 'functions.php';
@@ -15,6 +15,7 @@ if (isset($_POST['submit'])) {
         exit();
     };
 
+    // Temprorarely disabled due to malfunctioning
     if (checkCorrectUser($conn, $uuid, $type) !== false) {
         header("location: ../profiles/$uuid.php?error=notauthorized");
         exit();

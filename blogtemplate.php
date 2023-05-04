@@ -35,7 +35,7 @@ $filename = basename(__FILE__, '.php');
             ?>
         </div>
 
-        <!-- Blog Code -->
+        <!-- Blog section -->
         <div class="text-center">
             <?php
             $sql = "SELECT * FROM blogs WHERE uuid = '$filename'";
@@ -74,7 +74,8 @@ $filename = basename(__FILE__, '.php');
             }
             ?>
         </div>
-        <!-- Comment section-->
+
+        <!-- Comment section -->
         <?php
         $sql = "SELECT COUNT(*) AS count FROM comments WHERE blog_uuid ='$filename'";
         $result = mysqli_query($conn, $sql);

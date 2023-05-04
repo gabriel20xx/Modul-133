@@ -111,8 +111,8 @@ $filename = basename(__FILE__, '.php');
                         <form action='../includes/edit-comment.php' method='post'>
                             <textarea class="form-control" name="description" id="description" rows="5" disabled><?php echo $description ?></textarea>
                             <div class='text-right comment-date-user'>
-                                <p><?php echo $createdAt ?></p>
                                 <p><?php echo $username ?></p>
+                                <p><?php echo $createdAt ?></p>
                             </div>
 
                             <?php if (isset($_SESSION['uuid']) && $_SESSION['uuid'] == $user_uuid) : ?>

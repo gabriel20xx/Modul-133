@@ -23,11 +23,13 @@ if (isset($_GET["page"])) {
                     echo
                     '<div class="alert alert-success alert-dismissible fade show" role="alert" id="alertBox">
                 Post successfully created!
+                <button type="button" class="btn-close" aria-label="Close"></button>
                 </div>';
                 } else if ($_GET["error"] == "postdeleted") {
                     echo
                     '<div class="alert alert-danger alert-dismissible fade show" role="alert" id="alertBox">
                 Post deleted!
+                <button type="button" class="btn-close" aria-label="Close"></button>
                 </div>';
                 }
             }

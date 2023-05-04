@@ -19,16 +19,19 @@ $filename = basename(__FILE__, '.php');
                     echo
                     '<div class="alert alert-danger alert-dismissible fade show" role="alert" id="alertBox">
                     Something went wrong!
+                    <button type="button" class="btn-close" aria-label="Close"></button>
                     </div>';
                 } else if ($_GET["error"] == "emptyinput") {
                     echo
                     '<div class="alert alert-danger alert-dismissible fade show" role="alert" id="alertBox">
                     Please fill in the field!
+                    <button type="button" class="btn-close" aria-label="Close"></button>
                     </div>';
                 } else if ($_GET["error"] == "commentcreated") {
                     echo
                     '<div class="alert alert-success alert-dismissible fade show" role="alert" id="alertBox">
                     Comment created!
+                    <button type="button" class="btn-close" aria-label="Close"></button>
                     </div>';
                 }
             }

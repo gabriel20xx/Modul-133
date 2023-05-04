@@ -8,7 +8,6 @@ include_once 'everywhere/header.php';
     include_once 'everywhere/navbar.php'
     ?>
     <div class="text-center login-page">
-        <!-- Insert Login Code here-->
         <main class="form-signin w-100 m-auto">
             <form action="includes/forgot-password.php" method="post">
                 <img class="mb-4" src="pictures/LogoGCT.png" alt="LogoGTC" width="200px">
@@ -21,6 +20,7 @@ include_once 'everywhere/header.php';
                             echo
                             '<div class="alert alert-danger alert-dismissible fade show" role="alert" id="alertBox">
                             Fill in all fields!
+                            <button type="button" class="btn-close" aria-label="Close"></button>
                             </div>';
                         }
                     }

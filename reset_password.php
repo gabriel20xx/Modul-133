@@ -21,6 +21,7 @@ include_once 'everywhere/header.php';
                             echo
                             '<div class="alert alert-danger alert-dismissible fade show" role="alert" id="alertBox">
                             Fill in all fields!
+                            <button type="button" class="btn-close" aria-label="Close"></button>
                             </div>';
                         }
                     }

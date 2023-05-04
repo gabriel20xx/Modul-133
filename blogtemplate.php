@@ -48,7 +48,7 @@ $filename = basename(__FILE__, '.php');
                     $title = $row['title'];
                     $description = $row['description'];
                     echo "<h1 class='border border-radius p-5'>$title</h1>
-                    <p class='border border-radius p-5'>$description</p>";
+                    <p class='border border-radius p-5 mb-1'>$description</p>";
                 }
             }
             ?>

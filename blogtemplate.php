@@ -65,7 +65,7 @@ $filename = basename(__FILE__, '.php');
                         echo
                         " 
                         <input type='hidden' name='uuid' value='$uuid'>
-                        <div class='text-right mb-3'>
+                        <div class='text-right mb-3 mt-1'>
                             <a class='mt-2 btn btn-secondary' href='../edit_blog.php?edit=$uuid' role='button'>Edit</a>
                             <button type='button' class='mt-2 btn btn-danger' id='delete-blog-btn' data-bs-toggle='modal' data-bs-target='#staticBackdrop'>Delete</button>
                         </div>";
@@ -75,7 +75,7 @@ $filename = basename(__FILE__, '.php');
             ?>
         </div>
 
-        <!-- Comment section-->
+        <!-- Comment section -->
         <?php
         $sql = "SELECT COUNT(*) AS count FROM comments WHERE blog_uuid ='$filename'";
         $result = mysqli_query($conn, $sql);

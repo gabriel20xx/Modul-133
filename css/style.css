@@ -77,5 +77,6 @@ textarea {
   display: flex;
   justify-content: space-between;
   margin-left: 0.5rem;
+  margin-right: 0.5rem;
   align-items: center;
 }

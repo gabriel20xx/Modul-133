@@ -42,7 +42,7 @@ include_once 'everywhere/header.php'
 
     <div class="jumbotron text-center">
       <div class="image-container">
-        <img src="pictures/communicate.png" class="img-fluid" alt="Responsive image">
+        <img src="pictures/communicate.png" class="img-fluid border-radius" alt="Responsive image">
         <h1 class="image-overlay">Welcome to The GCT Corner!</h1>
       </div>
       <h2 class="display-4">Our offer!</h2>

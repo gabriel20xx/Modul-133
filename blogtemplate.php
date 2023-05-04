@@ -108,25 +108,27 @@ $filename = basename(__FILE__, '.php');
                     }
         ?>
                     <div class="text-right border border-radius mb-3">
-                        <form action='../includes/edit-comment.php' method='post'>
+                        <form action="../includes/edit-comment.php" method="post">
                             <textarea class="form-control" name="description" id="description" rows="5" disabled><?php echo $description ?></textarea>
-                            <div class='text-right'>
-                                <p><?php echo $createdAt ?></p>
-                                <p><?php echo $username ?></p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <p><?php echo $username ?></p>
+                                    <p><?php echo $createdAt ?></p>
+                                </div>
+                                <?php if (isset($_SESSION['uuid']) && $_SESSION['uuid'] == $user_uuid) : ?>
+                                    <div>
+                                        <input type="hidden" name="blog_uuid" value="<?php echo $uuid ?>">
+                                        <input type="hidden" name="comment_uuid" value="<?php echo $comment_uuid ?>">
+                                        <button type="button" class="btn btn-secondary" id="edit-btn">Edit</button>
+                                        <button type="submit" class="btn btn-primary ml-2" name="submit" id="save-btn">Save</button>
+                                    </div>
+                                <?php endif; ?>
                             </div>
-
-                            <?php if (isset($_SESSION['uuid']) && $_SESSION['uuid'] == $user_uuid) : ?>
-                                <input type='hidden' name='blog_uuid' value='<?php echo $uuid ?>'>
-                                <input type='hidden' name='comment_uuid' value='<?php echo $comment_uuid ?>'>
-                                <button type='button' class='btn btn-secondary' id='edit-btn'>Edit</button>
-                                <button type='submit' class='btn btn-primary mb-2 d-none' name='submit' id='save-btn'>Save</button>
                         </form>
-
-                        <form action='../includes/delete-comment.php' method='post'>
-                            <input type='hidden' name='blog_uuid' value='<?php echo $uuid ?>'>
-                            <input type='hidden' name='comment_uuid' value='<?php echo $comment_uuid ?>'>
-                            <button type='submit' class='mt-2 mb-2 btn btn-danger' name='submit' id='delete-btn'>Delete</button>
-                        <?php endif; ?>
+                        <form action="../includes/delete-comment.php" method="post">
+                            <input type="hidden" name="blog_uuid" value="<?php echo $uuid ?>">
+                            <input type="hidden" name="comment_uuid" value="<?php echo $comment_uuid ?>">
+                            <button type="submit" class="mt-2 btn btn-danger" name="submit" id="delete-btn">Delete</button>
                         </form>
                     </div>
         <?php

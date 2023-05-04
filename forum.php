@@ -217,7 +217,7 @@ if (isset($_GET["page"])) {
                         <div class='m-2 card'>
                         <div class='card-header'><a href='profiles/$createdBy.php'>$username</a></div>
                         <div class='card-body'>
-                            <h5 class='card-title'>". substr($title, 0, 30) ."</h5>
+                            <h5 class='card-title'>" . substr($title, 0, 30) . "</h5>
                             <p class='card-text'>" . substr($description, 0, 50) . " ...</p>
                             <a href='blogs/$uuid.php' class='btn btn-primary'>Go to article</a>
                         </div>
@@ -273,15 +273,13 @@ if (isset($_GET["page"])) {
                 ?>
             </ul>
         </div>
-
-
-        <?php
-        include_once 'everywhere/footer.php';
-        ?>
     </div>
 
+    <?php
+    include_once 'everywhere/footer.php';
+    ?>
+
+    <!--  JavaScript
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2.10.3/dist/umd/popper.min.js"></script>
-
-    <!-- JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script> -->

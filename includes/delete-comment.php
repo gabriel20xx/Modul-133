@@ -8,8 +8,6 @@ if (isset($_POST["submit"])) {
     require_once 'functions.php';
 
     deleteComment($conn, $blog_uuid, $comment_uuid);
-} 
-else {
+} else {
     exit();
 }
-

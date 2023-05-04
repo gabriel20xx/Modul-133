@@ -7,8 +7,6 @@ if (isset($_POST["submit"])) {
     require_once 'functions.php';
 
     deleteBlog($conn, $uuid);
-} 
-else {
+} else {
     exit();
 }
-

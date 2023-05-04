@@ -40,7 +40,6 @@ include_once 'everywhere/header.php'
       ?>
     </div>
 
-    <!-- Insert Homepage Code here-->
     <div class="jumbotron text-center">
       <h1 class="display-4 text-center">Welcome to The GCT Corner!</h1>
       <img src="pictures/communicate.png" class="img-fluid" alt="Responsive image">
@@ -146,10 +145,10 @@ include_once 'everywhere/header.php'
                 echo "
                 <a href='blogs/$uuid.php' class='list-group-item list-group-item-action'>
                   <div class='d-flex w-100 justify-content-between'>
-                    <h5 class='mb-1'>". substr($title, 0, 30) ."</h5>
+                    <h5 class='mb-1'>" . substr($title, 0, 30) . "</h5>
                     <small>$timeago ago</small>
                   </div>
-                  <p class='mb-1'>". substr($description, 0, 50) ." ...</p>
+                  <p class='mb-1'>" . substr($description, 0, 50) . " ...</p>
                 </a>
                 ";
               }
@@ -168,11 +167,8 @@ include_once 'everywhere/header.php'
       </div>
     </div>
 
-    <!-- Footer section -->
-
   </div>
 
   <?php
   include_once 'everywhere/footer.php'
   ?>
-</body>

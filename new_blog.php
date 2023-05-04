@@ -16,7 +16,6 @@ if (!isset($_SESSION["uuid"])) {
     include_once 'everywhere/navbar.php'
     ?>
 
-    <!-- Insert Blogpage Code here -->
     <div class='container'>
         <div class="errors">
             <?php
@@ -31,7 +30,6 @@ if (!isset($_SESSION["uuid"])) {
             ?>
         </div>
 
-        <!-- Change this to a dropdown choose button -->
         <form action="includes/create-blog.php" method="post">
             <div class="mb-3">
                 <label for="category" class="form-label">Category</label>
@@ -55,7 +53,7 @@ if (!isset($_SESSION["uuid"])) {
                                 $name = $row['name'];
 
                                 if ($i == 0) {
-                                    echo "<option value='$id' selected>$name</option>"; // add selected attribute here
+                                    echo "<option value='$id' selected>$name</option>";
                                 } else {
                                     echo "<option value='$id'>$name</option>";
                                 }
@@ -82,4 +80,3 @@ if (!isset($_SESSION["uuid"])) {
     <?php
     include_once 'everywhere/footer.php'
     ?>
-</body>

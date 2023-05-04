@@ -12,8 +12,7 @@ if (isset($_POST["submit"])) {
     editBlog($conn, $uuid, $title, $description, $category);
 
     exit();
-} 
-else {
+} else {
     header("location: ../index.php");
     exit();
 }

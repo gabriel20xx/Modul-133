@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if (isset($_POST["submit"])) {
     $title = $_POST["title"];
@@ -18,7 +18,6 @@ if (isset($_POST["submit"])) {
     };
 
     createBlog($conn, $title, $description, $category_id);
-
 } else {
     header("location: ../new_blog.php");
     exit();

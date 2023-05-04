@@ -3,7 +3,7 @@ include_once 'includes/connect-db.php';
 include_once 'everywhere/header.php'
 ?>
 
-<body>
+<>
     <?php
     include_once 'everywhere/navbar.php'
     ?>
@@ -25,7 +25,6 @@ include_once 'everywhere/header.php'
     }
     ?>
 
-    <!-- Insert Blogpage Code here-->
     <div class="container">
         <form action="includes/edit-blog.php" method="post">
             <input type='hidden' name='uuid' value='$uuid'>
@@ -87,4 +86,3 @@ include_once 'everywhere/header.php'
     <?php
     include_once 'everywhere/footer.php'
     ?>
-</body>

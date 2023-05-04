@@ -11,4 +11,3 @@
     // Redirect the user to the login page or any other page
     header("Location: ../index.php?error=loggedout");
     exit;
-?>

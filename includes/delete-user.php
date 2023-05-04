@@ -7,7 +7,6 @@ if (isset($_POST['submit'])) {
     require_once 'functions.php';
 
     deleteUser($conn, $uuid);
-
 } else {
     header("Location: ../index.php");
     exit;

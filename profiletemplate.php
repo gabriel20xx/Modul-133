@@ -61,7 +61,6 @@ include_once '../everywhere/header.php';
       </div>
     </div>
   </div>
-  <!--  onclick="document.forms[0].method='post'.action='../includes/edit-user.php';" -->
 
   <!-- Modal -->
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -85,61 +84,9 @@ include_once '../everywhere/header.php';
     </div>
   </div>
 
-
-
+  <!-- JavaScript -->
+  <script src="../js/profile.js"></script>
 
   <?php
   include_once '../everywhere/footer.php';
   ?>
-
-  <script>
-    var editBtn = document.getElementById("edit-btn");
-    var saveBtn = document.getElementById("save-btn");
-    var deleteBtn = document.getElementById("delete-btn");
-    var usernameInput = document.getElementById("username");
-    var emailInput = document.getElementById("email");
-    var passwordInput = document.getElementById("password");
-
-    // Enable form inputs and show/hide buttons on edit click
-    editBtn.addEventListener("click", function() {
-      editBtn.classList.add("d-none");
-      saveBtn.classList.remove("d-none");
-      deleteBtn.classList.add("d-none");
-      usernameInput.disabled = false;
-      emailInput.disabled = false;
-      passwordInput.disabled = false;
-    });
-
-    // Disable form inputs and show/hide buttons on save click
-    saveBtn.addEventListener("click", function() {
-      editBtn.classList.remove("d-none");
-      saveBtn.classList.add("d-none");
-      deleteBtn.classList.remove("d-none");
-      //usernameInput.disabled = true;
-      //emailInput.disabled = true;
-      //passwordInput.disabled = true;
-    });
-
-    // Show confirmation dialog on delete click
-    /*     function confirmDelete() {
-          if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
-                    document.forms[0].action='../includes/delete-user.php';
-            alert("Account deleted successfully.");
-          }
-        } */
-  </script>
-  <!--   <script>
-    const myModal = document.getElementById('staticBackdrop')
-    const myInput = document.getElementById('delete-btn')
-
-    myModal.addEventListener('shown.bs.modal', () => {
-      myInput.focus()
-    })
-  </script> -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://unpkg.com/@popperjs/core@2.10.3/dist/umd/popper.min.js"></script>
-
-  <!-- JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
-
-</body>

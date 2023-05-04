@@ -9,27 +9,27 @@ if (isset($_POST['submit'])) {
     require_once 'connect-db.php';
     require_once 'functions.php';
 
-    if (emptyInputSignup($username, $email, $password, $password_rep) !== false){
+    if (emptyInputSignup($username, $email, $password, $password_rep) !== false) {
         header("location: ../register.php?error=emptyinput");
         exit();
     }
-    if (invalidUsername($username) !== false){
+    if (invalidUsername($username) !== false) {
         header("location: ../register.php?error=invalidusername");
         exit();
     }
-    if (invalidEmail($email) !== false){
+    if (invalidEmail($email) !== false) {
         header("location: ../register.php?error=invalidemail");
         exit();
     }
-    if (passwordRequirements($password) !== false){
+    if (passwordRequirements($password) !== false) {
         header("location: ../register.php?error=passwordtooweak");
         exit();
     }
-    if (passwordMatch($password, $password_rep) !== false){
+    if (passwordMatch($password, $password_rep) !== false) {
         header("location: ../register.php?error=passwordsdontmatch");
         exit();
     }
-    if (usernameExists($conn, $username, $email) !== false){
+    if (usernameExists($conn, $username, $email) !== false) {
         header("location: ../register.php?error=usernametaken");
         exit();
     }
@@ -38,8 +38,7 @@ if (isset($_POST['submit'])) {
 
     header("location: ../index.php?error=registered");
     exit();
-}
-else {
+} else {
     header("location: ../index.php");
     exit();
 }

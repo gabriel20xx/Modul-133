@@ -11,8 +11,7 @@ if (isset($_POST["submit"])) {
     editComment($conn, $blog_uuid, $comment_uuid, $description);
 
     exit();
-} 
-else {
+} else {
     header("location: ../index.php");
     exit();
 }

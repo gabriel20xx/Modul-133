@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if (isset($_POST["submit"])) {
     $description = $_POST["description"];
@@ -17,7 +17,6 @@ if (isset($_POST["submit"])) {
     };
 
     createComment($conn, $description, $blog_uuid);
-
 } else {
     header("location: ../forum.php");
     exit();

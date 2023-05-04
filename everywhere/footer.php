@@ -9,6 +9,7 @@
   <script src="https://unpkg.com/@popperjs/core@2.10.3/dist/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
 <script src="../js/navbar.js"></script>
+<script src="../js/alertbox.js"></script>
 </body>
 
 </html>

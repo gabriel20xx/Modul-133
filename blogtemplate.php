@@ -47,8 +47,8 @@ $filename = basename(__FILE__, '.php');
                     $uuid = $row['uuid'];
                     $title = $row['title'];
                     $description = $row['description'];
-                    echo "<h1 class='border'>$title</h1>
-                    <p class='border'>$description</p>";
+                    echo "<h1 class='border border-radius p-5'>$title</h1>
+                    <p class='border border-radius p-5'>$description</p>";
                 }
             }
             ?>
@@ -103,7 +103,7 @@ $filename = basename(__FILE__, '.php');
                         $username = $row2['username'];
                     }
         ?>
-                    <div class="text-right">
+                    <div class="text-right border border-radius mb-3">
                         <form action='../includes/edit-comment.php' method='post'>
                             <textarea class="form-control" name="description" id="description" rows="5" disabled><?php echo $description ?></textarea>
                             <div class='text-right'>

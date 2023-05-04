@@ -16,5 +16,4 @@ saveBtn.addEventListener("click", function () {
   editBtn.classList.remove("d-none");
   saveBtn.classList.add("d-none");
   deleteBtn.classList.remove("d-none");
-  descriptionInput.disabled = true;
 });

@@ -80,7 +80,6 @@ $filename = basename(__FILE__, '.php');
 
 
         <!-- Comment section -->
-        <h3>Comments</h3>
         <?php
         $sql = "SELECT COUNT(*) AS count FROM comments WHERE blog_uuid ='$filename'";
         $result = mysqli_query($conn, $sql);
@@ -88,6 +87,7 @@ $filename = basename(__FILE__, '.php');
         if (mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
             $count = $row["count"];
+            echo '<h3>Comments</h3>';
 
             for ($i = 0; $i < $count; $i++) {
                 $sql = "SELECT * FROM comments WHERE blog_uuid ='$filename' ORDER BY createdAt DESC LIMIT $i, 1";

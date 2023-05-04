@@ -21,12 +21,12 @@ if (isset($_GET["page"])) {
             if (isset($_GET["error"])) {
                 if ($_GET["error"] == "postcreated") {
                     echo
-                    '<div class="alert alert-success" role="alert">
+                    '<div class="alert alert-success alert-dismissible fade show" role="alert" id="alertBox">
                 Post successfully created!
                 </div>';
                 } else if ($_GET["error"] == "postdeleted") {
                     echo
-                    '<div class="alert alert-danger" role="alert">
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert" id="alertBox">
                 Post deleted!
                 </div>';
                 }

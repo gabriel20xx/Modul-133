@@ -19,7 +19,7 @@ include_once 'everywhere/header.php';
                     if (isset($_GET["error"])) {
                         if ($_GET["error"] == "emptyinput") {
                             echo
-                            '<div class="alert alert-danger" role="alert">
+                            '<div class="alert alert-danger alert-dismissible fade show" role="alert" id="alertBox">
                             Fill in all fields!
                             </div>';
                         }

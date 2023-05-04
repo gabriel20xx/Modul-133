@@ -17,17 +17,17 @@ $filename = basename(__FILE__, '.php');
             if (isset($_GET["error"])) {
                 if ($_GET["error"] == "stmtfailed") {
                     echo
-                    '<div class="alert alert-danger" role="alert">
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert" id="alertBox">
                     Something went wrong!
                     </div>';
                 } else if ($_GET["error"] == "emptyinput") {
                     echo
-                    '<div class="alert alert-danger" role="alert">
+                    '<div class="alert alert-danger alert-dismissible fade show" role="alert" id="alertBox">
                     Please fill in the field!
                     </div>';
                 } else if ($_GET["error"] == "commentcreated") {
                     echo
-                    '<div class="alert alert-success" role="alert">
+                    '<div class="alert alert-success alert-dismissible fade show" role="alert" id="alertBox">
                     Comment created!
                     </div>';
                 }

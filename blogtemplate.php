@@ -144,7 +144,7 @@ $filename = basename(__FILE__, '.php');
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        Are you sure you want to delete this blog? This action cannot be undone.
+                        Are you sure you want to delete this post? This action cannot be undone.
                     </div>
                     <div class="modal-footer">
                         <form action="../includes/delete-blog.php" method="post">

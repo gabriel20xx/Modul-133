@@ -104,21 +104,28 @@ if (isset($_GET["page"])) {
                     <?php
                     if (isset($_GET["sort"])) {
                         if ($_GET["sort"] == "a-z") {
-                            $sort = "title ASC";
+                            $sort_sql = "A-Z";
+                            $sort = "title ascending";
                         } else if ($_GET["sort"] == "z-a") {
-                            $sort = "title DESC";
+                            $sort_sql = "Z-A";
+                            $sort = "title descending";
                         } else if ($_GET["sort"] == "created-asc") {
-                            $sort = "createdAt ASC";
+                            $sort_sql = "createdAt ASC";
+                            $sort = "created ascending";
                         } else if ($_GET["sort"] == "created-desc") {
-                            $sort = "createdAt DESC";
+                            $sort_sql = "createdAt DESC";
+                            $sort = "created descending";
                         } else if ($_GET["sort"] == "user-asc") {
-                            $sort = "user_uuid ASC";
+                            $sort_sql = "user_uuid ASC";
+                            $sort = "user ascending";
                         } else if ($_GET["sort"] == "user-desc") {
-                            $sort = "user_uuid DESC";
+                            $sort_sql = "user_uuid DESC";
+                            $sort = "user descending";
                         }
                         echo "Sort by $sort";
                     } else {
-                        $sort = "createdAt DESC";
+                        $sort_sql = "createdAt DESC";
+                        $sort = "created descending";
                         echo "Sort by $sort";
                     }
                     ?>
@@ -151,7 +158,7 @@ if (isset($_GET["page"])) {
 
 
                 for ($i = 0; $i < $count; $i++) {
-                    $sql = "SELECT * FROM blogs $category_sql ORDER BY $sort LIMIT 1 OFFSET " . $i;
+                    $sql = "SELECT * FROM blogs $category_sql ORDER BY $sort_sql LIMIT 1 OFFSET " . $i;
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
 

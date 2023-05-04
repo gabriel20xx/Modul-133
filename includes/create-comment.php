@@ -13,10 +13,15 @@ if (isset($_POST["submit"])) {
     };
 
     if (checkUserLogin() !== false) {
+        header("location: ../login.php?error=notloggedin");
         exit();
     };
-
+    
     createComment($conn, $description, $blog_uuid);
+
+    header("location: ../blogs/$blog_uuid.php?error=commentcreated");
+    exit();
+
 } else {
     header("location: ../forum.php");
     exit();

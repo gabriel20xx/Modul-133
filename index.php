@@ -163,7 +163,14 @@ include_once 'everywhere/header.php'
     <!-- Call to action section -->
     <div class="row mt-3">
       <div class="col-12 text-center">
-        <a href="register.php" class="btn btn-primary">Join Us Now</a>
+        <?php if (isset($_SESSION["uuid"])) {
+          echo "
+            <a href='new_blog.php' class='btn btn-success'>Create new post Now</a>";
+        } else {
+          echo "
+            <a href='register.php' class='btn btn-primary'>Join Us Now</a>";
+        }
+        ?>
       </div>
     </div>
 

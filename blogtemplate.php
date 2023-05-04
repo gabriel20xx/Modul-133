@@ -35,7 +35,7 @@ $filename = basename(__FILE__, '.php');
             ?>
         </div>
 
-        <!-- Insert Blog Code here-->
+        <!-- Blog Code -->
         <div class="text-center">
             <?php
             $sql = "SELECT * FROM blogs WHERE uuid = '$filename'";
@@ -47,8 +47,8 @@ $filename = basename(__FILE__, '.php');
                     $uuid = $row['uuid'];
                     $title = $row['title'];
                     $description = $row['description'];
-                    echo "<h1 class='border'>$title</h1>";
-                    echo "<p class='border'>$description</p>";
+                    echo "<h1 class='border'>$title</h1>
+                    <p class='border'>$description</p>";
                 }
             }
             ?>
@@ -64,13 +64,11 @@ $filename = basename(__FILE__, '.php');
                     if (isset($_SESSION['uuid']) == $user_uuid) {
                         echo
                         " 
+                        <input type='hidden' name='uuid' value='$uuid'>
+                        <div class='text-right mb-3'>
                             <a class='mt-2 btn btn-secondary' href='../edit_blog.php?edit=$uuid' role='button'>Edit</a>
-                            <form action='../includes/delete-blog.php' method='post'>
-                            <input type='hidden' name='uuid' value='$uuid'>
-                            <div class='text-right mb-3'>
-                            <button type='submit' class='mt-2 btn btn-danger' name='submit'>Delete</button>
-                            <div>
-                            </form>";
+                            <button type='button' class='mt-2 btn btn-danger' id='delete-blog-btn' data-bs-toggle='modal' data-bs-target='#staticBackdrop'>Delete</button>
+                        </div>";
                     }
                 }
             }
@@ -105,34 +103,60 @@ $filename = basename(__FILE__, '.php');
                         $username = $row2['username'];
                     }
         ?>
-                    <form action='../includes/edit-comment.php' method='post'>
-                        <textarea class="form-control" name="description" id="description" rows="5" disabled><?php echo $description ?></textarea>
-                        <p><?php echo $createdAt ?></p>
-                        <p><?php echo $username ?></p>
+                    <div class="text-right">
+                        <form action='../includes/edit-comment.php' method='post'>
+                            <textarea class="form-control" name="description" id="description" rows="5" disabled><?php echo $description ?></textarea>
+                            <div class='text-right'>
+                                <p><?php echo $createdAt ?></p>
+                                <p><?php echo $username ?></p>
+                            </div>
 
-                        <?php if (isset($_SESSION['uuid']) && $_SESSION['uuid'] == $user_uuid) : ?>
+                            <?php if (isset($_SESSION['uuid']) && $_SESSION['uuid'] == $user_uuid) : ?>
+                                <input type='hidden' name='blog_uuid' value='<?php echo $uuid ?>'>
+                                <input type='hidden' name='comment_uuid' value='<?php echo $comment_uuid ?>'>
+                                <button type='button' class='btn btn-secondary' id='edit-btn'>Edit</button>
+                                <button type='submit' class='btn btn-primary mb-2 d-none' name='submit' id='save-btn'>Save</button>
+                        </form>
+
+                        <form action='../includes/delete-comment.php' method='post'>
                             <input type='hidden' name='blog_uuid' value='<?php echo $uuid ?>'>
                             <input type='hidden' name='comment_uuid' value='<?php echo $comment_uuid ?>'>
-                            <button type='button' class='btn btn-secondary' id='edit-btn'>Edit</button>
-                            <button type='submit' class='btn btn-primary mb-2 d-none' name='submit' id='save-btn'>Save</button>
-                    </form>
-
-                    <form action='../includes/delete-comment.php' method='post'>
-                        <input type='hidden' name='blog_uuid' value='<?php echo $uuid ?>'>
-                        <input type='hidden' name='comment_uuid' value='<?php echo $comment_uuid ?>'>
-                        <button type='submit' class='mt-2 mb-2 btn btn-danger' name='submit' id='delete-btn'>Delete</button>
-                    </form>
-                <?php endif; ?>
-    <?php
+                            <button type='submit' class='mt-2 mb-2 btn btn-danger' name='submit' id='delete-btn'>Delete</button>
+                        <?php endif; ?>
+                        </form>
+                    </div>
+        <?php
                 }
             }
         }
-    ?>
+        ?>
 
-    <?php
-    if (isset($_SESSION["uuid"])) {
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Blog deletion</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this blog? This action cannot be undone.
+                    </div>
+                    <div class="modal-footer">
+                        <form action="../includes/delete-blog.php" method="post">
+                            <input type='hidden' name='uuid' value='<?php echo $filename ?>'>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" name="submit" class="btn btn-danger">Understood</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        echo "
+        <?php
+        if (isset($_SESSION["uuid"])) {
+
+            echo "
         <form action='../includes/create-comment.php' method='post'>
             <div class='form-floating mb-2'>
                 <textarea class='form-control' placeholder='Leave a comment here' name='description' id='description'></textarea>
@@ -142,9 +166,9 @@ $filename = basename(__FILE__, '.php');
             <button class='btn btn-success mb-3' name='submit' type='submit'>Add Comment</button>
         </form>
         ";
-    }
+        }
 
-    ?>
+        ?>
     </div>
 
     <script src="../js/comments.js"></script>

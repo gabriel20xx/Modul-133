@@ -69,7 +69,7 @@ include_once 'everywhere/header.php';
                 </div>
                 <div class="form-floating mb-3">
                     <input type="password" name="password_rep" class="form-control form-last" id="password_rep" placeholder="Repeat Password">
-                    <label for="password_rep">Repeat Password</label>
+                    <label for="password_rep">Repeat password</label>
                 </div>
                 <button class="w-100 mb-3 btn btn-lg btn-primary" name="submit" type="submit">Register</button>
                 <a href="login.php">

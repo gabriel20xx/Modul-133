@@ -3,7 +3,7 @@
 $dbServer = "8.34.222.223";
 $dbUsername = "phpuser";
 $dbPassword = "phppassword";
-$dbName = "m133"; #projektm133
+$dbName = "m133";
 
 // Create connection
 $conn = mysqli_connect($dbServer, $dbUsername, $dbPassword, $dbName);

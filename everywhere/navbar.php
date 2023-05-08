@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm bg-body-tertiary mb-4">
+<nav class="navbar navbar-expand-md bg-body-tertiary mb-4">
   <div class="container">
     <a class="navbar-brand" href="../index.php" height="42px">
       <img src="../pictures/LogoGCT.png" alt="LogoGTC" height="42px">

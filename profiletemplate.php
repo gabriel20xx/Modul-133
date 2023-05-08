@@ -34,6 +34,25 @@ include_once '../everywhere/header.php';
         </div>
         <hr>
         <form action="../includes/edit-user.php" method="post">
+          <div class='errors'>
+            <?php
+            if (isset($_GET["error"])) {
+              if ($_GET["error"] == "notloggedin") {
+                echo
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert" id="alertBox">
+                    You are not logged in!
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                    </div>';
+              } else if ($_GET["error"] == "notauthorized") {
+                echo
+                '<div class="alert alert-danger alert-dismissible fade show" role="alert" id="alertBox">
+                    You are not authorized to do this action!
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                    </div>';
+              }
+            }
+            ?>
+          </div>
           <input type='hidden' name='uuid' value='<?php echo $uuid ?>'>
           <div class="form-group mb-2">
             <label for="username">Username</label>

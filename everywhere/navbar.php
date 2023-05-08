@@ -24,10 +24,10 @@
         </a>";
       } else {
         echo "
-        <a href='../includes/login.php'>
+        <a href='../login.php'>
         <button type='button' class='btn btn-outline-primary me-2'>Login</button>
         </a>
-        <a href='../includes/register.php'>
+        <a href='../register.php'>
         <button type='button' class='btn btn-primary'>Register</button>
         </a>";
       } ?>

@@ -28,9 +28,14 @@ include_once '../everywhere/header.php';
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <div class="text-center">
-          <img src="https://via.placeholder.com/150" class="rounded-circle" alt="Profile Picture">
-          <h2><?php echo $username ?></h2>
-          <p><?php echo $email ?></p>
+          <form action="upload.php" method="post" enctype="multipart/form-data">
+            <img src="https://via.placeholder.com/150" class="rounded-circle" alt="Profile Picture" id="profile-pic">
+            <br>
+            <input type="file" name="profile-pic" id="profile-pic-input" style="display: none;">
+            <button type="button" onclick="document.getElementById('profile-pic-input').click();">Upload Picture</button>
+            <h2><?php echo $username ?></h2>
+            <p><?php echo $email ?></p>
+          </form>
         </div>
         <hr>
         <form action="../includes/edit-user.php" method="post">
@@ -47,6 +52,12 @@ include_once '../everywhere/header.php';
                 echo
                 '<div class="alert alert-danger alert-dismissible fade show" role="alert" id="alertBox">
                     You are not authorized to do this action!
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                    </div>';
+              } else if ($_GET["error"] == "profileupdated") {
+                echo
+                '<div class="alert alert-success alert-dismissible fade show" role="alert" id="alertBox">
+                    Your profile has been updated.
                     <button type="button" class="btn-close" aria-label="Close"></button>
                     </div>';
               }

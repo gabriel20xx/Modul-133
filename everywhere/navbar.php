@@ -52,10 +52,10 @@
     </div>
 
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-      <li><a href="../index.php" class="nav-link px-2 link-secondary">Home</a></li>
-      <li><a href="../forum.php" class="nav-link px-2">Forum</a></li>
-      <li><a href="../about.php" class="nav-link px-2">About</a></li>
-      <li><a href="../impressum.php" class="nav-link px-2">Impressum</a></li>
+      <li class="nav-item"><a href="../index.php" class="nav-link px-2 link-secondary">Home</a></li>
+      <li class="nav-item"><a href="../forum.php" class="nav-link px-2">Forum</a></li>
+      <li class="nav-item"><a href="../about.php" class="nav-link px-2">About</a></li>
+      <li class="nav-item"><a href="../impressum.php" class="nav-link px-2">Impressum</a></li>
     </ul>
 
     <div class="col-md-3 text-end">

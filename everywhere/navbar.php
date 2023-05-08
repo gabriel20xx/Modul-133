@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md bg-body-tertiary mb-4">
+<!-- <nav class="navbar navbar-expand-md bg-body-tertiary mb-4">
   <div class="container">
     <a class="navbar-brand" href="../index.php" height="42px">
       <img src="../pictures/LogoGCT.png" alt="LogoGTC" height="42px">
@@ -39,7 +39,7 @@
       </ul>
     </div>
   </div>
-</nav>
+</nav> -->
 
 <div class="container">
   <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
@@ -49,8 +49,8 @@
       </a>
     </div>
 
-    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 text-decoration-none">
-      <li class="nav-item"><a href="../index.php" class="nav-link px-2 link-secondary">Home</a></li>
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+      <li class="nav-item"><a href="../index.php" class="nav-link px-2 link-secondary active">Home</a></li>
       <li class="nav-item"><a href="../forum.php" class="nav-link px-2">Forum</a></li>
       <li class="nav-item"><a href="../about.php" class="nav-link px-2">About</a></li>
       <li class="nav-item"><a href="../impressum.php" class="nav-link px-2">Impressum</a></li>

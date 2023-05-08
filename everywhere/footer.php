@@ -1,7 +1,7 @@
 <footer>
   <div class="row mt-3">
     <div class="col-12 text-center">
-      <p>&copy; 2023 The GCT Corner. All rights reserved.</p>
+      <p>&copy; 2023 The GCT Corner. All rights reserved. <a href="../impressum.php">Impressum</a></p>
     </div>
   </div>
 </footer>

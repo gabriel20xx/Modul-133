@@ -19,7 +19,7 @@ include_once 'everywhere/navbar.php';
     <p>TheGCTCorner is committed to protecting your privacy. We will only use the information that we collect about you lawfully (in accordance with the General Data Protection Regulation).</p>
     <p>We may collect information about you for 2 reasons:</p>
     <ul>
-      <li>To process your order</li>
+      <li>To process your work</li>
       <li>To provide you with the best possible service</li>
     </ul>
     <p>We will not e-mail you in the future unless you have given us your consent. We will give you the chance to refuse any marketing email from us in the future.</p>

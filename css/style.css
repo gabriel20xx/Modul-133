@@ -17,6 +17,10 @@ textarea {
   display: none;
 }
 
+.nav-link.active {
+  color: #000;
+}
+
 /* Für Login und Register */
 .login-page {
   display: flex;

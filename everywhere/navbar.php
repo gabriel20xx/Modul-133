@@ -6,10 +6,10 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-      <ul class="navbar-nav">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../index.php">Home</a>
+          <a class="nav-link" aria-current="page" href="../index.php">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../forum.php">Forum</a>
@@ -17,25 +17,21 @@
         <li class="nav-item">
           <a class="nav-link" href="../about.php">About</a>
         </li>
-      </ul>
-      <ul class="navbar-nav">
-        <?php if (isset($_SESSION["uuid"])) {
-          echo "
-          <li class='nav-item w-300 me-2'>
-            <a class='nav-link btn btn-outline-primary nav-button-login' href='../includes/logout.php'>Logout</a>
+        <?php if (isset($_SESSION["uuid"])) { ?>
+          <li class="nav-item">
+            <a class="nav-link" href="../profiles/<?php echo $_SESSION["uuid"]; ?>.php">Profile</a>
           </li>
-          <li class='nav-item w-300'>
-            <a class='nav-link btn btn-primary nav-button-register' href='../profiles/" . $_SESSION["uuid"] . ".php'>Profile</a>
-          </li>";
-        } else {
-          echo "
-          <li class='nav-item w-300 me-2'>
-            <a class='nav-link btn btn-outline-primary nav-button-login' href='../login.php'>Login</a>
+          <li class="nav-item">
+            <a class="nav-link" href="../includes/logout.php">Logout</a>
           </li>
-          <li class='nav-item w-300'>
-            <a class='nav-link btn btn-primary nav-button-register' href='../register.php'>Register</a>
-          </li>";
-        } ?>
+        <?php } else { ?>
+          <li class="nav-item">
+            <a class="nav-link" href="../login.php">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../register.php">Register</a>
+          </li>
+        <?php } ?>
       </ul>
     </div>
   </div>

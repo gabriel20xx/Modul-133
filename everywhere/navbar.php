@@ -8,7 +8,7 @@
 
     <style>
       .nav-link.active {
-        color: black;
+        color: black !important;
       }
     </style>
 
@@ -17,7 +17,7 @@
       <li class="nav-item"><a href="../forum.php" class="nav-link px-2">Forum</a></li>
       <li class="nav-item"><a href="../about.php" class="nav-link px-2">About</a></li>
       <li class="nav-item"><a href="../impressum.php" class="nav-link px-2">Impressum</a></li>
-</ul>
+    </ul>
 
     <div class="col-md-3 text-end">
       <?php if (isset($_SESSION["uuid"])) {

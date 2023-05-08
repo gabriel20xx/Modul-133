@@ -17,9 +17,6 @@
         <li class="nav-item">
           <a class="nav-link" href="../about.php">About</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../impressum.php">Impressum</a>
-        </li>
       </ul>
       <ul class="navbar-nav">
         <?php if (isset($_SESSION["uuid"])) {

@@ -32,7 +32,7 @@ include_once '../everywhere/header.php';
             <img src="https://via.placeholder.com/150" class="rounded-circle" alt="Profile Picture" id="profile-pic">
             <br>
             <input type="file" name="profile-pic" id="profile-pic-input" style="display: none;">
-            <button type="button" onclick="document.getElementById('profile-pic-input').click();">Upload Picture</button>
+            <button class="btn btn-secondary m-1" type="button" onclick="document.getElementById('profile-pic-input').click();">Upload Picture</button>
             <h2><?php echo $username ?></h2>
             <p><?php echo $email ?></p>
           </form>

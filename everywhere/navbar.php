@@ -49,7 +49,7 @@
       </a>
     </div>
 
-    <ul class="navbar-nav nav flex-row col-12 col-md-auto mb-2 justify-content-center mb-md-0 ">
+    <ul class="navbar-nav nav d-flex flex-row col-12 col-md-auto mb-2 justify-content-center mb-md-0 ">
       <li class="nav-item"><a href="../index.php" class="nav-link px-2 active">Home</a></li>
       <li class="nav-item"><a href="../forum.php" class="nav-link px-2">Forum</a></li>
       <li class="nav-item"><a href="../about.php" class="nav-link px-2">About</a></li>

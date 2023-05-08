@@ -394,11 +394,11 @@ function checkCorrectUser($conn, $uuid, $type) {
         $user_uuid = $row['user_uuid'];
 
         if (!isset($_SESSION["uuid"]) || $_SESSION["uuid"] !== $user_uuid) {
-            $result = true;
+            $is_authorized = true;
         } else {
-            $result = false;
+            $is_authorized = false;
         }
-        return $result;
+        return $is_authorized;
     }
 }
 

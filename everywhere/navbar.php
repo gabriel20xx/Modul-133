@@ -34,3 +34,8 @@
     </div>
   </header>
 </div>
+<style>
+.nav-link.active {
+  color: black;
+}
+</style>

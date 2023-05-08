@@ -21,3 +21,13 @@ for (var i = 0; i < navLinks.length; i++) {
     link.classList.remove("active");
   }
 }
+
+const navbarLinks = document.querySelectorAll('.navbar-nav > li > a');
+navbarLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    if (navbarToggler.getAttribute('aria-expanded') === 'true') {
+      navbarToggler.click();
+    }
+  });
+});

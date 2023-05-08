@@ -32,7 +32,7 @@ include_once 'everywhere/navbar.php';
     <p>The information we hold will be accurate and up to date. You can check the information that we hold about you by emailing us. If you find any inaccuracies we will delete or correct them promptly.</p>
     <p>The personal information which we hold will be held securely in accordance with our internal security policy and the law.</p>
     <h2 class="my-4">Copyright</h2>
-    <p>All content included on this site, such as text, graphics, logos, button icons, images, audio clips, digital downloads, data compilations, and software, is the property of [Insert Company Name Here] or its content suppliers and protected by international copyright laws. The compilation of all content on this site is the exclusive property of [Insert Company Name Here] and protected by international copyright laws.</p>
+    <p>All content included on this site, such as text, graphics, logos, button icons, images, audio clips, digital downloads, data compilations, and software, is the property of TheGCTCorner or its content suppliers and protected by international copyright laws. The compilation of all content on this site is the exclusive property of TheGCTCorner and protected by international copyright laws.</p>
   </section>
 </main>
 

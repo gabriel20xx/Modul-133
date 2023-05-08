@@ -1,4 +1,4 @@
-const button = document.querySelector(".navbar-toggler");
+/* const button = document.querySelector(".navbar-toggler");
 const menu = document.querySelector(".navbar-collapse");
 
 button.addEventListener("click", function () {
@@ -9,7 +9,7 @@ button.addEventListener("click", function () {
   }
 });
 
-
+ */
 var currentPage = window.location.pathname;
 var navLinks = document.querySelectorAll(".navbar-nav a");
 

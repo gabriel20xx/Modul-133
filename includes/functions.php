@@ -442,7 +442,6 @@ function checkCorrectUser($conn, $uuid, $type) {
     }
 }
 
-
 function emptyInputCreateComment($description)
 {
     if (empty($description)) {

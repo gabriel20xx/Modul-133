@@ -12,10 +12,10 @@ if (isset($_POST['submit'])) {
         exit();
     };
 
-    if (checkCorrectUser($conn, $uuid, $type) !== false) {
+    /* if (checkCorrectUser($conn, $uuid, $type) !== false) {
         header("location: ../profiles/$uuid.php?error=notauthorized");
         exit();
-    };
+    }; */
 
     deleteUser($conn, $uuid);
 

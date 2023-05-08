@@ -28,11 +28,11 @@ include_once '../everywhere/header.php';
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <div class="text-center">
-          <form action="upload.php" method="post" enctype="multipart/form-data">
+          <form action="../includes/upload-profile-picture.php" method="post" enctype="multipart/form-data">
             <img src="https://via.placeholder.com/150" class="rounded-circle" alt="Profile Picture" id="profile-pic">
             <br>
             <input type="file" name="profile-pic" id="profile-pic-input" style="display: none;">
-            <button class="btn btn-secondary m-1" type="button" onclick="document.getElementById('profile-pic-input').click();">Upload Picture</button>
+            <button class="btn btn-primary m-1" type="button" onclick="document.getElementById('profile-pic-input').click();">Upload Picture</button>
             <h2><?php echo $username ?></h2>
             <p><?php echo $email ?></p>
           </form>

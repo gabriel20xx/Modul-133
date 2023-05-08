@@ -13,6 +13,12 @@
       <li class="nav-item"><a href="../impressum.php" class="nav-link px-2">Impressum</a></li>
     </ul>
 
+    <style>
+      .nav-link.active {
+        color: black;
+      }
+    </style>
+
     <div class="col-md-3 text-end">
       <?php if (isset($_SESSION["uuid"])) {
         echo "
@@ -34,8 +40,3 @@
     </div>
   </header>
 </div>
-<style>
-.nav-link.active {
-  color: black;
-}
-</style>

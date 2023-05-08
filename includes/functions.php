@@ -202,6 +202,26 @@ function editComment($conn, $uuid, $blog_uuid, $description)
 
 function deleteUser($conn, $uuid)
 {
+    $sql = "SELECT count(*) FROM blogs WHERE user_uuid = '$uuid'";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $count = $row["count"];
+
+        for ($i = 0; $i < $count; $i++) {
+            $sql = "SELECT * FROM blogs WHERE user_uuid = '$uuid' LIMIT 1 OFFSET " . $i;
+            $result = mysqli_query($conn, $sql);
+            $resultCheck = mysqli_num_rows($result);
+
+            if ($resultCheck > 0) {
+                $row = mysqli_fetch_assoc($result);
+                $uuid = $row['uuid'];
+                unlink("../blogs/$uuid.php");
+            }
+        }
+    }
+
     $sql = "DELETE FROM blogs WHERE user_uuid = ?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {

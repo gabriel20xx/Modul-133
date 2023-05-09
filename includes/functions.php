@@ -8,20 +8,20 @@ function loginUser($conn, $username, $password, $rememberMe)
         exit();
     }
 
-    $salt = $user["salt"]; // get the salt value of the user
-    $pepper = 'thegctboys'; // define the unique pepper value for our application
+    $salt = $user["salt"]; 
+    $pepper = 'thegctboys';
 
     $hashedPassword = $user["password"];
-    $checkPassword = password_verify($salt . $password . $pepper, $hashedPassword); // verify the hashed password with the salt and pepper
+    $checkPassword = password_verify($salt . $password . $pepper, $hashedPassword); 
 
     if ($checkPassword === false) {
         header("location: ../login.php?error=wronglogin");
         exit();
     } else if ($checkPassword === true) {
         if ($rememberMe === true) {
-            $expiration = time() + (86400 * 30); // Set the expiration time for the cookie (in seconds), 30 days from now
-            $token = bin2hex(random_bytes(32)); // Generate a random token to use as the cookie value
-            setcookie('login_token', $token, $expiration, '/'); // Set the cookie
+            $expiration = time() + (86400 * 30); // 30 days from now
+            $token = bin2hex(random_bytes(32)); 
+            setcookie('login_token', $token, $expiration, '/'); 
 
             $sql = "UPDATE users SET cookie=? WHERE uuid=?";
             $stmt = mysqli_stmt_init($conn);
@@ -136,8 +136,8 @@ function editUser($conn, $uuid, $username, $email, $password)
         $salt = $row['salt'];
 
         if (!password_verify($password, $hashedPassword)) {
-            $salt = bin2hex(random_bytes(8)); // generate a unique salt value for each user
-            $pepper = 'thegctboys'; // define a unique pepper value for our application
+            $salt = bin2hex(random_bytes(8)); 
+            $pepper = 'thegctboys'; 
             $hashedPassword = password_hash($salt . $password . $pepper, PASSWORD_DEFAULT);
         }
 

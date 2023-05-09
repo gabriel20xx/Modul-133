@@ -157,7 +157,7 @@ if (isset($_GET["page"])) {
 
 
             for ($i = 0; $i < $countmax; $i++) {
-                $sql = "SELECT * FROM blogs $category_sql ORDER BY $sort_sql LIMIT 1 OFFSET " . $i+($currentPage-1)*$countmax;
+                $sql = "SELECT * FROM blogs $category_sql ORDER BY $sort_sql LIMIT 1 OFFSET " . ($i+(($currentPage-1)*$countmax));
                 $result = mysqli_query($conn, $sql);
                 $resultCheck = mysqli_num_rows($result);
 

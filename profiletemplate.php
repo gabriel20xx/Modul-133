@@ -32,6 +32,7 @@ if ($resultCheck > 0) {
       </div>
       <hr>
       <form action="../includes/edit-user.php" method="post">
+        <!-- Alert Boxes -->
         <div class='errors'>
           <?php
           if (isset($_GET["error"])) {

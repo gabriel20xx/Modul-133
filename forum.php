@@ -13,6 +13,8 @@ if (isset($_GET["page"])) {
 ?>
 
 <div class='container'>
+
+    <!-- Alert Boxes -->
     <div class='errors'>
         <?php
         if (isset($_GET["error"])) {
@@ -43,6 +45,8 @@ if (isset($_GET["page"])) {
             </div>';
     }
     ?>
+
+    <!-- Filter and Sort -->
     <div class="dropdowns-container d-flex justify-content-between">
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -141,7 +145,6 @@ if (isset($_GET["page"])) {
     </div>
 
     <!-- Grid overview -->
-
     <div class="row mb-3 p-2 text-center">
         <?php
         $sql = "SELECT COUNT(*) as count FROM blogs";
@@ -238,6 +241,7 @@ if (isset($_GET["page"])) {
 
     </div>
 
+    <!-- Page indicator -->
     <?php
     if ($currentPage != 1) {
         $previousPage = $currentPage - 1;

@@ -5,6 +5,7 @@ include_once 'everywhere/navbar.php';
 ?>
 
 <div class="container">
+  <!-- Alert Boxes -->
   <div class='errors'>
     <?php
     if (isset($_GET["error"])) {
@@ -37,6 +38,7 @@ include_once 'everywhere/navbar.php';
     ?>
   </div>
 
+  <!-- Homepage content -->
   <div class="jumbotron text-center">
     <div class="image-container">
       <img src="pictures/communicate.png" class="img-fluid border-radius" alt="Responsive image">

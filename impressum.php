@@ -4,6 +4,7 @@ include_once 'everywhere/header.php';
 include_once 'everywhere/navbar.php';
 ?>
 
+<!-- Impressum content -->
 <main>
   <section class="container my-5">
     <h1 class="mb-4">Impressum</h1>
@@ -25,7 +26,7 @@ include_once 'everywhere/navbar.php';
     <p>We will not e-mail you in the future unless you have given us your consent. We will give you the chance to refuse any marketing email from us in the future.</p>
     <p>The type of information we may collect about you includes:</p>
     <ul>
-      <li>Your name</li>
+      <li>Your username</li>
       <li>Email address</li>
     </ul>
     <p>We will never collect sensitive information about you without your explicit consent.</p>

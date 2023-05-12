@@ -5,11 +5,11 @@ include_once 'everywhere/navbar.php';
 ?>
 
 <div class="text-center login-page">
-    <!-- Insert Register Code here-->
     <main class="form-signin w-100 m-auto">
         <form action="includes/create-user.php" method="post">
             <img class="mb-4" src="pictures/LogoGCT.png" alt="LogoGTC" width="200px">
             <h1 class="h3 mb-3 fw-normal">Please register</h1>
+            <!-- Alert Boxes -->
             <div class='errors'>
                 <?php
                 if (isset($_GET["error"])) {

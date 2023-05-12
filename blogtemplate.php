@@ -6,6 +6,8 @@ $filename = basename(__FILE__, '.php');
 ?>
 
 <div class='container'>
+
+    <!-- Alert Boxes -->
     <div class='errors'>
         <?php
         if (isset($_GET["error"])) {
@@ -153,6 +155,7 @@ $filename = basename(__FILE__, '.php');
         </div>
     </div>
 
+    <!-- Create Comment button -->
     <?php
     if (isset($_SESSION["uuid"])) {
 

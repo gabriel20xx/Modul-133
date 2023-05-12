@@ -4,6 +4,7 @@ include_once 'everywhere/header.php';
 include_once 'everywhere/navbar.php';
 ?>
 
+<!-- About content -->
 <div class="container">
   <h1>About Us</h1>
   <p>Welcome to our forum website! We are a team of three individuals who share a passion for creating an online community where people can connect and share their ideas.

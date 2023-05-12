@@ -10,6 +10,7 @@ include_once 'everywhere/navbar.php';
             <img class="mb-4" src="pictures/LogoGCT.png" alt="LogoGTC" width="200px">
             <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
+            <!-- Alert Boxes -->
             <div class="errors">
                 <?php
                 if (isset($_GET["error"])) {

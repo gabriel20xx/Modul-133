@@ -13,6 +13,7 @@ if (!isset($_SESSION["uuid"])) {
 ?>
 
 <div class='container'>
+    <!-- Alert Boxes -->
     <div class="errors">
         <?php
         if (isset($_GET["error"])) {
@@ -27,6 +28,7 @@ if (!isset($_SESSION["uuid"])) {
         ?>
     </div>
 
+    <!-- New Blog content -->
     <form action="includes/create-blog.php" method="post">
         <div class="mb-3">
             <label for="category" class="form-label">Category</label>

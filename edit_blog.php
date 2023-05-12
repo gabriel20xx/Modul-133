@@ -21,6 +21,7 @@ if (isset($_GET["edit"])) {
 }
 ?>
 
+<!-- Edit Blog content -->
 <div class="container">
     <form action="includes/edit-blog.php" method="post">
         <input type='hidden' name='uuid' value='$uuid'>

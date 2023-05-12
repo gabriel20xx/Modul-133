@@ -12,6 +12,7 @@ if (isset($_POST['submit'])) {
         exit();
     };
 
+    /* Disabled because of not currently working */
     /* if (checkCorrectUser($conn, $uuid, $type) !== false) {
         header("location: ../profiles/$uuid.php?error=notauthorized");
         exit();
